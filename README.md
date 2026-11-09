@@ -182,38 +182,171 @@ C:\Users\<내 사용자 이름>\AppData\Roaming\self-canban\
 
 ---
 
-## 7. 개발자를 위한 안내
+## 7. 개발자를 위한 안내 (소스를 받아서 직접 실행·수정하려는 분)
 
-프로그램만 쓰는 분은 이 아래를 읽지 않아도 됩니다.
+프로그램만 쓰는 분은 이 아래를 읽지 않아도 됩니다. 이 장은 **GitHub에서 소스를 내려받아 내 PC에서 실행하고, 고치고, 직접 포장**하기까지를 순서대로 설명합니다.
 
-### 구성
-- Electron 45 + React 19 + TypeScript 6, 빌드는 electron-vite.
-- 데이터는 앱 데이터 폴더의 JSON 파일 하나에 원자적으로 저장합니다.
-- 소스는 `app/`에 있습니다. `docs/`에는 인터뷰, PRD, 명세, 설계, 시험 보고서가 있고, `scripts/`, `.claude/`, `contracts/`는 이 프로젝트를 만든 기획~구현 절차(하네스)입니다.
+> 소스로 실행하려면 **인터넷이 필요한 단계가 한 번 있습니다**(패키지와 Electron 실행 파일을 내려받는 `npm ci`). 그 뒤 앱 자체는 오프라인에서 동작합니다. `node_modules` 폴더는 저장소에 들어 있지 않으므로 내려받은 직후에는 반드시 설치부터 해야 합니다. 설치 없이 `npm run dev`를 하면 오류가 납니다.
 
-### 소스로 실행하기
-Node.js **22.13 이상**이 필요합니다. 설치할 때는 인터넷이 필요합니다.
+### 7-1. 준비물 설치 (처음 한 번)
+
+| 준비물 | 용도 | 확인 명령 |
+|---|---|---|
+| **Windows 11** | 이 프로젝트는 Windows 기준으로 만들고 시험했습니다 | |
+| **Node.js 22.13 이상** (LTS 권장) | 실행·빌드. `npm`이 함께 설치됩니다 | `node --version` |
+| **Git** | 소스 내려받기 | `git --version` |
+| 편집기 (예: VS Code) | 코드 수정 (선택) | |
+
+1. Node.js는 https://nodejs.org 에서 **LTS** 버전을 받아 설치합니다. 만든 환경은 Node 22.23.2, npm 10.9.8입니다.
+2. 설치가 끝나면 **새 터미널**(PowerShell 또는 명령 프롬프트)을 열어 `node --version`이 `v22.13.0` 이상으로 나오는지 확인합니다. 설치 직후 열려 있던 터미널에서는 인식되지 않을 수 있으니 터미널을 닫고 다시 여세요.
+3. Node 버전이 22.13보다 낮으면 `npm ci`에서 버전 경고나 오류가 날 수 있습니다.
+
+### 7-2. 소스 내려받기
+
+방법 A. Git으로 내려받기 (권장)
+```bash
+git clone https://github.com/chr0812/self-canban-electron.git
+cd self-canban-electron
+```
+
+방법 B. Git 없이 내려받기: 저장소 페이지에서 **Code → Download ZIP**을 눌러 받고 압축을 풉니다. 이후 명령은 같습니다.
+
+폴더 경로에 한글이나 공백이 있어도 동작하지만, 문제가 생기면 `C:\work\self-canban-electron`처럼 짧은 영문 경로로 옮겨 보세요.
+
+### 7-3. 패키지 설치 (필수, 몇 분 걸립니다)
 
 ```bash
 cd app
-npm ci           # package-lock.json 에 적힌 버전 그대로 설치
-npm run dev      # 개발용 실행 (데이터는 %APPDATA%\self-canban-dev 에 저장)
+npm ci
 ```
+
+- `app` 폴더 안에서 실행해야 합니다. (저장소 맨 위 폴더에도 `package.json`이 있지만 그것은 기획·구현 절차 도구용이고, 앱은 `app/`에 있습니다.)
+- `npm ci`는 `package-lock.json`에 적힌 **정확한 버전 그대로** 설치합니다. 처음에는 `npm install` 대신 이 명령을 쓰세요.
+- 설치 중에 Electron 실행 파일(수백 MB)을 인터넷에서 내려받으므로 시간이 걸립니다. 끝나면 `app/node_modules` 폴더가 생깁니다.
+- 끝에 `npm warn`이 몇 줄 나와도 오류가 아니면 괜찮습니다.
+
+### 7-4. 실행해 보기
+
+```bash
+npm run dev
+```
+
+- 잠시 뒤 "일정관리" 창이 열립니다. 이것이 개발용 실행입니다.
+- 코드를 고치고 저장하면 화면은 바로 반영되고, 메인 쪽 코드를 고치면 앱이 자동으로 다시 뜹니다.
+- 끝내려면 터미널에서 **Ctrl + C**를 누르거나 창을 닫습니다.
+- **개발용 실행의 데이터는 `%APPDATA%\self-canban-dev` 폴더에 저장됩니다.** 포장해서 쓰는 실제 앱의 데이터(`%APPDATA%\self-canban`)와 섞이지 않습니다.
+
+빌드 결과물로 실행해 보려면(포장 전의 실제 코드와 같은 조건):
+```bash
+npm run build
+npm run start
+```
+
+### 7-5. 명령 정리 (모두 `app/` 폴더에서)
 
 | 명령 | 설명 |
 |---|---|
-| `npm run build` | 타입 검사와 빌드 |
-| `npm run start` | 빌드 결과를 실행 |
-| `npm run lint` | 코드 검사 |
-| `npm test` | 단위 시험 (Vitest) |
-| `npm run test:e2e` | 화면 시험 (Playwright, 실제 Electron 창을 띄웁니다) |
-| `npm run package` | `app/release/win-unpacked/` 에 포장 (아래 참고) |
+| `npm run dev` | 개발용 실행 (코드 수정이 바로 반영) |
+| `npm run build` | 타입 검사 후 빌드. 결과는 `app/out/` |
+| `npm run start` | 빌드 결과를 실행 (먼저 `npm run build`) |
+| `npm run lint` | 코드 검사 (ESLint) |
+| `npm run format` | 코드 모양 자동 정리 (Prettier). 파일이 바뀝니다 |
+| `npm test` | 단위 시험 (Vitest). 창이 뜨지 않고 몇 초 걸립니다 |
+| `npm run test:e2e` | 화면 시험 (Playwright). 빌드 후 **실제 앱 창이 여러 번 열렸다 닫힙니다**. 약 2~3분 걸리고, 그 동안 마우스·키보드를 쓰지 않는 것이 좋습니다 |
+| `npm run package` | Windows용 실행 폴더로 포장 (아래 7-7) |
 
-포장할 때 다른 프로그램(예: 폴더를 감시하는 도구)이 만들어지는 파일을 열고 있으면 이름 바꾸기 오류(EPERM/EBUSY)가 날 수 있습니다. 그럴 때는 출력 위치를 프로젝트 밖으로 바꿉니다.
+시험 결과는 `app/reports/`, `app/test-results/`에 생기고 저장소에는 올라가지 않습니다.
 
+### 7-6. 폴더 구조
+
+```
+self-canban-electron/
+├─ README.md            이 문서
+├─ app/                 ★ 프로그램 소스 (여기서 작업)
+│  ├─ src/
+│  │  ├─ main/          Electron 메인: 창, 파일 저장, 보안 설정, 데이터 읽기·쓰기
+│  │  │  ├─ app/        창 만들기, 외부 요청 차단, 화면과의 통신
+│  │  │  └─ store/      저장 파일(kanban-data.json) 읽기·검증·원자적 저장·버전 변환
+│  │  ├─ preload/       화면이 쓸 수 있는 좁은 함수 12개를 열어 주는 다리
+│  │  ├─ renderer/src/  화면 (React)
+│  │  │  ├─ layout/     사이드바, 상단 막대, 앱 껍데기
+│  │  │  ├─ features/   board(보드), calendar(캘린더), archive(보관함), card-dialog(카드 창)
+│  │  │  ├─ state/      화면 상태와 저장 요청 실행기
+│  │  │  ├─ model/      보드·캘린더 표시용 계산
+│  │  │  ├─ text/       화면에 보이는 글자 모음 (labels.ts)
+│  │  │  └─ styles/     색·글꼴·크기 (tokens.css 에 밝은/어두운 판 색)
+│  │  └─ shared/        메인과 화면이 같이 쓰는 규칙 (카드 규칙, 검증, 상수, 타입)
+│  ├─ tests/
+│  │  ├─ cli/           단위 시험 (npm test)
+│  │  └─ browser/       화면 시험 (npm run test:e2e)
+│  ├─ package.json      명령과 패키지 목록
+│  ├─ package-lock.json 설치할 정확한 버전
+│  └─ electron-builder.yml  포장 설정
+├─ docs/                만들 때의 기록: 인터뷰, PRD, 명세, 설계, 시험 보고서
+└─ scripts/ .claude/ contracts/ CLAUDE.md   기획~구현 절차 도구 (아래 7-9)
+```
+
+### 7-7. 포장해서 실행 파일 만들기
+
+```bash
+cd app
+npm run build
+npm run package
+```
+
+- 결과: `app/release/win-unpacked/일정관리.exe` (폴더 전체가 필요합니다). 폴더째로 압축해서 배포합니다.
+- 설치 파일(`.exe` 설치기)이 아니라 **실행 폴더**를 만드는 설정입니다. 설치 파일이 필요하면 `electron-builder.yml`의 `win.target`을 바꿔야 합니다.
+- 코드 서명이 없어서 받는 사람 PC에서 "Windows의 PC 보호" 경고가 뜹니다(2-3 참고). 앱 아이콘은 기본 Electron 아이콘입니다.
+- 포장 결과(`app/release/`)는 저장소에 올라가지 않습니다. 배포는 GitHub의 **Releases**에 zip으로 올립니다.
+
+**포장 중 `EPERM`/`EBUSY` 오류가 나면:** 폴더를 감시하는 프로그램이 포장 중 만들어지는 파일을 잡고 있어서 생깁니다. 포장 결과를 프로젝트 밖으로 보내면 해결되는 경우가 많습니다.
 ```bash
 npx electron-builder --win --dir --config electron-builder.yml --config.directories.output=C:/출력/폴더
 ```
 
-### 저작권
-- 글꼴 SUIT는 SIL Open Font License 1.1 로 배포됩니다. 라이선스 원문이 포장본의 `resources/licenses/SUIT-LICENSE.txt` 에 들어 있습니다.
+### 7-8. 자주 고치는 곳
+
+| 하고 싶은 일 | 고칠 파일 (`app/src/...`) |
+|---|---|
+| 화면에 보이는 글자(버튼 이름, 안내 문구) | `renderer/src/text/labels.ts` |
+| 색, 글자 크기, 밝은/어두운 판 색 | `renderer/src/styles/tokens.css` |
+| 처음 열리는 창 크기 | `main/app/window-factory.ts` |
+| 우선순위·상태 같은 선택지 | `shared/constants.ts` |
+| 카드 규칙(검증, 마감 지남 판정) | `shared/domain/` |
+| 저장 파일 형식, 이전 버전 데이터 읽기 | `main/store/` |
+| 보드·캘린더 화면 | `renderer/src/features/board/`, `features/calendar/` |
+
+고친 뒤에는 `npm run lint`, `npm test`, `npm run test:e2e`를 차례로 돌려 확인하세요. 저장 형식을 바꾸면 이전 버전의 데이터를 읽을 수 있도록 `main/store/migrations/`에 변환 단계를 더해야 합니다.
+
+### 7-9. `docs/`와 기획·구현 도구 (읽어 두면 좋은 것)
+
+이 프로젝트는 인터뷰 → PRD → 명세 → 설계 → 구현 → 시험 → 인수 승인의 절차를 거쳐 만들었고, 그 기록이 `docs/`에 있습니다.
+
+| 폴더 | 내용 |
+|---|---|
+| `docs/01-interview` ~ `03-prd` | 무엇을, 왜 만드는지 |
+| `docs/04-spec/spec.md` | 기능 요구사항(FR), 인수 기준(AC) 전체 |
+| `docs/05-design/` | 기술 스택, 데이터·API, 화면(와이어프레임), 구조, 파일 지도, 시험 계획, 작업 목록. **먼저 `README.md`부터** 읽으세요 |
+| `docs/06-build`, `07-test` | 구현 기록, 시험 보고서와 증거 |
+
+- 단순히 코드를 고치거나 기능을 써 보려는 분은 `docs/`를 몰라도 됩니다.
+- 이 절차 도구(`scripts/`, `.claude/`, `contracts/`)는 Claude Code라는 AI 코딩 도구와 함께 쓰도록 만든 것입니다. 사람이 직접 쓸 때는 `node scripts/gate.js status`로 현재 진행 상태를 볼 수 있습니다. 쓰지 않아도 앱은 `app/`만으로 빌드·실행됩니다.
+- 앱 코드를 고치면 `docs/07-test`의 인수 승인이 낡은 것으로 표시될 수 있습니다. 절차를 따르는 프로젝트가 아니라면 무시해도 됩니다.
+
+### 7-10. 문제 해결
+
+| 증상 | 확인할 것 |
+|---|---|
+| `npm`이나 `node`를 찾을 수 없다고 나온다 | Node.js 설치 후 **터미널을 새로 열었는지** 확인 |
+| `npm ci`가 `engines` 버전 경고·오류를 낸다 | `node --version`이 22.13 이상인지 확인 |
+| `npm ci` 중 Electron 다운로드에서 멈추거나 실패한다 | 인터넷·프록시·방화벽 확인. 회사망이면 프록시 설정(`npm config set proxy ...`)이나 Electron 미러(`ELECTRON_MIRROR` 환경 변수)가 필요할 수 있습니다 |
+| `npm run dev`가 `electron-vite`를 찾지 못한다 | `app/` 폴더에서 `npm ci`를 했는지 확인 (`app/node_modules`가 없으면 설치 전입니다) |
+| `package.json`을 찾을 수 없다는 오류 | `cd app`을 했는지 확인 |
+| 화면 시험(`test:e2e`)이 이상하게 실패한다 | 시험 중에 마우스·키보드를 쓰거나 같은 앱을 따로 띄워 두지 않았는지 확인하고 다시 실행. 시험은 한 번에 하나씩 돕니다 |
+| 포장 중 `EPERM` / `EBUSY` | 위 7-7의 출력 위치 변경 방법 |
+| 실행 파일 경로에 `%` 같은 특수 문자가 있다 | 화면이 열리지 않는 문제를 고쳐 두었지만, 의심되면 짧은 영문 경로로 옮겨 보세요 |
+
+### 7-11. 사용한 주요 기술과 라이선스
+
+- Electron 45, React 19, TypeScript 6, electron-vite 6 / Vite 8, Vitest 5(단위 시험), Playwright 1.64(화면 시험), electron-builder 26(포장). 정확한 버전은 `app/package.json`과 `app/package-lock.json`에 있습니다.
+- 글꼴 SUIT는 SIL Open Font License 1.1로 배포됩니다. 라이선스 원문은 소스의 `app/src/renderer/src/styles/fonts/SUIT-LICENSE.txt`와 포장본의 `resources/licenses/SUIT-LICENSE.txt`에 있습니다.

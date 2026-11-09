@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="319" failures="0" errors="0" time="1.2547964">
+    <testsuite name="tests/cli/domain/card-queries.test.ts" timestamp="2026-11-04T07:01:30.693Z" hostname="DESKTOP-MUCAJ6S" tests="9" failures="0" errors="0" skipped="0" time="0.0120369">
+        <testcase classname="tests/cli/domain/card-queries.test.ts" name="범위 &gt; TC-022 보드 범위는 보관하지 않은 카드만, 보관함 범위는 보관한 카드만 돌려준다" time="0.0028221">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-queries.test.ts" name="범위 &gt; TC-022 보관함 범위에서 검색해도 보드의 카드는 나오지 않고 보드 검색에는 보관한 카드가 나오지 않는다" time="0.0005101">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-queries.test.ts" name="범위 &gt; TC-022 조건은 모두 만족해야 하고 저장 순서를 지킨다" time="0.0005256">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-queries.test.ts" name="범위 &gt; TC-022 받은 문서를 바꾸지 않는다" time="0.0006811">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-queries.test.ts" name="빈 문서 &gt; TC-023 카드가 하나도 없으면 빈 목록을 오류 없이 돌려준다" time="0.0014564">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-queries.test.ts" name="빈 문서 &gt; TC-023 조건에 맞는 카드가 없을 때도 빈 목록이고 오류가 아니다" time="0.0008829">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-queries.test.ts" name="목록 입력 검증 &gt; TC-022 범위나 조건이 틀리면 VALIDATION_FAILED 로 위반을 모두 돌려준다" time="0.001029">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-queries.test.ts" name="상세 &gt; TC-022 카드 한 장과 그 카드의 기록만 남긴 순서로 돌려준다 (보관한 카드도 읽는다)" time="0.0006136">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-queries.test.ts" name="상세 &gt; TC-022 없는 아이디는 CARD_NOT_FOUND, 문자열이 아니면 VALIDATION_FAILED" time="0.0011124">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/domain/card-rules.test.ts" timestamp="2026-11-04T07:01:30.697Z" hostname="DESKTOP-MUCAJ6S" tests="25" failures="0" errors="0" skipped="0" time="0.0248354">
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 만들기 &gt; TC-007 종류를 고르지 않고 만든 카드는 할 일로 저장된다" time="0.0081644">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 만들기 &gt; TC-010 여러 위반은 한 번에 모아 돌려주고 카드는 만들어지지 않는다" time="0.0016579">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 만들기 &gt; TC-011 새 카드는 할 일 상태로 만들어지고 입력으로 상태를 정할 수 없다" time="0.0017392">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 만들기 &gt; TC-012 마감일을 비우거나 생략해도 카드가 만들어진다" time="0.0009237">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 만들기 &gt; TC-013 입력한 모든 항목이 저장 뒤 조회에 그대로 나온다" time="0.0012416">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 만들기 &gt; 제목의 앞뒤 공백은 빼서 저장한다" time="0.0002746">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 수정 &gt; TC-016 수정하다 제목을 &quot;&quot; 로 비우면 거부되고 카드는 그대로다" time="0.0008485">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 수정 &gt; TC-016 수정하다 제목을 &quot;   &quot; 로 비우면 거부되고 카드는 그대로다" time="0.0003913">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 수정 &gt; TC-017 수정은 보낸 항목만 바꾸고 나머지는 유지한다" time="0.0010399">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 수정 &gt; 보낸 값이 지금과 같으면 바뀐 것이 없다" time="0.0003189">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 수정 &gt; 수정으로 status 도 함께 바꾼다 (한 번의 호출)" time="0.0003015">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 수정 &gt; status 에 archived 를 넣거나 id 같은 정의 없는 항목을 보내면 거부한다" time="0.000227">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 수정 &gt; 없는 카드는 CARD_NOT_FOUND, 입력 검증이 카드 확인보다 먼저다" time="0.0002124">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 상태 변경 &gt; TC-014 카드 상태는 세 값 사이에서 어느 방향으로든 바뀐다" time="0.0004509">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 상태 변경 &gt; TC-015 같은 상태를 다시 고르면 아무것도 바뀌지 않는다" time="0.0001956">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 상태 변경 &gt; 상태 값이 목록 밖이면 status/INVALID_VALUE 로 거부한다 (보관은 상태가 아니다)" time="0.0004814">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 상태 변경 &gt; 없는 카드는 CARD_NOT_FOUND 다" time="0.0001308">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 보관 &gt; TC-018 완료 카드를 보관하면 보관 표시가 붙고 상태는 완료로 남는다" time="0.0003079">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 보관 &gt; TC-019 완료가 아닌 카드는 보관되지 않는다" time="0.0002855">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 보관 &gt; 없는 카드는 CARD_NOT_FOUND 다" time="0.0001022">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 보관 &gt; TC-020 보관한 카드는 수정, 상태 변경, 기록 추가, 다시 보관이 거부된다" time="0.0005321">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 보관 &gt; 보관한 카드의 수정은 빈 patch 여도 거부한다 (입력 검증 다음에 보관을 본다)" time="0.0001481">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 삭제 &gt; TC-021 카드를 삭제하면 그 카드의 진행 기록도 함께 삭제된다" time="0.0003353">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 삭제 &gt; TC-135 보관한 카드도 삭제할 수 있고 그 카드의 진행 기록이 함께 삭제된다" time="0.0005861">
+        </testcase>
+        <testcase classname="tests/cli/domain/card-rules.test.ts" name="카드 삭제 &gt; 기록이 없는 카드를 삭제하면 deletedProgressCount 는 0 이다" time="0.0001366">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/domain/date-rules.test.ts" timestamp="2026-11-04T07:01:30.705Z" hostname="DESKTOP-MUCAJ6S" tests="16" failures="0" errors="0" skipped="0" time="0.0223176">
+        <testcase classname="tests/cli/domain/date-rules.test.ts" name="isOverdue &gt; TC-001 마감일이 오늘보다 앞이고 완료가 아닌 카드는 마감 지남이다" time="0.0044895">
+        </testcase>
+        <testcase classname="tests/cli/domain/date-rules.test.ts" name="isOverdue &gt; TC-002 마감일 당일, 이후, 마감일 없음은 마감 지남이 아니다" time="0.0009167">
+        </testcase>
+        <testcase classname="tests/cli/domain/date-rules.test.ts" name="isOverdue &gt; TC-003 완료 카드는 마감일이 지나도 마감 지남이 아니다" time="0.0006779">
+        </testcase>
+        <testcase classname="tests/cli/domain/date-rules.test.ts" name="isOverdue &gt; TC-001 월·연 경계를 넘어도 날짜 순서로 판정한다" time="0.0006793">
+        </testcase>
+        <testcase classname="tests/cli/domain/date-rules.test.ts" name="overdueDays &gt; TC-001 지난 카드는 지난 일 수를, 아니면 null 을 돌려준다" time="0.0011628">
+        </testcase>
+        <testcase classname="tests/cli/domain/date-rules.test.ts" name="todayLocal &gt; TC-004 오늘 날짜는 UTC가 아니라 PC 현지 날짜로 계산한다" time="0.0021808">
+        </testcase>
+        <testcase classname="tests/cli/domain/date-rules.test.ts" name="todayLocal &gt; TC-004 한 자리 월·일은 0 으로 채운다" time="0.0005299">
+        </testcase>
+        <testcase classname="tests/cli/domain/date-rules.test.ts" name="isRealDate &gt; TC-005 존재하지 않는 날짜는 거부한다 (dueDate / INVALID_DATE 의 근거)" time="0.0005061">
+        </testcase>
+        <testcase classname="tests/cli/domain/date-rules.test.ts" name="isRealDate &gt; TC-005 윤년의 실제 날짜와 월말은 허용한다" time="0.0012151">
+        </testcase>
+        <testcase classname="tests/cli/domain/date-rules.test.ts" name="isRealDate &gt; TC-005 형식이 다른 값과 0 일·0 월은 거부한다" time="0.0016892">
+        </testcase>
+        <testcase classname="tests/cli/domain/date-rules.test.ts" name="isRealDate &gt; TC-005 세기 규칙을 반영한다 (1900 은 평년, 2000 은 윤년)" time="0.0006855">
+        </testcase>
+        <testcase classname="tests/cli/domain/date-rules.test.ts" name="날짜 계산 &gt; TC-005 daysInMonth 는 윤년과 월말을 반영한다" time="0.0004362">
+        </testcase>
+        <testcase classname="tests/cli/domain/date-rules.test.ts" name="날짜 계산 &gt; TC-005 addDays 는 월·연 경계를 넘는다" time="0.0006824">
+        </testcase>
+        <testcase classname="tests/cli/domain/date-rules.test.ts" name="날짜 계산 &gt; TC-005 diffDays 는 to - from 일 수다 (여름시간 구간 포함)" time="0.0006494">
+        </testcase>
+        <testcase classname="tests/cli/domain/date-rules.test.ts" name="날짜 계산 &gt; TC-005 weekdayOf 는 0(일)~6(토)을 돌려준다" time="0.0003485">
+        </testcase>
+        <testcase classname="tests/cli/domain/date-rules.test.ts" name="날짜 계산 &gt; TC-005 실제 날짜가 아닌 값을 계산에 넣으면 RangeError 다" time="0.0007147">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/domain/progress-rules.test.ts" timestamp="2026-11-04T07:01:30.710Z" hostname="DESKTOP-MUCAJ6S" tests="12" failures="0" errors="0" skipped="0" time="0.0331888">
+        <testcase classname="tests/cli/domain/progress-rules.test.ts" name="진행 기록 추가 &gt; TC-024 기록은 남긴 순서로 쌓이고 다른 카드의 기록과 섞이지 않는다" time="0.012829">
+        </testcase>
+        <testcase classname="tests/cli/domain/progress-rules.test.ts" name="진행 기록 추가 &gt; TC-025 각 기록에는 남긴 때의 카드 상태가 붙고 나중에 상태가 바뀌어도 변하지 않는다" time="0.0020153">
+        </testcase>
+        <testcase classname="tests/cli/domain/progress-rules.test.ts" name="진행 기록 추가 &gt; TC-026 내용이 빈 문자열 이면 content/REQUIRED 위반이고 기록은 1건 그대로다" time="0.0013198">
+        </testcase>
+        <testcase classname="tests/cli/domain/progress-rules.test.ts" name="진행 기록 추가 &gt; TC-026 내용이 공백뿐 이면 content/REQUIRED 위반이고 기록은 1건 그대로다" time="0.0012798">
+        </testcase>
+        <testcase classname="tests/cli/domain/progress-rules.test.ts" name="진행 기록 추가 &gt; TC-026 내용이 탭·줄바꿈뿐 이면 content/REQUIRED 위반이고 기록은 1건 그대로다" time="0.0007206">
+        </testcase>
+        <testcase classname="tests/cli/domain/progress-rules.test.ts" name="진행 기록 추가 &gt; TC-026 내용이 빈 호출이 이어져도 기록은 1건 그대로다" time="0.0016129">
+        </testcase>
+        <testcase classname="tests/cli/domain/progress-rules.test.ts" name="진행 기록 추가 보조 규칙 &gt; 보관된 카드에는 CARD_ARCHIVED 로 거절하고 문서는 바뀌지 않는다" time="0.0010613">
+        </testcase>
+        <testcase classname="tests/cli/domain/progress-rules.test.ts" name="진행 기록 추가 보조 규칙 &gt; 없는 카드에는 CARD_NOT_FOUND 와 details.id 로 거절한다" time="0.0009033">
+        </testcase>
+        <testcase classname="tests/cli/domain/progress-rules.test.ts" name="진행 기록 추가 보조 규칙 &gt; 입력 검증이 카드 확인보다 먼저다 (없는 카드에 빈 내용이면 VALIDATION_FAILED)" time="0.0021849">
+        </testcase>
+        <testcase classname="tests/cli/domain/progress-rules.test.ts" name="진행 기록 추가 보조 규칙 &gt; statusAtTime 같은 정의 없는 필드는 UNKNOWN_FIELD 로 거절한다" time="0.0018882">
+        </testcase>
+        <testcase classname="tests/cli/domain/progress-rules.test.ts" name="진행 기록 추가 보조 규칙 &gt; 내용의 앞뒤 공백을 빼서 저장하고 id·시각은 ctx 에서 받으며 받은 문서는 바꾸지 않는다" time="0.0009053">
+        </testcase>
+        <testcase classname="tests/cli/domain/progress-rules.test.ts" name="진행 기록 추가 보조 규칙 &gt; 입력이 객체가 아니면 input/INVALID_TYPE 으로 거절한다" time="0.0013061">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/domain/query-filter.test.ts" timestamp="2026-11-04T07:01:30.713Z" hostname="DESKTOP-MUCAJ6S" tests="5" failures="0" errors="0" skipped="0" time="0.0096895">
+        <testcase classname="tests/cli/domain/query-filter.test.ts" name="검색어 &gt; TC-029 검색어는 제목에 포함된 글자만 보고 대소문자와 앞뒤 공백을 무시한다" time="0.0039334">
+        </testcase>
+        <testcase classname="tests/cli/domain/query-filter.test.ts" name="검색어 &gt; TC-029 부분 일치이며 제목 안쪽 글자도 찾는다" time="0.0004229">
+        </testcase>
+        <testcase classname="tests/cli/domain/query-filter.test.ts" name="종류·우선순위 조건 &gt; TC-030 종류 또는 우선순위 조건은 그 값을 가진 카드만 남긴다" time="0.0008366">
+        </testcase>
+        <testcase classname="tests/cli/domain/query-filter.test.ts" name="종류·우선순위 조건 &gt; TC-031 여러 조건은 모두 만족하는 카드만 남기고 조건을 지우면 전부 돌아온다" time="0.0008167">
+        </testcase>
+        <testcase classname="tests/cli/domain/query-filter.test.ts" name="범위 구분 &gt; board 범위에는 보관한 카드가 나오지 않고 archive 범위에는 보관한 카드만 나온다" time="0.000463">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/domain/settings-rules.test.ts" timestamp="2026-11-04T07:01:30.715Z" hostname="DESKTOP-MUCAJ6S" tests="5" failures="0" errors="0" skipped="0" time="0.0073175">
+        <testcase classname="tests/cli/domain/settings-rules.test.ts" name="판 조회와 전환 &gt; TC-027 설정이 없으면 어두운 판이고 판 전환은 저장 값을 바꾼다" time="0.0033906">
+        </testcase>
+        <testcase classname="tests/cli/domain/settings-rules.test.ts" name="판 조회와 전환 &gt; TC-027 설정 값이 빠진 문서도 어두운 판으로 조회한다" time="0.0005104">
+        </testcase>
+        <testcase classname="tests/cli/domain/settings-rules.test.ts" name="판 조회와 전환 &gt; TC-027 판 전환은 받은 문서를 바꾸지 않고 카드를 그대로 가져간다" time="0.0007469">
+        </testcase>
+        <testcase classname="tests/cli/domain/settings-rules.test.ts" name="같은 값과 잘못된 값 &gt; TC-028 같은 판으로 바꾸면 바뀐 것이 없고 목록 밖 값은 거부된다" time="0.0006498">
+        </testcase>
+        <testcase classname="tests/cli/domain/settings-rules.test.ts" name="같은 값과 잘못된 값 &gt; TC-028 밝은 판에서 밝은 판으로 바꿔도 바뀐 것이 없다" time="0.0002132">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/domain/validation.test.ts" timestamp="2026-11-04T07:01:30.717Z" hostname="DESKTOP-MUCAJ6S" tests="69" failures="0" errors="0" skipped="0" time="0.0342054">
+        <testcase classname="tests/cli/domain/validation.test.ts" name="title &gt; TC-006 제목이 빈 문자열 이면 title/REQUIRED 위반이다" time="0.003245">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="title &gt; TC-006 제목이 공백뿐 이면 title/REQUIRED 위반이다" time="0.0004012">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="title &gt; TC-006 제목이 탭·줄바꿈뿐 이면 title/REQUIRED 위반이다" time="0.0002901">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="title &gt; TC-006 제목이 제목 생략 이면 title/REQUIRED 위반이다" time="0.000357">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="title &gt; TC-006 제목 &quot;세금 신고&quot; 는 위반이 없다" time="0.0002648">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="title &gt; TC-006 앞뒤에 공백이 있어도 글자가 있으면 위반이 없다" time="0.0003041">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="title &gt; 수정에서 제목을 비우면 title/REQUIRED, 제목을 보내지 않으면 위반이 없다 (AC-035)" time="0.0006295">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="title &gt; 제목이 문자열이 아니면 title/INVALID_TYPE 이다" time="0.000351">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="title &gt; 제목 길이 상한은 두지 않는다" time="0.0009101">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="status &gt; TC-008 수정 입력의 status todo 는 위반이 없다" time="0.0004024">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="status &gt; TC-008 수정 입력의 status in_progress 는 위반이 없다" time="0.000529">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="status &gt; TC-008 수정 입력의 status done 는 위반이 없다" time="0.0002409">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="status &gt; TC-008 수정 입력의 status &quot;archived&quot; 는 status/INVALID_VALUE 이다" time="0.0003083">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="status &gt; TC-008 수정 입력의 status &quot;blocked&quot; 는 status/INVALID_VALUE 이다" time="0.0001734">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="status &gt; TC-008 수정 입력의 status &quot;&quot; 는 status/INVALID_VALUE 이다" time="0.0002741">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="status &gt; 문자열이 아닌 status 도 status/INVALID_VALUE 이다" time="0.0002966">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="status &gt; 생성 입력의 status 는 받지 않고 UNKNOWN_FIELD 이다" time="0.0003365">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="priority 와 kind &gt; TC-009 우선순위 high 는 위반이 없다" time="0.0006825">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="priority 와 kind &gt; TC-009 우선순위 medium 는 위반이 없다" time="0.0001701">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="priority 와 kind &gt; TC-009 우선순위 low 는 위반이 없다" time="0.0002711">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="priority 와 kind &gt; TC-009 우선순위 null 는 위반이 없다" time="0.0001758">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="priority 와 kind &gt; TC-009 우선순위를 생략해도 위반이 없다" time="0.0002092">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="priority 와 kind &gt; TC-009 우선순위 urgent 는 priority/INVALID_VALUE 이다" time="0.0002436">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="priority 와 kind &gt; TC-009 종류 bug 는 위반이 없다" time="0.000489">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="priority 와 kind &gt; TC-009 종류 task 는 위반이 없다" time="0.0001975">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="priority 와 kind &gt; TC-009 종류 epic 은 kind/INVALID_VALUE 이다" time="0.000277">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="priority 와 kind &gt; 종류를 생략해도 위반이 없다 (저장 때 task 가 된다, AC-014)" time="0.000221">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="priority 와 kind &gt; 종류는 null 이 될 수 없다" time="0.0001705">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="dueDate &gt; 마감일 2026-11-03 는 위반이 없다" time="0.0005402">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="dueDate &gt; 마감일 2028-02-29 는 위반이 없다" time="0.0001635">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="dueDate &gt; 마감일 2026-12-31 는 위반이 없다" time="0.0001452">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="dueDate &gt; 마감일 null 는 위반이 없다" time="0.000316">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="dueDate &gt; 마감일을 생략해도 위반이 없다 (AC-008)" time="0.0002967">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="dueDate &gt; 존재하지 않거나 형식이 틀린 마감일 &quot;2026-02-30&quot; 는 dueDate/INVALID_DATE 이다 (AC-029)" time="0.0004857">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="dueDate &gt; 존재하지 않거나 형식이 틀린 마감일 &quot;2027-02-29&quot; 는 dueDate/INVALID_DATE 이다 (AC-029)" time="0.0003082">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="dueDate &gt; 존재하지 않거나 형식이 틀린 마감일 &quot;2026-13-01&quot; 는 dueDate/INVALID_DATE 이다 (AC-029)" time="0.0004652">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="dueDate &gt; 존재하지 않거나 형식이 틀린 마감일 &quot;2026-00-10&quot; 는 dueDate/INVALID_DATE 이다 (AC-029)" time="0.0003371">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="dueDate &gt; 존재하지 않거나 형식이 틀린 마감일 &quot;2026-1-3&quot; 는 dueDate/INVALID_DATE 이다 (AC-029)" time="0.000304">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="dueDate &gt; 존재하지 않거나 형식이 틀린 마감일 &quot;11/03/2026&quot; 는 dueDate/INVALID_DATE 이다 (AC-029)" time="0.0002849">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="dueDate &gt; 존재하지 않거나 형식이 틀린 마감일 &quot;&quot; 는 dueDate/INVALID_DATE 이다 (AC-029)" time="0.0002542">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="dueDate &gt; 문자열도 null 도 아닌 마감일은 dueDate/INVALID_TYPE 이다" time="0.0003404">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="description 과 memo &gt; 빈 문자열도 허용한다" time="0.0002659">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="description 과 memo &gt; 문자열이 아니면 INVALID_TYPE 이다" time="0.0002487">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="알 수 없는 필드 &gt; id, archivedAt, createdAt 은 UNKNOWN_FIELD 이다 (만들기와 수정 모두)" time="0.0004392">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="알 수 없는 필드 &gt; 카드 전체를 patch 로 보내면 바꿀 수 없는 필드가 모두 UNKNOWN_FIELD 로 나온다" time="0.0004189">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="알 수 없는 필드 &gt; 값이 undefined 인 알 수 없는 필드도 거부한다" time="0.0002763">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="알 수 없는 필드 &gt; 진행 기록 입력의 cardId·statusAtTime 은 UNKNOWN_FIELD 이다 (AC-018)" time="0.0003154">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="알 수 없는 필드 &gt; 조회 조건의 알 수 없는 필드도 UNKNOWN_FIELD 이다" time="0.0003469">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="위반을 모아서 돌려주기 &gt; 여러 필드가 동시에 틀리면 모두 돌려준다" time="0.0005434">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="위반을 모아서 돌려주기 &gt; 수정에서 제목과 마감일과 상태가 함께 틀리면 셋 모두 나온다" time="0.0022083">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="위반을 모아서 돌려주기 &gt; 알 수 없는 필드가 여럿이면 필드마다 하나씩 담는다" time="0.0004137">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="입력 모양 &gt; 객체가 아닌 입력 null 는 input/INVALID_TYPE 이다" time="0.0004492">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="입력 모양 &gt; 객체가 아닌 입력 undefined 는 input/INVALID_TYPE 이다" time="0.000326">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="입력 모양 &gt; 객체가 아닌 입력 &quot;제목&quot; 는 input/INVALID_TYPE 이다" time="0.0003525">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="입력 모양 &gt; 객체가 아닌 입력 5 는 input/INVALID_TYPE 이다" time="0.0003321">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="입력 모양 &gt; 객체가 아닌 입력 [] 는 input/INVALID_TYPE 이다" time="0.0003099">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="입력 모양 &gt; 객체가 아닌 입력 [&quot;title&quot;] 는 input/INVALID_TYPE 이다" time="0.0003284">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="입력 모양 &gt; JSON 으로 들어온 __proto__ 키도 알 수 없는 필드로 거부한다" time="0.0003008">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="입력 모양 &gt; 상속 속성은 입력으로 세지 않는다" time="0.0019948">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="진행 기록 입력 &gt; 내용이 있으면 위반이 없다" time="0.0002558">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="진행 기록 입력 &gt; 내용이 비었거나 없으면 content/REQUIRED 이다: {&quot;content&quot;:&quot;&quot;}" time="0.0002477">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="진행 기록 입력 &gt; 내용이 비었거나 없으면 content/REQUIRED 이다: {&quot;content&quot;:&quot;  \n&quot;}" time="0.0001529">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="진행 기록 입력 &gt; 내용이 비었거나 없으면 content/REQUIRED 이다: {}" time="0.0001501">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="진행 기록 입력 &gt; 내용이 문자열이 아니면 content/INVALID_TYPE 이다" time="0.0002477">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="조회 조건 &gt; scope 두 값과 선택 조건은 위반이 없다" time="0.0002958">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="조회 조건 &gt; scope 가 없거나 목록 밖이면 scope/INVALID_VALUE 이다" time="0.0002731">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="조회 조건 &gt; text 가 문자열이 아니면 INVALID_TYPE, kind·priority 가 목록 밖이면 INVALID_VALUE 이다" time="0.0003695">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="값 하나짜리 검사 &gt; theme 은 dark·light 만 받는다" time="0.0005431">
+        </testcase>
+        <testcase classname="tests/cli/domain/validation.test.ts" name="값 하나짜리 검사 &gt; id 는 문자열이면 된다" time="0.0003454">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/ipc/ipc-contract.test.ts" timestamp="2026-11-04T07:01:30.739Z" hostname="DESKTOP-MUCAJ6S" tests="3" failures="0" errors="0" skipped="0" time="0.0052708">
+        <testcase classname="tests/cli/ipc/ipc-contract.test.ts" name="IPC 채널 표 &gt; TC-064 IPC 채널 이름은 열두 개이며 API 명세 목록과 같다" time="0.0030177">
+        </testcase>
+        <testcase classname="tests/cli/ipc/ipc-contract.test.ts" name="IPC 채널 표 &gt; TC-064 채널 이름에 중복이 없다" time="0.0003851">
+        </testcase>
+        <testcase classname="tests/cli/ipc/ipc-contract.test.ts" name="IPC 채널 표 &gt; TC-064 채널 이름은 함수 이름과 같은 규칙 kanban:&lt;그룹&gt;:&lt;동작&gt; 이다" time="0.000421">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/ipc/ipc-handlers.test.ts" timestamp="2026-11-04T07:01:30.741Z" hostname="DESKTOP-MUCAJ6S" tests="6" failures="0" errors="0" skipped="0" time="0.0390397">
+        <testcase classname="tests/cli/ipc/ipc-handlers.test.ts" name="IpcHandlers &gt; TC-065 번들 폴더 안 프레임만 처리하고 밖의 file: 주소와 외부 주소 프레임은 거절하며 등록된 채널은 열두 개뿐이다" time="0.0138847">
+        </testcase>
+        <testcase classname="tests/cli/ipc/ipc-handlers.test.ts" name="IpcHandlers &gt; TC-065 열두 채널이 각각 알맞은 저장소 메서드를 부른다" time="0.0039318">
+        </testcase>
+        <testcase classname="tests/cli/ipc/ipc-handlers.test.ts" name="IpcHandlers &gt; TC-066 저장소가 예상하지 못한 오류를 던져도 핸들러는 던지지 않고 INTERNAL을 돌려준다" time="0.0103486">
+        </testcase>
+        <testcase classname="tests/cli/ipc/ipc-handlers.test.ts" name="IpcHandlers &gt; TC-141 예상하지 못한 오류가 INTERNAL이 될 때 채널 이름, 메시지, 스택이 콘솔에 기록되고 파일은 쓰지 않는다" time="0.0032275">
+        </testcase>
+        <testcase classname="tests/cli/ipc/ipc-handlers.test.ts" name="IpcHandlers &gt; TC-142 whenIdle은 요청이 없으면 즉시 이행되고 처리 중인 요청이 끝난 뒤에 이행되며 이후 도착한 요청은 기다리지 않는다" time="0.0022258">
+        </testcase>
+        <testcase classname="tests/cli/ipc/ipc-handlers.test.ts" name="IpcHandlers &gt; TC-142 처리 중 요청이 INTERNAL로 끝나도 whenIdle은 이행된다" time="0.0017652">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/migrations/schema-migrations.test.ts" timestamp="2026-11-04T07:01:30.744Z" hostname="DESKTOP-MUCAJ6S" tests="16" failures="0" errors="0" skipped="0" time="0.0292999">
+        <testcase classname="tests/cli/migrations/schema-migrations.test.ts" name="변환 사슬 대역 &gt; TC-045 변환 함수가 오류를 던지면 MIGRATION_FAILED 이고 입력 문서는 바뀌지 않는다" time="0.0066688">
+        </testcase>
+        <testcase classname="tests/cli/migrations/schema-migrations.test.ts" name="변환 사슬 대역 &gt; TC-045 변환 함수가 올바른 버전의 문서를 돌려주지 않으면 MIGRATION_FAILED 이다" time="0.0026778">
+        </testcase>
+        <testcase classname="tests/cli/migrations/schema-migrations.test.ts" name="변환 사슬 대역 &gt; TC-045 변환 함수가 표에 없으면 MIGRATION_FAILED 이고 입력 문서는 바뀌지 않는다" time="0.0014622">
+        </testcase>
+        <testcase classname="tests/cli/migrations/schema-migrations.test.ts" name="버전 1 → 2 &gt; TC-046 버전 1 파일의 카드와 기록은 모두 같은 값으로 읽히고 설정은 어두운 판이다" time="0.0038711">
+        </testcase>
+        <testcase classname="tests/cli/migrations/schema-migrations.test.ts" name="버전 1 → 2 &gt; TC-046 변환 결과를 바꿔도 입력 문서의 카드에는 영향이 없다" time="0.0015524">
+        </testcase>
+        <testcase classname="tests/cli/migrations/schema-migrations.test.ts" name="현재 버전과 그 밖의 버전 &gt; 버전 2 파일은 변환 없이 그대로 읽히고 fromVersion 은 null 이다" time="0.0014949">
+        </testcase>
+        <testcase classname="tests/cli/migrations/schema-migrations.test.ts" name="현재 버전과 그 밖의 버전 &gt; 현재보다 높은 버전은 SCHEMA_TOO_NEW 이고 파일의 버전을 알려 준다" time="0.0013659">
+        </testcase>
+        <testcase classname="tests/cli/migrations/schema-migrations.test.ts" name="현재 버전과 그 밖의 버전 &gt; 버전을 알 수 없는 문서(객체가 아닌 값)는 SCHEMA_INVALID 이다" time="0.0004516">
+        </testcase>
+        <testcase classname="tests/cli/migrations/schema-migrations.test.ts" name="현재 버전과 그 밖의 버전 &gt; 버전을 알 수 없는 문서(null)는 SCHEMA_INVALID 이다" time="0.0010265">
+        </testcase>
+        <testcase classname="tests/cli/migrations/schema-migrations.test.ts" name="현재 버전과 그 밖의 버전 &gt; 버전을 알 수 없는 문서(배열)는 SCHEMA_INVALID 이다" time="0.0005178">
+        </testcase>
+        <testcase classname="tests/cli/migrations/schema-migrations.test.ts" name="현재 버전과 그 밖의 버전 &gt; 버전을 알 수 없는 문서(schemaVersion 없음)는 SCHEMA_INVALID 이다" time="0.0003458">
+        </testcase>
+        <testcase classname="tests/cli/migrations/schema-migrations.test.ts" name="현재 버전과 그 밖의 버전 &gt; 버전을 알 수 없는 문서(schemaVersion 이 문자열)는 SCHEMA_INVALID 이다" time="0.000183">
+        </testcase>
+        <testcase classname="tests/cli/migrations/schema-migrations.test.ts" name="현재 버전과 그 밖의 버전 &gt; 버전을 알 수 없는 문서(schemaVersion 이 소수)는 SCHEMA_INVALID 이다" time="0.0001455">
+        </testcase>
+        <testcase classname="tests/cli/migrations/schema-migrations.test.ts" name="현재 버전과 그 밖의 버전 &gt; 버전을 알 수 없는 문서(schemaVersion 이 0)는 SCHEMA_INVALID 이다" time="0.0001248">
+        </testcase>
+        <testcase classname="tests/cli/migrations/schema-migrations.test.ts" name="현재 버전과 그 밖의 버전 &gt; 버전을 알 수 없는 문서(schemaVersion 이 음수)는 SCHEMA_INVALID 이다" time="0.0016402">
+        </testcase>
+        <testcase classname="tests/cli/migrations/schema-migrations.test.ts" name="고정 데이터 &gt; data-v2.json 은 현재 버전이고 설정·보관 카드·진행 기록을 담는다" time="0.0008802">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/model/board-model.test.ts" timestamp="2026-11-04T07:01:30.750Z" hostname="DESKTOP-MUCAJ6S" tests="15" failures="0" errors="0" skipped="0" time="0.0189048">
+        <testcase classname="tests/cli/model/board-model.test.ts" name="칸 나누기와 건수 &gt; TC-057 카드는 자기 상태의 칸에만 놓이고 칸 건수가 맞다" time="0.0064556">
+        </testcase>
+        <testcase classname="tests/cli/model/board-model.test.ts" name="칸 나누기와 건수 &gt; TC-057 splitByStatus 는 받은 순서를 유지하고 빈 칸도 빈 배열로 돌려준다" time="0.0004684">
+        </testcase>
+        <testcase classname="tests/cli/model/board-model.test.ts" name="칸 나누기와 건수 &gt; TC-057 카드가 없는 칸은 빈 칸이고 오류 없이 모델이 만들어진다" time="0.0003255">
+        </testcase>
+        <testcase classname="tests/cli/model/board-model.test.ts" name="칸 나누기와 건수 &gt; TC-057 조건이 있으면 칸 건수는 보이는 수와 전체 수를 따로 담는다 (2 / 6 모양)" time="0.0006328">
+        </testcase>
+        <testcase classname="tests/cli/model/board-model.test.ts" name="조건 적용 &gt; TC-057 보드는 보관한 카드를 담지 않고 보관함은 보관한 카드만 담는다" time="0.0004631">
+        </testcase>
+        <testcase classname="tests/cli/model/board-model.test.ts" name="조건 적용 &gt; TC-057 검색어와 종류·우선순위는 함께 걸면 모두 만족하는 카드만 남는다" time="0.0005103">
+        </testcase>
+        <testcase classname="tests/cli/model/board-model.test.ts" name="조건 적용 &gt; TC-057 조건을 지우면 모든 카드가 다시 보이고 빈 검색어는 조건으로 치지 않는다" time="0.0004474">
+        </testcase>
+        <testcase classname="tests/cli/model/board-model.test.ts" name="결과 없음 &gt; TC-058 조건에 맞는 카드가 없으면 결과 없음과 적용 중인 조건을 돌려주고 빈 보드와 구분된다" time="0.0014383">
+        </testcase>
+        <testcase classname="tests/cli/model/board-model.test.ts" name="결과 없음 &gt; TC-058 검색어 앞뒤 공백은 적용 중인 조건에서 빠지고 보관함도 같은 규칙이다" time="0.0010898">
+        </testcase>
+        <testcase classname="tests/cli/model/board-model.test.ts" name="결과 없음 &gt; TC-058 카드가 0건이어도 조건이 걸려 있으면 조건을 지울 수 있게 결과 없음으로 알린다" time="0.0005532">
+        </testcase>
+        <testcase classname="tests/cli/model/board-model.test.ts" name="사이드바 건수와 마감 지남 수 &gt; TC-057 필터 숫자는 종류별·우선순위별로 세고 우선순위가 없는 카드는 어느 우선순위에도 세지 않는다" time="0.0005079">
+        </testcase>
+        <testcase classname="tests/cli/model/board-model.test.ts" name="사이드바 건수와 마감 지남 수 &gt; TC-057 마감 지난 카드 수는 마감일이 오늘보다 앞이고 완료가 아닌 카드만 센다" time="0.0002389">
+        </testcase>
+        <testcase classname="tests/cli/model/board-model.test.ts" name="표시 순서 (임시 가정) &gt; TC-057 보드는 만든 순서의 최신이 위이고 마감 지난 카드를 올리지 않으며 입력 배열을 바꾸지 않는다" time="0.001229">
+        </testcase>
+        <testcase classname="tests/cli/model/board-model.test.ts" name="표시 순서 (임시 가정) &gt; TC-057 만든 시각이 같으면 나중에 저장된 카드가 위에 온다" time="0.0002788">
+        </testcase>
+        <testcase classname="tests/cli/model/board-model.test.ts" name="표시 순서 (임시 가정) &gt; TC-057 보관함은 보관한 날이 최신인 카드가 위이고 칸 안 순서도 이 순서를 따른다" time="0.0003851">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/model/calendar-model.test.ts" timestamp="2026-11-04T07:01:30.756Z" hostname="DESKTOP-MUCAJ6S" tests="11" failures="0" errors="0" skipped="0" time="0.0354167">
+        <testcase classname="tests/cli/model/calendar-model.test.ts" name="월 격자 &gt; TC-059 마감일이 있는 카드는 그 날짜 칸에 놓이고 마감일이 없는 카드는 어느 칸에도 없다" time="0.013072">
+        </testcase>
+        <testcase classname="tests/cli/model/calendar-model.test.ts" name="월 격자 &gt; TC-059 행 수는 달에 따라 4, 5, 6행이고 첫 칸은 항상 일요일이다" time="0.0039842">
+        </testcase>
+        <testcase classname="tests/cli/model/calendar-model.test.ts" name="월 격자 &gt; TC-059 anchor 가 실제 날짜가 아니면 거부한다" time="0.0009415">
+        </testcase>
+        <testcase classname="tests/cli/model/calendar-model.test.ts" name="월 격자 &gt; TC-059 카드가 하나도 없어도 격자가 오류 없이 만들어진다" time="0.0010751">
+        </testcase>
+        <testcase classname="tests/cli/model/calendar-model.test.ts" name="주 격자 &gt; TC-059 주 한 줄은 anchor 가 든 일요일~토요일 7칸이다" time="0.0032371">
+        </testcase>
+        <testcase classname="tests/cli/model/calendar-model.test.ts" name="날짜별 묶기 &gt; TC-059 같은 날짜 카드는 입력 순서를 지키고, 마감일 없음·잘못된 날짜는 빠진다" time="0.0007737">
+        </testcase>
+        <testcase classname="tests/cli/model/calendar-model.test.ts" name="칸당 칩 3개와 더 보기 &gt; TC-060 한 날짜에 카드가 많으면 일부만 칩으로 보이고 나머지도 모두 접근할 수 있다" time="0.0015722">
+        </testcase>
+        <testcase classname="tests/cli/model/calendar-model.test.ts" name="칸당 칩 3개와 더 보기 &gt; TC-060 3건 이하이면 더 보기가 없다" time="0.0024279">
+        </testcase>
+        <testcase classname="tests/cli/model/calendar-model.test.ts" name="기간 이동 &gt; TC-059 월 이동은 그 달의 1일로 맞추어 월말 넘침이 없다" time="0.0022841">
+        </testcase>
+        <testcase classname="tests/cli/model/calendar-model.test.ts" name="기간 이동 &gt; TC-059 주 이동은 7일 단위이고 월·해 경계를 넘는다" time="0.0008429">
+        </testcase>
+        <testcase classname="tests/cli/model/calendar-model.test.ts" name="기간 이동 &gt; TC-059 기간 제목: 월은 연·월, 주는 일요일~토요일 범위" time="0.000929">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/model/card-form-state.test.ts" timestamp="2026-11-04T07:01:30.761Z" hostname="DESKTOP-MUCAJ6S" tests="11" failures="0" errors="0" skipped="0" time="0.022857">
+        <testcase classname="tests/cli/model/card-form-state.test.ts" name="입력칸 값 -&gt; 만들기 입력 &gt; TC-061 비워 둔 마감일과 우선순위 입력칸은 비움 값으로 변환된다" time="0.006265">
+        </testcase>
+        <testcase classname="tests/cli/model/card-form-state.test.ts" name="입력칸 값 -&gt; 만들기 입력 &gt; TC-061 공백뿐인 마감일 칸도 비움 값(null)이 된다" time="0.0009812">
+        </testcase>
+        <testcase classname="tests/cli/model/card-form-state.test.ts" name="입력칸 값 -&gt; 만들기 입력 &gt; TC-061 종류·설명·메모가 그대로 전달된다 (AC-015)" time="0.0018488">
+        </testcase>
+        <testcase classname="tests/cli/model/card-form-state.test.ts" name="오류 &gt; TC-062 빈 제목과 존재하지 않는 마감일은 해당 입력칸의 오류로 변환된다" time="0.0036104">
+        </testcase>
+        <testcase classname="tests/cli/model/card-form-state.test.ts" name="오류 &gt; TC-062 수정 모드에서도 빈 제목은 제목 칸 오류가 되고 저장 값은 만들어지지 않는다" time="0.0009581">
+        </testcase>
+        <testcase classname="tests/cli/model/card-form-state.test.ts" name="오류 &gt; TC-062 공백뿐인 제목은 빈 제목과 같이 제목 칸 오류다" time="0.0005238">
+        </testcase>
+        <testcase classname="tests/cli/model/card-form-state.test.ts" name="오류 &gt; TC-062 형식이 틀린 마감일도 마감일 칸 오류다" time="0.0008462">
+        </testcase>
+        <testcase classname="tests/cli/model/card-form-state.test.ts" name="카드 -&gt; 입력칸 값, 수정 값 &gt; TC-061 formFromCard 는 null 마감일·우선순위를 빈 칸으로 채운다" time="0.0006029">
+        </testcase>
+        <testcase classname="tests/cli/model/card-form-state.test.ts" name="카드 -&gt; 입력칸 값, 수정 값 &gt; TC-061 마감일·우선순위를 비우고 저장하면 patch 에 null 이 담긴다" time="0.0012988">
+        </testcase>
+        <testcase classname="tests/cli/model/card-form-state.test.ts" name="카드 -&gt; 입력칸 값, 수정 값 &gt; TC-061 바꾸지 않은 칸은 patch 에 없다 (AC-022)" time="0.0008746">
+        </testcase>
+        <testcase classname="tests/cli/model/card-form-state.test.ts" name="카드 -&gt; 입력칸 값, 수정 값 &gt; TC-062 새 입력칸 값은 종류 할 일, 상태 할 일, 나머지는 비어 있다" time="0.0004502">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/state/change-runner.test.ts" timestamp="2026-11-04T07:01:30.765Z" hostname="DESKTOP-MUCAJ6S" tests="9" failures="0" errors="0" skipped="0" time="0.0224826">
+        <testcase classname="tests/cli/state/change-runner.test.ts" name="저장 성공 뒤에만 화면 사본이 바뀐다 &gt; TC-144 칸 이동·보관·삭제는 저장 성공 결과를 받은 뒤에만 화면 사본이 바뀐다" time="0.0097127">
+        </testcase>
+        <testcase classname="tests/cli/state/change-runner.test.ts" name="저장 성공 뒤에만 화면 사본이 바뀐다 &gt; 같은 칸으로 옮기면 아무것도 보내지 않고, 만들기·수정·기록 추가도 성공 뒤에 반영된다" time="0.0012798">
+        </testcase>
+        <testcase classname="tests/cli/state/change-runner.test.ts" name="저장 실패 &gt; TC-145 저장에 실패하면 화면 사본은 그대로이고 다시 저장이 실패한 요청 한 건을 그대로 다시 보낸다" time="0.0012251">
+        </testcase>
+        <testcase classname="tests/cli/state/change-runner.test.ts" name="저장 실패 &gt; 다시 보낼 요청이 없으면 retryFailed 는 아무것도 보내지 않는다" time="0.000552">
+        </testcase>
+        <testcase classname="tests/cli/state/change-runner.test.ts" name="저장 실패 &gt; 호출이 예외로 실패하면 INTERNAL 로 바꿔 실패로 기억하고 화면은 그대로다" time="0.0007388">
+        </testcase>
+        <testcase classname="tests/cli/state/change-runner.test.ts" name="저장 실패 &gt; 검증 실패는 Result 로 돌려주고 저장 실패로 기억하지 않는다" time="0.0005043">
+        </testcase>
+        <testcase classname="tests/cli/state/change-runner.test.ts" name="화면 사본이 오래되어 나는 오류와 읽기 실패 &gt; TC-146 화면 사본이 오래되어 나는 도메인 오류는 목록을 다시 받아 사본만 맞추고 읽기 잠금은 읽기 실패 상태로 보낸다" time="0.0017247">
+        </testcase>
+        <testcase classname="tests/cli/state/change-runner.test.ts" name="화면 사본이 오래되어 나는 오류와 읽기 실패 &gt; STORE_LOCKED 인데 읽기 실패 정보를 받지 못하면(INTERNAL 모양·예외) 다시 보낼 수 있는 실패로 둔다" time="0.0012682">
+        </testcase>
+        <testcase classname="tests/cli/state/change-runner.test.ts" name="판 전환 &gt; TC-147 판 전환만 낙관적으로 먼저 반영되고 저장에 실패해도 되돌리지 않는다" time="0.0021221">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/state/reducers.test.ts" timestamp="2026-11-04T07:01:30.768Z" hostname="DESKTOP-MUCAJ6S" tests="9" failures="0" errors="0" skipped="0" time="0.0241867">
+        <testcase classname="tests/cli/state/reducers.test.ts" name="saveReducer &gt; TC-143 요청 시작마다 진행 중 요청 수가 늘고 0이 되었을 때 마지막 요청이 성공이면 saved 다" time="0.0076694">
+        </testcase>
+        <testcase classname="tests/cli/state/reducers.test.ts" name="saveReducer &gt; TC-143 요청 수가 0이 되었을 때 마지막 요청이 실패면 failed 와 다시 보낼 요청 한 건을 갖는다" time="0.0018801">
+        </testcase>
+        <testcase classname="tests/cli/state/reducers.test.ts" name="saveReducer &gt; 읽기 실패로 잠기면 reset 전까지 unavailable 을 유지한다" time="0.0013941">
+        </testcase>
+        <testcase classname="tests/cli/state/reducers.test.ts" name="dataReducer &gt; TC-143 상태를 바꾼 카드로 교체하면 그 카드만 바뀌고 입력 상태는 그대로다" time="0.0021032">
+        </testcase>
+        <testcase classname="tests/cli/state/reducers.test.ts" name="dataReducer &gt; TC-143 카드를 삭제하면 목록에서 사라진다" time="0.0021355">
+        </testcase>
+        <testcase classname="tests/cli/state/reducers.test.ts" name="dataReducer &gt; TC-143 보관하면 보드 목록에서 빠지고 보관함 목록에 들어간다" time="0.0009495">
+        </testcase>
+        <testcase classname="tests/cli/state/reducers.test.ts" name="dataReducer &gt; 카드를 만들면 보드 목록에 더해지고, 판·읽기 실패·목록 교체가 반영된다" time="0.0009781">
+        </testcase>
+        <testcase classname="tests/cli/state/reducers.test.ts" name="uiReducer &gt; TC-143 검색어와 종류 조건을 담고 모두 지우면 빈 조건이 된다" time="0.0009892">
+        </testcase>
+        <testcase classname="tests/cli/state/reducers.test.ts" name="uiReducer &gt; 조건 하나만 지우거나 화면·캘린더·대화상자를 바꾼다" time="0.0018609">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/store/data-file-repository.test.ts" timestamp="2026-11-04T07:01:30.772Z" hostname="DESKTOP-MUCAJ6S" tests="21" failures="0" errors="0" skipped="0" time="0.0474221">
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기 순서 &gt; TC-037 저장 파일이 없으면 처음 실행으로 빈 보드와 어두운 판으로 열린다" time="0.006668">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기 순서 &gt; TC-038 저장한 문서를 다시 열면 카드, 기록, 설정이 모두 같다" time="0.0085151">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기 순서 &gt; TC-039 본 파일이 없고 직전 저장본이 유효하면 그것으로 열린다" time="0.0021785">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기 순서 &gt; TC-040 본 파일이 정상이면 남아 있는 임시 파일은 읽지 않고 쓰기도 없다" time="0.0026086">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기 순서 &gt; TC-040 본 파일이 없고 임시 파일만 있으면 처음 실행으로 열린다" time="0.0015331">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기 순서 &gt; 본 파일이 없고 직전 저장본이 유효하지 않으면 그 직전 저장본을 읽지 못한 파일로 하는 읽기 실패다" time="0.0013962">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기 실패 분류 &gt; TC-041 (a) 빈 파일 는 JSON_PARSE_FAILED 읽기 실패다" time="0.0011351">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기 실패 분류 &gt; TC-041 (b) 잘린 JSON 는 JSON_PARSE_FAILED 읽기 실패다" time="0.0008495">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기 실패 분류 &gt; TC-041 (d) 최상위가 배열인 JSON 는 SCHEMA_INVALID 읽기 실패다" time="0.001477">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기 실패 분류 &gt; TC-041 (e) schemaVersion 이 문자열인 JSON 는 SCHEMA_INVALID 읽기 실패다" time="0.0011282">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기 실패 분류 &gt; TC-041 (f) 기록이 없는 카드를 가리키는 문서 는 INTEGRITY_VIOLATED 읽기 실패다" time="0.0013188">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기 실패 분류 &gt; TC-041 (c) 읽을 때 EACCES 가 나는 파일은 FILE_UNREADABLE 이고 OS 코드를 담는다" time="0.0013105">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기 실패 분류 &gt; 변환 함수가 오류를 던지면 MIGRATION_FAILED 읽기 실패다" time="0.0010531">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기 실패 분류 &gt; TC-042 본 파일을 읽지 못하면 직전 저장본이 유효해도 자동으로 쓰지 않는다" time="0.0020466">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기만으로는 쓰지 않음 &gt; TC-043 파일을 읽기만 해서는 어떤 파일도 바뀌지 않는다 (이전 버전 변환 포함)" time="0.0017432">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기만으로는 쓰지 않음 &gt; TC-044 더 새로운 버전의 파일은 읽지 않고 읽기 실패로 둔다" time="0.0009517">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기 실패 정보 &gt; TC-139 (a) 유효한 직전 저장본과 변환 전 사본: 경로와 직전 저장본 상태와 변환 전 사본이 담긴다" time="0.0012179">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기 실패 정보 &gt; TC-139 (b) 손상된 직전 저장본: 경로와 직전 저장본 상태와 변환 전 사본이 담긴다" time="0.0023381">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기 실패 정보 &gt; TC-139 (c) 직전 저장본 없음: 경로와 직전 저장본 상태와 변환 전 사본이 담긴다" time="0.0006696">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="읽기 실패 정보 &gt; TC-139 (d) 본 파일 읽기에서 EACCES: 경로와 직전 저장본 상태와 변환 전 사본이 담긴다" time="0.0004406">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-repository.test.ts" name="변환 전 원본 복사 &gt; TC-036 이전 버전 문서는 처음 저장하기 직전 원본이 한 번만 따로 복사된다" time="0.0026959">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/store/data-file-save.test.ts" timestamp="2026-11-04T07:01:30.776Z" hostname="DESKTOP-MUCAJ6S" tests="16" failures="0" errors="0" skipped="0" time="0.0376805">
+        <testcase classname="tests/cli/store/data-file-save.test.ts" name="저장 순서 &gt; TC-034 저장은 임시 파일 쓰기, 검증, 직전본 복사, 교체 순서로 진행된다" time="0.0100402">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-save.test.ts" name="저장 순서 &gt; TC-034 본 파일이 없는 첫 저장은 복사 단계를 건너뛴다" time="0.0017537">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-save.test.ts" name="단계별 실패 &gt; TC-035 임시 파일 쓰기가 실패하면 write_temp 이고 본 파일은 그대로다" time="0.0026558">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-save.test.ts" name="단계별 실패 &gt; TC-035 디스크 반영 중 실패는 쓰기와 한 호출이라 write_temp 로 보고되고 본 파일은 그대로다" time="0.0014164">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-save.test.ts" name="단계별 실패 &gt; TC-035 임시 파일을 다시 읽지 못하면 verify 이고 본 파일은 그대로다" time="0.0011768">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-save.test.ts" name="단계별 실패 &gt; TC-035 다시 읽은 임시 파일이 파싱되지 않으면 verify 이고 본 파일은 그대로다" time="0.001108">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-save.test.ts" name="단계별 실패 &gt; TC-035 다시 읽은 문서가 검증을 통과하지 못하면 verify 이고 본 파일은 그대로다" time="0.0017206">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-save.test.ts" name="단계별 실패 &gt; TC-035 직전본 복사가 실패하면 backup 이고 교체 호출은 일어나지 않으며 본 파일은 그대로다" time="0.0011842">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-save.test.ts" name="단계별 실패 &gt; TC-035 이름 바꾸기가 실패하면 replace 이고 본 파일은 그대로다" time="0.0019378">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-save.test.ts" name="단계별 실패 &gt; TC-035 실패한 저장 뒤에도 예외는 밖으로 나오지 않고 같은 호출을 다시 하면 성공한다" time="0.0026751">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-save.test.ts" name="임시 파일 이름 &gt; TC-137 임시 파일 이름에 프로세스 아이디가 붙고 다른 실행의 임시 파일을 건드리지 않는다" time="0.0031866">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-save.test.ts" name="이름 바꾸기 일시 오류 &gt; TC-138 이름 바꾸기 첫 호출만 일시 오류로 실패하면 SAVE_FAILED 이고 본 파일은 그대로이며 다시 저장하면 성공한다" time="0.0019055">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-save.test.ts" name="변환 전 원본 복사 &gt; 변환된 문서의 첫 저장은 변환 전 원본을 pre-v{N} 로 복사하고 직전본도 만든다" time="0.0008758">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-save.test.ts" name="변환 전 원본 복사 &gt; pre-v{N} 사본이 이미 있으면 다시 만들지 않는다" time="0.0005892">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-save.test.ts" name="변환 전 원본 복사 &gt; 변환된 문서가 아니면 pre-v{N} 사본을 만들지 않는다" time="0.000432">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-save.test.ts" name="변환 전 원본 복사 &gt; pre-v{N} 사본 복사가 실패하면 backup 이고 교체하지 않는다" time="0.000657">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/store/data-file-validator.test.ts" timestamp="2026-11-04T07:01:30.779Z" hostname="DESKTOP-MUCAJ6S" tests="21" failures="0" errors="0" skipped="0" time="0.0483665">
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="validateDataFile: 정상 문서 &gt; 고정 데이터(버전 2)는 통과하고 받은 문서를 그대로 돌려준다" time="0.0075932">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="validateDataFile: 정상 문서 &gt; NFR-003 버전 1 고정 데이터를 변환한 문서는 통과한다" time="0.0019492">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="validateDataFile: 정상 문서 &gt; 빈 보드 문서와 빌더가 만든 문서는 통과한다" time="0.000815">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="validateDataFile: 정상 문서 &gt; 보관된 완료 카드와 밝은 판은 통과한다" time="0.0006745">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="TC-032 구조 불변식 위반 &gt; TC-032 (a) 카드 아이디 중복은 INTEGRITY_VIOLATED 이고 입력도 결과도 고쳐지지 않는다" time="0.0032906">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="TC-032 구조 불변식 위반 &gt; TC-032 (b) 존재하지 않는 카드를 가리키는 기록은 INTEGRITY_VIOLATED 이고 입력도 결과도 고쳐지지 않는다" time="0.0013809">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="TC-032 구조 불변식 위반 &gt; TC-032 (c) 보관 표시가 있는데 상태가 할 일인 카드는 INTEGRITY_VIOLATED 이고 입력도 결과도 고쳐지지 않는다" time="0.0018903">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="TC-032 구조 불변식 위반 &gt; TC-032 (d) 기록 아이디 중복은 INTEGRITY_VIOLATED 이고 입력도 결과도 고쳐지지 않는다" time="0.0020242">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="TC-032 구조 불변식 위반 &gt; TC-032 위반이 여럿이면 모두 모아서 돌려준다" time="0.0034644">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="TC-033 설정 없음과 판 값 이상 &gt; TC-033 settings 가 없으면 SCHEMA_INVALID 이고 기본값을 채운 문서가 돌아오지 않는다" time="0.0035551">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="TC-033 설정 없음과 판 값 이상 &gt; TC-033 theme 이 &apos;blue&apos; 이면 SCHEMA_INVALID 이고 dark 로 채운 문서가 돌아오지 않는다" time="0.0023878">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="TC-033 설정 없음과 판 값 이상 &gt; TC-033 theme 이 문자열이 아니거나 빠져도 SCHEMA_INVALID 이다" time="0.002722">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="모양 검사 (SCHEMA_INVALID) &gt; 객체가 아닌 문서는 거부한다" time="0.0003728">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="모양 검사 (SCHEMA_INVALID) &gt; 현재 버전이 아닌 schemaVersion 은 거부한다" time="0.0014326">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="모양 검사 (SCHEMA_INVALID) &gt; cards 나 progressEntries 가 없거나 배열이 아니면 거부한다" time="0.0011645">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="모양 검사 (SCHEMA_INVALID) &gt; 카드 필드의 위반 위치를 인덱스와 함께 알린다" time="0.0028684">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="모양 검사 (SCHEMA_INVALID) &gt; 카드에 빠진 필드와 알 수 없는 필드를 거부한다" time="0.0013593">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="모양 검사 (SCHEMA_INVALID) &gt; 시각 필드는 UTC 시각 문자열 형식이어야 한다" time="0.0010222">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="모양 검사 (SCHEMA_INVALID) &gt; 진행 기록의 내용·상태·아이디 위반을 알린다" time="0.0014503">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="모양 검사 (SCHEMA_INVALID) &gt; 모양 위반과 불변식 위반이 함께 있으면 모양 위반(SCHEMA_INVALID)으로 판정한다" time="0.0013106">
+        </testcase>
+        <testcase classname="tests/cli/store/data-file-validator.test.ts" name="모양 검사 (SCHEMA_INVALID) &gt; 카드나 기록 항목이 객체가 아니면 거부한다" time="0.0017252">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/store/kanban-store-faults.test.ts" timestamp="2026-11-04T07:01:30.782Z" hostname="DESKTOP-MUCAJ6S" tests="19" failures="0" errors="0" skipped="0" time="0.1000181">
+        <testcase classname="tests/cli/store/kanban-store-faults.test.ts" name="KanbanStore 저장 실패 &gt; TC-051 저장 실패 시 카드 변경은 SAVE_FAILED이고 메모리와 본 파일이 그대로이다 (write_temp)" time="0.0238889">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-faults.test.ts" name="KanbanStore 저장 실패 &gt; TC-051 저장 실패 시 카드 변경은 SAVE_FAILED이고 메모리와 본 파일이 그대로이다 (verify)" time="0.0096858">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-faults.test.ts" name="KanbanStore 저장 실패 &gt; TC-051 저장 실패 시 카드 변경은 SAVE_FAILED이고 메모리와 본 파일이 그대로이다 (backup)" time="0.0068494">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-faults.test.ts" name="KanbanStore 저장 실패 &gt; TC-051 저장 실패 시 카드 변경은 SAVE_FAILED이고 메모리와 본 파일이 그대로이다 (replace)" time="0.0097462">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-faults.test.ts" name="KanbanStore 저장 실패 &gt; TC-051 삭제 저장이 실패하면 카드와 그 기록이 모두 남는다 (replace)" time="0.0014503">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-faults.test.ts" name="KanbanStore 저장 실패 &gt; 실패한 저장 뒤에도 줄은 계속 돌고 다음 변경은 성공한다" time="0.0022643">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-faults.test.ts" name="KanbanStore 저장 중 중단 &gt; TC-052 저장 중 어느 시점에서 중단되어도 다시 열면 직전 저장본 또는 새 저장본이다 (write_temp before)" time="0.0030741">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-faults.test.ts" name="KanbanStore 저장 중 중단 &gt; TC-052 저장 중 어느 시점에서 중단되어도 다시 열면 직전 저장본 또는 새 저장본이다 (write_temp after)" time="0.0047353">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-faults.test.ts" name="KanbanStore 저장 중 중단 &gt; TC-052 저장 중 어느 시점에서 중단되어도 다시 열면 직전 저장본 또는 새 저장본이다 (verify before)" time="0.0032652">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-faults.test.ts" name="KanbanStore 저장 중 중단 &gt; TC-052 저장 중 어느 시점에서 중단되어도 다시 열면 직전 저장본 또는 새 저장본이다 (verify after)" time="0.0036741">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-faults.test.ts" name="KanbanStore 저장 중 중단 &gt; TC-052 저장 중 어느 시점에서 중단되어도 다시 열면 직전 저장본 또는 새 저장본이다 (backup before)" time="0.0033843">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-faults.test.ts" name="KanbanStore 저장 중 중단 &gt; TC-052 저장 중 어느 시점에서 중단되어도 다시 열면 직전 저장본 또는 새 저장본이다 (backup after)" time="0.0048782">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-faults.test.ts" name="KanbanStore 저장 중 중단 &gt; TC-052 저장 중 어느 시점에서 중단되어도 다시 열면 직전 저장본 또는 새 저장본이다 (replace before)" time="0.0010775">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-faults.test.ts" name="KanbanStore 저장 중 중단 &gt; TC-052 저장 중 어느 시점에서 중단되어도 다시 열면 직전 저장본 또는 새 저장본이다 (replace after)" time="0.0015971">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-faults.test.ts" name="KanbanStore 저장 중 중단 &gt; TC-052 교체가 둘로 쪼개져 본 파일이 사라진 경우는 직전 저장본으로 열린다" time="0.0020451">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-faults.test.ts" name="KanbanStore 판 전환 저장 실패 &gt; TC-053 판 전환 저장이 실패하면 저장된 설정과 파일이 그대로이고 이후 카드 저장이 그 판을 함께 저장하지 않는다 (write_temp)" time="0.0025004">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-faults.test.ts" name="KanbanStore 판 전환 저장 실패 &gt; TC-053 판 전환 저장이 실패하면 저장된 설정과 파일이 그대로이고 이후 카드 저장이 그 판을 함께 저장하지 않는다 (verify)" time="0.0021846">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-faults.test.ts" name="KanbanStore 판 전환 저장 실패 &gt; TC-053 판 전환 저장이 실패하면 저장된 설정과 파일이 그대로이고 이후 카드 저장이 그 판을 함께 저장하지 않는다 (backup)" time="0.0024967">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-faults.test.ts" name="KanbanStore 판 전환 저장 실패 &gt; TC-053 판 전환 저장이 실패하면 저장된 설정과 파일이 그대로이고 이후 카드 저장이 그 판을 함께 저장하지 않는다 (replace)" time="0.0032407">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/store/kanban-store-locked.test.ts" timestamp="2026-11-04T07:01:30.787Z" hostname="DESKTOP-MUCAJ6S" tests="4" failures="0" errors="0" skipped="0" time="0.0183027">
+        <testcase classname="tests/cli/store/kanban-store-locked.test.ts" name="KanbanStore 읽기 실패 잠금 &gt; TC-054 읽기 실패 상태에서는 모든 호출이 STORE_LOCKED이고 쓰기 호출이 0건이다" time="0.008997">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-locked.test.ts" name="KanbanStore 읽기 실패 잠금 &gt; TC-055 다시 읽기는 파일을 쓰지 않고, 파일이 고쳐지면 정상 상태가 된다" time="0.0054124">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-locked.test.ts" name="KanbanStore 읽기 실패 잠금 &gt; 이미 정상이면 다시 읽기는 파일을 읽지 않고 현재 상태를 돌려준다" time="0.0005551">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store-locked.test.ts" name="KanbanStore 읽기 실패 잠금 &gt; 잠긴 동안 줄에 들어온 변경도 다시 읽기 뒤에 되살아나지 않는다" time="0.000981">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/store/kanban-store.test.ts" timestamp="2026-11-04T07:01:30.788Z" hostname="DESKTOP-MUCAJ6S" tests="9" failures="0" errors="0" skipped="0" time="0.1808277">
+        <testcase classname="tests/cli/store/kanban-store.test.ts" name="KanbanStore 한 줄 처리와 닫기 &gt; TC-047 변경 요청은 한 줄로 차례대로 저장된다" time="0.1201882">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store.test.ts" name="KanbanStore 한 줄 처리와 닫기 &gt; TC-050 저장소를 닫으면 줄 서 있는 저장이 끝난 뒤에 돌아온다" time="0.0348716">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store.test.ts" name="KanbanStore 저장과 다시 열기 &gt; TC-048 변경을 저장한 뒤 새 저장소로 다시 열면 같은 결과가 나온다" time="0.0095545">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store.test.ts" name="KanbanStore 저장과 다시 열기 &gt; TC-049 바뀐 것이 없는 호출은 파일에 쓰지 않는다" time="0.0026509">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store.test.ts" name="KanbanStore 화면 함수 흐름 &gt; TC-136 보관한 카드를 삭제해 저장한 뒤 새 저장소로 열면 그 카드와 기록이 없다" time="0.0029777">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store.test.ts" name="KanbanStore 화면 함수 흐름 &gt; 보관한 카드는 수정·상태 변경·기록 추가가 거절되고 읽을 수 있다" time="0.0017285">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store.test.ts" name="KanbanStore 화면 함수 흐름 &gt; 규칙 오류는 그대로 돌려주고 저장하지 않는다" time="0.0017228">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store.test.ts" name="KanbanStore 화면 함수 흐름 &gt; 처음 실행은 빈 보드와 어두운 판이고 첫 저장 전에는 파일이 없다" time="0.001165">
+        </testcase>
+        <testcase classname="tests/cli/store/kanban-store.test.ts" name="KanbanStore 화면 함수 흐름 &gt; 저장이 끝난 문서는 직전 저장본(.bak)과 함께 남고 다음 저장은 이전 문서를 .bak 에 둔다" time="0.0021316">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/store/node-file-system.test.ts" timestamp="2026-11-04T07:01:30.789Z" hostname="DESKTOP-MUCAJ6S" tests="2" failures="0" errors="0" skipped="0" time="0.4620426">
+        <testcase classname="tests/cli/store/node-file-system.test.ts" name="NodeFileSystem &gt; TC-056 실제 임시 폴더에서 파일 다섯 동작이 동작하고 이름 바꾸기가 기존 파일을 덮어쓴다" time="0.0955536">
+        </testcase>
+        <testcase classname="tests/cli/store/node-file-system.test.ts" name="NodeFileSystem &gt; TC-140 이름 바꾸기가 일시 오류로 한 번 실패해도 다시 시도해 성공한다" time="0.3632551">
+        </testcase>
+    </testsuite>
+    <testsuite name="tests/cli/text/labels.test.ts" timestamp="2026-11-04T07:01:30.790Z" hostname="DESKTOP-MUCAJ6S" tests="6" failures="0" errors="0" skipped="0" time="0.0190869">
+        <testcase classname="tests/cli/text/labels.test.ts" name="TC-063 모든 값과 오류 코드에 화면 문구가 있다 &gt; TC-063 상태·종류·우선순위·판의 모든 값에 비어 있지 않은 문구가 있고 표에 없는 값은 없다" time="0.0065975">
+        </testcase>
+        <testcase classname="tests/cli/text/labels.test.ts" name="TC-063 모든 값과 오류 코드에 화면 문구가 있다 &gt; TC-063 호출 오류 코드(저장 실패, 읽기 잠김 포함)마다 비어 있지 않은 문구가 있고 표에 없는 코드는 없다" time="0.0034558">
+        </testcase>
+        <testcase classname="tests/cli/text/labels.test.ts" name="TC-063 모든 값과 오류 코드에 화면 문구가 있다 &gt; TC-063 검증 위반(제목 비움, 날짜 오류 포함)마다 비어 있지 않은 문구가 있다" time="0.0011242">
+        </testcase>
+        <testcase classname="tests/cli/text/labels.test.ts" name="TC-063 모든 값과 오류 코드에 화면 문구가 있다 &gt; TC-063 읽기 실패 원인 6가지에 비어 있지 않은 문구가 있고 OS 오류 코드가 함께 붙는다" time="0.0020572">
+        </testcase>
+        <testcase classname="tests/cli/text/labels.test.ts" name="TC-063 모든 값과 오류 코드에 화면 문구가 있다 &gt; TC-063 저장 단계 5가지에 비어 있지 않은 문구가 있다" time="0.0011278">
+        </testcase>
+        <testcase classname="tests/cli/text/labels.test.ts" name="TC-063 모든 값과 오류 코드에 화면 문구가 있다 &gt; TC-063 직전 저장본 상태 3가지에 문구가 있고 수동 절차 문구는 유효할 때만 나온다" time="0.0012535">
+        </testcase>
+    </testsuite>
+</testsuites>

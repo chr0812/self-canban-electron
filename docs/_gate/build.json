@@ -1,0 +1,1868 @@
+{
+  "tasks": {
+    "T-001": {
+      "status": "done",
+      "briefHash": "b9fa2b8cd46bc0622b91115be090b0560bbcb6ddc31c42bccbabdb219187c625",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T05:33:33.453Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T05:33:33.453Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-001-20261105-143333.log",
+        "perTc": false,
+        "tcs": {},
+        "skipped": [
+          "test",
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-002": {
+      "status": "done",
+      "briefHash": "e6b16ae329ad173bd83ca9ddbf3869491c048b7fc420ddbdd26f2e8eed0c7909",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T05:35:07.879Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T05:35:07.879Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-002-20261105-143507.log",
+        "perTc": false,
+        "tcs": {},
+        "skipped": [
+          "test",
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-003": {
+      "status": "done",
+      "briefHash": "7f84eea0a5f4d624bbfc80c8e02367023d472a74abbf302f5c82b4d92e333867",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T05:35:25.896Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T05:35:25.896Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-003-20261105-143525.log",
+        "perTc": false,
+        "tcs": {},
+        "skipped": [
+          "test",
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-006": {
+      "status": "done",
+      "briefHash": "1cc8f83b6a731a6824bd12b77d22428182f4a366f855e1c21e1162cfccfef81e",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T05:35:34.977Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T05:35:34.977Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-006-20261105-143534.log",
+        "perTc": false,
+        "tcs": {},
+        "skipped": [
+          "test",
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-005": {
+      "status": "done",
+      "briefHash": "c47feca78a7f49bc0590cebe913596e5c3055979a452cf3fe49986ecf4349fe6",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:06:17.381Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:06:17.381Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-005-20261105-150617.log",
+        "perTc": true,
+        "tcs": {
+          "TC-056": "passed",
+          "TC-140": "passed"
+        },
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-007": {
+      "status": "done",
+      "briefHash": "cc67b6e916e2cedd63c06a7850a3a0d5bbdc1007ff2e4f18c68159d1d4d66409",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T05:36:08.339Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T05:36:08.339Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-007-20261105-143608.log",
+        "perTc": false,
+        "tcs": {},
+        "skipped": [
+          "test",
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-008": {
+      "status": "done",
+      "briefHash": "06e1a03a1e94798430122ae23aceba1d77af3aac8d634f0a19f7f9217431b0b8",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:06:33.480Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:06:33.480Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-008-20261105-150633.log",
+        "perTc": true,
+        "tcs": {
+          "TC-001": "passed",
+          "TC-002": "passed",
+          "TC-003": "passed",
+          "TC-004": "passed",
+          "TC-005": "passed"
+        },
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-010": {
+      "status": "done",
+      "briefHash": "bd7da92e4d30e183aaf7c545605cec1f2436cdcef6ffebfb0ba051ebf167f077",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:05:29.724Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:05:29.724Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-010-20261105-150529.log",
+        "perTc": true,
+        "tcs": {
+          "TC-063": "passed"
+        },
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-004": {
+      "status": "done",
+      "briefHash": "b6440a2987f53a6436b29bcbfa4bb426b864f862771315f5b18c4a633527d956",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T05:35:16.929Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T05:35:16.929Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-004-20261105-143516.log",
+        "perTc": false,
+        "tcs": {},
+        "skipped": [
+          "test",
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-009": {
+      "status": "done",
+      "briefHash": "82850b6e649bd64bc586c6d4dfa64c9d5af2263f8d49c28a1330fa840a71c07a",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:06:46.090Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:06:46.090Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-009-20261105-150646.log",
+        "perTc": true,
+        "tcs": {
+          "TC-029": "passed",
+          "TC-030": "passed",
+          "TC-031": "passed"
+        },
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-011": {
+      "status": "done",
+      "briefHash": "bf51736b682523e6eeda936e0ba3265dee1ff1ccfbc0aab617024822f9e51974",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T05:36:29.279Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T05:36:29.279Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-011-20261105-143629.log",
+        "perTc": false,
+        "tcs": {},
+        "skipped": [
+          "test",
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-013": {
+      "status": "done",
+      "briefHash": "1f1b39637561fc03ca7322fb133389267e8977648dd3b94263420262f2814b01",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:10:02.048Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:10:02.048Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-013-20261105-151002.log",
+        "perTc": true,
+        "tcs": {
+          "TC-006": "passed",
+          "TC-008": "passed",
+          "TC-009": "passed",
+          "TC-156": "passed"
+        },
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-012": {
+      "status": "done",
+      "briefHash": "c48214c893e61a0999e4d7540e3a6a356c439d5511036dbafefbe433ba927747",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:05:41.271Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:05:41.271Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-012-20261105-150541.log",
+        "perTc": true,
+        "tcs": {},
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-014": {
+      "status": "done",
+      "briefHash": "24bbccfb7a4016c62dfb958a77e78dc127cfd39bd8261c0309ce85a2f3129bf8",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:06:58.622Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:06:58.622Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-014-20261105-150658.log",
+        "perTc": true,
+        "tcs": {
+          "TC-064": "passed"
+        },
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-015": {
+      "status": "done",
+      "briefHash": "cf42e2edfb7e08b19f95beec850ef8e3f919b8db8fedb793c1d3debb579cd3db",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:05:53.416Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:05:53.416Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-015-20261105-150553.log",
+        "perTc": true,
+        "tcs": {
+          "TC-045": "passed",
+          "TC-046": "passed"
+        },
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-016": {
+      "status": "done",
+      "briefHash": "737d8dfde1322c5ba7f6cdb8092dcaaae54b99435d80c3ea39b72c70c49c1cef",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:10:13.343Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:10:13.343Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-016-20261105-151013.log",
+        "perTc": true,
+        "tcs": {
+          "TC-057": "passed",
+          "TC-058": "passed",
+          "TC-162": "passed"
+        },
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-017": {
+      "status": "done",
+      "briefHash": "31865a8ffe4c55de0f534a803a785144da92e65a178b2987f5267a0c077a3434",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:07:11.324Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:07:11.324Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-017-20261105-150711.log",
+        "perTc": true,
+        "tcs": {
+          "TC-059": "passed",
+          "TC-060": "passed"
+        },
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-018": {
+      "status": "done",
+      "briefHash": "0ffbe410a4f57359030128679aa5cb7925482b8c32c852918ae3a4c4821a1380",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T05:36:38.386Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T05:36:38.386Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-018-20261105-143638.log",
+        "perTc": false,
+        "tcs": {},
+        "skipped": [
+          "test",
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-019": {
+      "status": "done",
+      "briefHash": "de0ba508c3968c2c1fe90966c8c7f62ae729953ed4c1b4f2de26ec272d2eb369",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:07:23.394Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:07:23.394Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-019-20261105-150723.log",
+        "perTc": true,
+        "tcs": {},
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-021": {
+      "status": "done",
+      "briefHash": "5972a3d8a58bef62e13fbbb6b6ec06ee5e6339aa4e0cf06eb4e8584bfde3e164",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:11:13.163Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:11:13.163Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-021-20261105-151113.log",
+        "perTc": true,
+        "tcs": {
+          "TC-022": "passed",
+          "TC-023": "passed",
+          "TC-027": "passed",
+          "TC-028": "passed"
+        },
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-022": {
+      "status": "done",
+      "briefHash": "da4eb86bd609426a5632a60e7526a5bb7682cc49ed44b54a678b42f42dc448aa",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:11:24.335Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:11:24.335Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-022-20261105-151124.log",
+        "perTc": true,
+        "tcs": {
+          "TC-032": "passed",
+          "TC-033": "passed"
+        },
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-044": {
+      "status": "done",
+      "briefHash": "1956f9d3117ac0d3e66b12205ee5b718e84c1a67aa9e85074b474a6d8361289a",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:10:37.760Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:10:37.760Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-044-20261105-151037.log",
+        "perTc": true,
+        "tcs": {
+          "TC-024": "passed",
+          "TC-025": "passed",
+          "TC-026": "passed"
+        },
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-020": {
+      "status": "done",
+      "briefHash": "de91921710491ff8011478585da1655d6356cedf8198132af52317325ffcec1b",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:14:01.277Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:14:01.277Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-020-20261105-151401.log",
+        "perTc": true,
+        "tcs": {
+          "TC-007": "passed",
+          "TC-010": "passed",
+          "TC-011": "passed",
+          "TC-012": "passed",
+          "TC-013": "passed",
+          "TC-014": "passed",
+          "TC-015": "passed",
+          "TC-016": "passed",
+          "TC-017": "passed",
+          "TC-018": "passed",
+          "TC-019": "passed",
+          "TC-020": "passed",
+          "TC-021": "passed",
+          "TC-135": "passed"
+        },
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-023": {
+      "status": "done",
+      "briefHash": "ca3c50ef87fe7496a054dbb8e70184115bebff1aa5cb890b20b36289e27ee2f3",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:07:35.758Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:07:35.758Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-023-20261105-150735.log",
+        "perTc": true,
+        "tcs": {
+          "TC-065": "passed",
+          "TC-066": "passed",
+          "TC-141": "passed",
+          "TC-142": "passed"
+        },
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-024": {
+      "status": "done",
+      "briefHash": "b7f340a16d60d3b19bf0790c9feb4d5c59a2598516bac0573fcbf0ece94edfbf",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:14:12.027Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:14:12.027Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-024-20261105-151412.log",
+        "perTc": true,
+        "tcs": {
+          "TC-061": "passed",
+          "TC-062": "passed",
+          "TC-158": "passed",
+          "TC-159": "passed"
+        },
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-025": {
+      "status": "done",
+      "briefHash": "583f03105a3133e6e9e42c44cd117b32adbe9e79d521f862c4cd4ffa975a325a",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:07:48.371Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:07:48.371Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-025-20261105-150748.log",
+        "perTc": true,
+        "tcs": {},
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-026": {
+      "status": "done",
+      "briefHash": "bd2e4edd8c602adaa738ad31accd1b6fab1800bcbebea08330bc63a6a58d1827",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:08:00.693Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:08:00.693Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-026-20261105-150800.log",
+        "perTc": true,
+        "tcs": {},
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-027": {
+      "status": "done",
+      "briefHash": "d821fbc9f89437e63a696540abaa3d7811a521d410cb6fba1792027c6afadc56",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:10:25.105Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:10:25.105Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-027-20261105-151025.log",
+        "perTc": true,
+        "tcs": {},
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-028": {
+      "status": "done",
+      "briefHash": "189bc6c50bb9126357d2924c4d4a32ad0c20a9392a80704a8e9ebd31e92d74b9",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:14:34.347Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:14:34.347Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-028-20261105-151434.log",
+        "perTc": true,
+        "tcs": {
+          "TC-034": "passed",
+          "TC-035": "passed",
+          "TC-137": "passed",
+          "TC-138": "passed"
+        },
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-031": {
+      "status": "done",
+      "briefHash": "ae066d3e322f54e12b7b4f95723b8df13ffa6409b3d5aeceec6da4fff1f1adfc",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:17:35.495Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:17:35.495Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-031-20261105-151735.log",
+        "perTc": true,
+        "tcs": {
+          "TC-143": "passed",
+          "TC-144": "passed",
+          "TC-145": "passed",
+          "TC-146": "passed",
+          "TC-147": "passed",
+          "TC-161": "passed"
+        },
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-032": {
+      "status": "done",
+      "briefHash": "6c42f79a4849ab98bc890a6847556718bccf47904b49df6883d665de9edaabd9",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:17:57.557Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:17:57.557Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-032-20261105-151757.log",
+        "perTc": true,
+        "tcs": {},
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-033": {
+      "status": "done",
+      "briefHash": "799b242b0a1e5f15d2a73bb577bc0d25047a33e41b8529e280eefcc3c4d9ffba",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:24:25.013Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:24:25.013Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-033-20261105-152425.log",
+        "perTc": true,
+        "tcs": {},
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-034": {
+      "status": "done",
+      "briefHash": "50e778cd4fab724d8a7797f90849982b82a81f5f40163bac94a58854dabee16d",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:18:08.544Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:18:08.544Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-034-20261105-151808.log",
+        "perTc": true,
+        "tcs": {},
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-035": {
+      "status": "done",
+      "briefHash": "0d5f93efaa065cccb22c8d40ded2a44ade34843c507a0ab3b714efa6782c5f29",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:18:20.051Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:18:20.051Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-035-20261105-151820.log",
+        "perTc": true,
+        "tcs": {},
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-036": {
+      "status": "done",
+      "briefHash": "9eb273ec79cbd2935d5a62d14d7c6931c7638ae509119be5af15beda1766d2bb",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:24:36.133Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:24:36.133Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-036-20261105-152436.log",
+        "perTc": true,
+        "tcs": {},
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-038": {
+      "status": "done",
+      "briefHash": "0cc929001dc6e54a95a6be0f5a6da67c2101a7532b87046360a8adf33b9860af",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:24:48.053Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:24:48.053Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-038-20261105-152448.log",
+        "perTc": true,
+        "tcs": {},
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-029": {
+      "status": "done",
+      "briefHash": "5ffec5fd9d1f33f57f4b35f17c51ff814d51bb768672f4639917aa128e6d776b",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:15:22.981Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:15:22.981Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-029-20261105-151522.log",
+        "perTc": true,
+        "tcs": {
+          "TC-036": "passed",
+          "TC-037": "passed",
+          "TC-038": "passed",
+          "TC-039": "passed",
+          "TC-040": "passed",
+          "TC-041": "passed",
+          "TC-042": "passed",
+          "TC-043": "passed",
+          "TC-044": "passed",
+          "TC-139": "passed"
+        },
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-030": {
+      "status": "done",
+      "briefHash": "2ba95f76bcc4935af52345d2da043b40855523a13a509cd419d67ff496617d39",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:17:46.260Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:17:46.260Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-030-20261105-151746.log",
+        "perTc": true,
+        "tcs": {
+          "TC-047": "passed",
+          "TC-048": "passed",
+          "TC-049": "passed",
+          "TC-050": "passed",
+          "TC-051": "passed",
+          "TC-052": "passed",
+          "TC-053": "passed",
+          "TC-054": "passed",
+          "TC-055": "passed",
+          "TC-136": "passed",
+          "TC-157": "passed",
+          "TC-160": "passed"
+        },
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-039": {
+      "status": "done",
+      "briefHash": "561680749891d0933af212bfaf57b9d5194af9e9530fdf0fed4d38b730876004",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:26:06.749Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:26:06.749Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-039-20261105-152606.log",
+        "perTc": true,
+        "tcs": {},
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-037": {
+      "status": "done",
+      "briefHash": "03c4d4f3b9e223bc393010fd616536a160a67fb739df49d27396caf15457b0c6",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:18:31.799Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:18:31.799Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-037-20261105-151831.log",
+        "perTc": true,
+        "tcs": {},
+        "skipped": [
+          "test:e2e"
+        ],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-043": {
+      "status": "done",
+      "briefHash": "55343407625e83fe06dfd7f7c6e7560b2535d1975387a86d670b08f5cd8e3dee",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:42:35.337Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:42:35.337Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-043-20261105-154235.log",
+        "perTc": true,
+        "tcs": {
+          "TC-129": "passed",
+          "TC-130": "passed",
+          "TC-154": "passed"
+        },
+        "skipped": [],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test:e2e",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-040": {
+      "status": "done",
+      "briefHash": "c8401cafade7386533debb1c014f4e691bcae672500d9cdcfbe7832305bf3a50",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T06:48:47.909Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T06:48:47.909Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-040-20261105-154847.log",
+        "perTc": true,
+        "tcs": {
+          "TC-067": "passed",
+          "TC-068": "passed",
+          "TC-069": "passed",
+          "TC-070": "passed",
+          "TC-071": "passed",
+          "TC-072": "passed",
+          "TC-073": "passed",
+          "TC-074": "passed",
+          "TC-075": "passed",
+          "TC-076": "passed",
+          "TC-077": "passed",
+          "TC-078": "passed",
+          "TC-079": "passed",
+          "TC-080": "passed",
+          "TC-081": "passed",
+          "TC-082": "passed",
+          "TC-083": "passed",
+          "TC-084": "passed",
+          "TC-085": "passed",
+          "TC-086": "passed",
+          "TC-087": "passed",
+          "TC-088": "passed",
+          "TC-089": "passed",
+          "TC-090": "passed",
+          "TC-102": "passed",
+          "TC-103": "passed",
+          "TC-104": "passed",
+          "TC-150": "passed",
+          "TC-151": "passed",
+          "TC-163": "passed",
+          "TC-164": "passed"
+        },
+        "skipped": [],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test:e2e",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-041": {
+      "status": "done",
+      "briefHash": "840abd8772febbf8e9b752b9aa792deec3cf35892a8d4a5efbd0d639beecb806",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-05T07:01:10.284Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-05T07:01:10.284Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-041-20261105-160110.log",
+        "perTc": true,
+        "tcs": {
+          "TC-091": "passed",
+          "TC-092": "passed",
+          "TC-093": "passed",
+          "TC-094": "passed",
+          "TC-095": "passed",
+          "TC-096": "passed",
+          "TC-097": "passed",
+          "TC-098": "passed",
+          "TC-099": "passed",
+          "TC-100": "passed",
+          "TC-101": "passed",
+          "TC-105": "passed",
+          "TC-106": "passed",
+          "TC-107": "passed",
+          "TC-108": "passed",
+          "TC-109": "passed",
+          "TC-121": "passed",
+          "TC-122": "passed",
+          "TC-123": "passed",
+          "TC-124": "passed",
+          "TC-148": "passed",
+          "TC-149": "passed",
+          "TC-165": "passed",
+          "TC-166": "passed",
+          "TC-167": "passed",
+          "TC-168": "passed",
+          "TC-169": "passed",
+          "TC-170": "passed",
+          "TC-171": "passed",
+          "TC-172": "passed",
+          "TC-174": "passed",
+          "TC-175": "passed"
+        },
+        "skipped": [],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test:e2e",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    },
+    "T-042": {
+      "status": "done",
+      "briefHash": "ac6747127d26631b78afb97f09fd0f1e6617b2bde7075ee2954f42a9be79daa6",
+      "briefVersion": 2,
+      "verifiedAt": "2026-11-09T00:04:39.265Z",
+      "attempts": 0,
+      "last": {
+        "at": "2026-11-09T00:04:39.265Z",
+        "status": "done",
+        "log": "docs/_gate/build/T-042-20261109-090439.log",
+        "perTc": true,
+        "tcs": {
+          "TC-110": "passed",
+          "TC-111": "passed",
+          "TC-112": "passed",
+          "TC-113": "passed",
+          "TC-114": "passed",
+          "TC-115": "passed",
+          "TC-116": "passed",
+          "TC-117": "passed",
+          "TC-118": "passed",
+          "TC-119": "passed",
+          "TC-120": "passed",
+          "TC-125": "passed",
+          "TC-126": "passed",
+          "TC-127": "passed",
+          "TC-128": "passed",
+          "TC-152": "passed",
+          "TC-153": "passed",
+          "TC-173": "passed"
+        },
+        "skipped": [],
+        "commands": [
+          {
+            "use": "lint",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "build",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          },
+          {
+            "use": "test:e2e",
+            "status": "passed",
+            "exit": 0,
+            "envConflict": false
+          }
+        ],
+        "problems": []
+      }
+    }
+  },
+  "install": {
+    "status": "passed",
+    "at": "2026-11-09T00:15:07.483Z",
+    "log": "docs/_gate/build/install-20261109-091507.log"
+  },
+  "env": {
+    "at": "2026-11-03T06:03:55.291Z",
+    "result": [
+      {
+        "exec": "cli",
+        "tcCount": 79,
+        "status": "available",
+        "cmd": "node --version"
+      },
+      {
+        "exec": "browser",
+        "tcCount": 71,
+        "status": "available",
+        "cmd": "npx playwright --version"
+      }
+    ],
+    "log": "docs/_gate/build/doctor-20261103-150355.log"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "self-canban",
+  "private": true,
+  "description": "하네스(기획~설계~구현) 적용 프로젝트",
+  "scripts": {
+    "gate": "node scripts/gate.js",
+    "lint": "node scripts/lint-skills.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

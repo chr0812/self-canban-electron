@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 2,
+  "settings": { "theme": "light" },
+  "cards": [
+    {
+      "id": "00000000-0000-4000-8000-000000000011",
+      "title": "시험용 마감 지난 카드",
+      "status": "in_progress",
+      "kind": "bug",
+      "description": "가짜 설명입니다",
+      "dueDate": "2026-10-30",
+      "priority": "high",
+      "memo": "",
+      "archivedAt": null,
+      "createdAt": "2026-10-01T09:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000012",
+      "title": "시험용 마감 없는 카드",
+      "status": "todo",
+      "kind": "task",
+      "description": "",
+      "dueDate": null,
+      "priority": null,
+      "memo": "가짜 메모입니다",
+      "archivedAt": null,
+      "createdAt": "2026-10-02T09:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000013",
+      "title": "시험용 완료 카드",
+      "status": "done",
+      "kind": "task",
+      "description": "",
+      "dueDate": "2026-10-28",
+      "priority": "medium",
+      "memo": "",
+      "archivedAt": null,
+      "createdAt": "2026-10-03T09:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000014",
+      "title": "시험용 보관 카드",
+      "status": "done",
+      "kind": "bug",
+      "description": "",
+      "dueDate": "2026-10-20",
+      "priority": "low",
+      "memo": "",
+      "archivedAt": "2026-10-25T09:00:00.000Z",
+      "createdAt": "2026-10-04T09:00:00.000Z"
+    }
+  ],
+  "progressEntries": [
+    {
+      "id": "00000000-0000-4000-9000-000000000011",
+      "cardId": "00000000-0000-4000-8000-000000000011",
+      "content": "시험용 진행 기록 하나",
+      "statusAtTime": "todo",
+      "createdAt": "2026-10-01T10:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4000-9000-000000000012",
+      "cardId": "00000000-0000-4000-8000-000000000011",
+      "content": "시험용 진행 기록 둘",
+      "statusAtTime": "in_progress",
+      "createdAt": "2026-10-01T11:00:00.000Z"
+    },
+    {
+      "id": "00000000-0000-4000-9000-000000000013",
+      "cardId": "00000000-0000-4000-8000-000000000014",
+      "content": "시험용 완료 기록",
+      "statusAtTime": "done",
+      "createdAt": "2026-10-20T09:00:00.000Z"
+    }
+  ]
+}

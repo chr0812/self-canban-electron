@@ -1,0 +1,1620 @@
+{
+  "at": "2026-11-09T00:15:07.483Z",
+  "suite": "passed",
+  "perTc": true,
+  "basis": {
+    "app": "f4ce10c8b60ce40b94fde10d92d8e3f7573011ccc6b865efa99b0bcfe2b1aa1c",
+    "testPlan": "5d7346588313",
+    "techStack": "f076ff1385c3"
+  },
+  "changedDuring": false,
+  "install": "passed",
+  "evidence": "docs/07-test/_evidence/run-20261109-091507.log",
+  "reports": [
+    "docs/07-test/_evidence/junit-20261109-091507.xml",
+    "docs/07-test/_evidence/e2e-20261109-091507.xml",
+    "docs/07-test/_evidence/test-e2e-20261109-091507"
+  ],
+  "missingReports": [],
+  "commands": [
+    {
+      "use": "lint",
+      "cmd": "npm run lint",
+      "status": "passed",
+      "exit": 0,
+      "envConflict": false
+    },
+    {
+      "use": "build",
+      "cmd": "npm run build",
+      "status": "passed",
+      "exit": 0,
+      "envConflict": false
+    },
+    {
+      "use": "test",
+      "cmd": "npx vitest run --passWithNoTests --reporter=default --reporter=junit --outputFile.junit=reports/junit.xml",
+      "status": "passed",
+      "exit": 0,
+      "envConflict": false
+    },
+    {
+      "use": "test:e2e",
+      "cmd": "npm run test:e2e",
+      "status": "passed",
+      "exit": 0,
+      "envConflict": false
+    }
+  ],
+  "tcs": [
+    {
+      "id": "TC-001",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/date-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-002",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/date-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-003",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/date-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-004",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/date-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-005",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/date-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-006",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/validation.test.ts"
+      ]
+    },
+    {
+      "id": "TC-007",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/card-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-008",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/validation.test.ts"
+      ]
+    },
+    {
+      "id": "TC-009",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/validation.test.ts"
+      ]
+    },
+    {
+      "id": "TC-010",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/card-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-011",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/card-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-012",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/card-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-013",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/card-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-014",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/card-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-015",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/card-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-016",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/card-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-017",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/card-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-018",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/card-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-019",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/card-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-020",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/card-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-021",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/card-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-135",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/card-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-022",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/card-queries.test.ts"
+      ]
+    },
+    {
+      "id": "TC-023",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/card-queries.test.ts"
+      ]
+    },
+    {
+      "id": "TC-024",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/progress-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-025",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/progress-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-026",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/progress-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-027",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/settings-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-028",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/settings-rules.test.ts"
+      ]
+    },
+    {
+      "id": "TC-029",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/query-filter.test.ts"
+      ]
+    },
+    {
+      "id": "TC-030",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/query-filter.test.ts"
+      ]
+    },
+    {
+      "id": "TC-031",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/query-filter.test.ts"
+      ]
+    },
+    {
+      "id": "TC-156",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/domain/validation.test.ts"
+      ]
+    },
+    {
+      "id": "TC-032",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/data-file-validator.test.ts"
+      ]
+    },
+    {
+      "id": "TC-033",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/data-file-validator.test.ts"
+      ]
+    },
+    {
+      "id": "TC-034",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/data-file-save.test.ts"
+      ]
+    },
+    {
+      "id": "TC-035",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/data-file-save.test.ts"
+      ]
+    },
+    {
+      "id": "TC-036",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/data-file-repository.test.ts"
+      ]
+    },
+    {
+      "id": "TC-137",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/data-file-save.test.ts"
+      ]
+    },
+    {
+      "id": "TC-138",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/data-file-save.test.ts"
+      ]
+    },
+    {
+      "id": "TC-037",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/data-file-repository.test.ts"
+      ]
+    },
+    {
+      "id": "TC-038",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/data-file-repository.test.ts"
+      ]
+    },
+    {
+      "id": "TC-039",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/data-file-repository.test.ts"
+      ]
+    },
+    {
+      "id": "TC-040",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/data-file-repository.test.ts"
+      ]
+    },
+    {
+      "id": "TC-041",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/data-file-repository.test.ts"
+      ]
+    },
+    {
+      "id": "TC-042",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/data-file-repository.test.ts"
+      ]
+    },
+    {
+      "id": "TC-043",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/data-file-repository.test.ts"
+      ]
+    },
+    {
+      "id": "TC-044",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/data-file-repository.test.ts"
+      ]
+    },
+    {
+      "id": "TC-139",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/data-file-repository.test.ts"
+      ]
+    },
+    {
+      "id": "TC-045",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/migrations/schema-migrations.test.ts"
+      ]
+    },
+    {
+      "id": "TC-046",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/migrations/schema-migrations.test.ts"
+      ]
+    },
+    {
+      "id": "TC-047",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/kanban-store.test.ts"
+      ]
+    },
+    {
+      "id": "TC-048",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/kanban-store.test.ts"
+      ]
+    },
+    {
+      "id": "TC-049",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/kanban-store.test.ts"
+      ]
+    },
+    {
+      "id": "TC-050",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/kanban-store.test.ts"
+      ]
+    },
+    {
+      "id": "TC-136",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/kanban-store.test.ts"
+      ]
+    },
+    {
+      "id": "TC-157",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/kanban-store.test.ts"
+      ]
+    },
+    {
+      "id": "TC-160",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/kanban-store.test.ts"
+      ]
+    },
+    {
+      "id": "TC-051",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/kanban-store-faults.test.ts"
+      ]
+    },
+    {
+      "id": "TC-052",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/kanban-store-faults.test.ts"
+      ]
+    },
+    {
+      "id": "TC-053",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/kanban-store-faults.test.ts"
+      ]
+    },
+    {
+      "id": "TC-054",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/kanban-store-locked.test.ts"
+      ]
+    },
+    {
+      "id": "TC-055",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/kanban-store-locked.test.ts"
+      ]
+    },
+    {
+      "id": "TC-056",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/node-file-system.test.ts"
+      ]
+    },
+    {
+      "id": "TC-140",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/store/node-file-system.test.ts"
+      ]
+    },
+    {
+      "id": "TC-057",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/model/board-model.test.ts"
+      ]
+    },
+    {
+      "id": "TC-058",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/model/board-model.test.ts"
+      ]
+    },
+    {
+      "id": "TC-059",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/model/calendar-model.test.ts"
+      ]
+    },
+    {
+      "id": "TC-060",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/model/calendar-model.test.ts"
+      ]
+    },
+    {
+      "id": "TC-061",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/model/card-form-state.test.ts"
+      ]
+    },
+    {
+      "id": "TC-062",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/model/card-form-state.test.ts"
+      ]
+    },
+    {
+      "id": "TC-158",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/model/card-form-state.test.ts"
+      ]
+    },
+    {
+      "id": "TC-159",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/model/card-form-state.test.ts"
+      ]
+    },
+    {
+      "id": "TC-162",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/model/board-model.test.ts"
+      ]
+    },
+    {
+      "id": "TC-063",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/text/labels.test.ts"
+      ]
+    },
+    {
+      "id": "TC-064",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/ipc/ipc-contract.test.ts"
+      ]
+    },
+    {
+      "id": "TC-065",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/ipc/ipc-handlers.test.ts"
+      ]
+    },
+    {
+      "id": "TC-066",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/ipc/ipc-handlers.test.ts"
+      ]
+    },
+    {
+      "id": "TC-141",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/ipc/ipc-handlers.test.ts"
+      ]
+    },
+    {
+      "id": "TC-142",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/ipc/ipc-handlers.test.ts"
+      ]
+    },
+    {
+      "id": "TC-143",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/state/reducers.test.ts"
+      ]
+    },
+    {
+      "id": "TC-144",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/state/change-runner.test.ts"
+      ]
+    },
+    {
+      "id": "TC-145",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/state/change-runner.test.ts"
+      ]
+    },
+    {
+      "id": "TC-146",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/state/change-runner.test.ts"
+      ]
+    },
+    {
+      "id": "TC-147",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/state/change-runner.test.ts"
+      ]
+    },
+    {
+      "id": "TC-161",
+      "exec": "cli",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/cli/state/change-runner.test.ts"
+      ]
+    },
+    {
+      "id": "TC-067",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/board.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-068",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/board.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-069",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/card-dialog.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-070",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/board.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-071",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/board.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-072",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/board.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-073",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/board.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-074",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/board.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-075",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/board.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-076",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/board.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-077",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/board.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-163",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/board.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-164",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/board.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-078",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/card-dialog.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-079",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/card-dialog.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-080",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/card-dialog.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-081",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/card-dialog.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-082",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/card-dialog.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-083",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/card-dialog.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-084",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/card-dialog.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-085",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/card-dialog.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-086",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/card-dialog.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-087",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/card-dialog.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-088",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/card-dialog.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-089",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/card-dialog.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-090",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/card-dialog.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-150",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/card-dialog.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-151",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/card-dialog.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-091",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/archive.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-092",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/archive.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-093",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/archive.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-094",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/archive.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-148",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/archive.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-149",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/archive.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-095",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/calendar.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-096",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/calendar.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-097",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/calendar.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-098",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/calendar.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-099",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/calendar.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-100",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/calendar.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-101",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/calendar.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-165",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/calendar-drag.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-166",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/calendar-drag.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-167",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/calendar-drag.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-168",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/calendar-drag.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-169",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/calendar-drag.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-170",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/calendar-drag.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-171",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/calendar.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-172",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/calendar.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-102",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/overdue.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-103",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/overdue.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-104",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/overdue.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-105",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/search-filter.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-106",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/search-filter.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-107",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/search-filter.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-108",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/search-filter.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-109",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/search-filter.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-174",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/search-filter.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-175",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/search-filter.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-110",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/persistence.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-111",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/persistence.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-112",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/persistence.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-113",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/persistence.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-152",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/persistence.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-114",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/save-failure.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-115",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/save-failure.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-173",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/save-failure.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-116",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/save-failure.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-117",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/read-failure.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-118",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/read-failure.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-119",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/read-failure.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-120",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/read-failure.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-153",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/read-failure.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-121",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/theme.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-122",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/theme.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-123",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/theme.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-124",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/theme.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-125",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/offline.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-126",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/offline.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-127",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/offline.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-128",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/offline.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-129",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/app-security.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-130",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/app-security.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-154",
+      "exec": "browser",
+      "result": "passed",
+      "inCode": true,
+      "files": [
+        "app/tests/browser/app-security.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-131",
+      "exec": "manual",
+      "result": null,
+      "inCode": false,
+      "files": []
+    },
+    {
+      "id": "TC-132",
+      "exec": "manual",
+      "result": null,
+      "inCode": true,
+      "files": [
+        "app/tests/browser/offline.spec.ts"
+      ]
+    },
+    {
+      "id": "TC-133",
+      "exec": "manual",
+      "result": null,
+      "inCode": true,
+      "files": [
+        "app/electron-builder.yml"
+      ]
+    },
+    {
+      "id": "TC-134",
+      "exec": "manual",
+      "result": null,
+      "inCode": false,
+      "files": []
+    },
+    {
+      "id": "TC-155",
+      "exec": "manual",
+      "result": null,
+      "inCode": false,
+      "files": []
+    }
+  ]
+}

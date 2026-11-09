@@ -1,0 +1,213 @@
+/*
+ * 레이아웃 스타일 (T-032): 사이드바 208 · 상단 막대 56 · 본문 · 하단 줄 36 의 자리 (04-ui-spec.md 공통 구성).
+ * 색은 styles/tokens.css 의 변수만 쓰고 값을 다시 정의하지 않는다. 판(data-theme)을 가르는 규칙도 없다 (NFR-004).
+ * 이 파일은 어느 컴포넌트도 import 하지 않는다 (common.css 와 같다): 앱 진입점(main.tsx)이 한 번 불러온다.
+ *
+ * 클래스 이름 규칙 (AppShell / Sidebar / TopBar 가 이 이름을 쓴다):
+ *   .app-shell                 창 전체 (좌 사이드바, 우 .app-shell__main)
+ *   .app-shell__main           우측 세로 묶음: [.top-bar] [알림 줄 자리 .app-shell__alert] [.app-shell__body] [.app-shell__statusbar]
+ *   .app-shell__alert          저장 실패 알림 줄(Banner)이 붙는 자리. 막대 바로 아래, 내용이 없으면 높이 0
+ *   .app-shell__body           본문 (화면·읽기 실패 패널). 남은 높이를 모두 차지하고 안쪽 화면이 스크롤을 정한다
+ *   .app-shell__statusbar      하단 줄 36 (건수 문구)
+ *   .sidebar                   사이드바 208
+ *   .sidebar__brand            앱 이름 (16 굵게, accent-text)
+ *   .sidebar__section          사이드바 묶음 하나 (이동·필터·화면 밝기·저장 상태). .sidebar__heading 은 묶음 라벨 (12 굵게, 흐린 색)
+ *   .sidebar-nav, .sidebar-nav__item[aria-current="page"], .sidebar-nav__label, .sidebar-nav__count   이동 3항목
+ *   .sidebar-filter, .sidebar-theme   필터(종류·우선순위)와 화면 밝기 묶음 (행은 common.css 의 .radio-row)
+ *   .sidebar-save[data-indicator="saved|saving|failed|read_failed"], .sidebar-save__text   맨 아래 저장 상태
+ *   .top-bar, .top-bar__back, .top-bar__title, .top-bar__search (폭 380), .top-bar__spacer, .top-bar__create (폭 140)
+ */
+
+/* ── 창 뼈대 ─────────────────────────────────────────────────────────── */
+
+.app-shell {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--bg-app);
+  color: var(--text);
+}
+
+.app-shell__main {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.app-shell__alert {
+  flex: none;
+  min-width: 0;
+}
+
+.app-shell__body {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.app-shell__statusbar {
+  display: flex;
+  flex: none;
+  align-items: center;
+  box-sizing: border-box;
+  height: 36px;
+  padding: 0 16px;
+  border-top: 1px solid var(--line);
+  background: var(--bg-side);
+  color: var(--text-sub);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* ── 사이드바 ────────────────────────────────────────────────────────── */
+
+.sidebar {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+  width: 208px;
+  min-height: 0;
+  padding: 16px 12px;
+  overflow-y: auto;
+  border-right: 1px solid var(--line);
+  background: var(--bg-side);
+  color: var(--text);
+}
+
+.sidebar__brand {
+  margin: 0;
+  padding: 0 4px;
+  color: var(--accent-text);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.sidebar__section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar__heading {
+  margin: 0 0 4px;
+  padding: 0 4px;
+  color: var(--text-mute);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+/* ── 이동 3항목 ── */
+
+.sidebar-nav__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sidebar-nav__item[aria-current='page'] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  font-weight: 700;
+}
+
+.sidebar-nav__item:disabled {
+  color: var(--disabled);
+  cursor: default;
+}
+
+.sidebar-nav__count {
+  color: var(--text-mute);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* ── 저장 상태: 남은 높이를 위쪽 묶음 뒤로 밀어 사이드바 맨 아래에 붙인다 ── */
+
+.sidebar-save {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  padding: 0 4px;
+  color: var(--text-sub);
+  font-size: 12px;
+  line-height: 16px;
+}
+
+/* 실패하면 굵은 글자 (색이 아니라 아이콘·굵기로 알린다) */
+.sidebar-save[data-indicator='failed'],
+.sidebar-save[data-indicator='read_failed'] {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* ── 상단 막대 (높이 56) ─────────────────────────────────────────────── */
+
+.top-bar {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 16px;
+  box-sizing: border-box;
+  height: 56px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-app);
+}
+
+.top-bar__back {
+  flex: none;
+}
+
+.top-bar__title {
+  flex: none;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+/* 검색 입력 폭 380 */
+.top-bar__search {
+  flex: none;
+  width: 380px;
+}
+
+/* 남는 폭을 차지해 오른쪽 끝 요소(카드 만들기·보관함 검색)를 밀어낸다. 캘린더는 이 자리에 기간 이동이 들어간다 */
+.top-bar__spacer {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  min-width: 0;
+}
+
+.top-bar__create {
+  flex: none;
+  width: 140px;
+}

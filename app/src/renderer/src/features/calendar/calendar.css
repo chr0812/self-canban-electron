@@ -1,0 +1,417 @@
+/*
+ * 캘린더 화면 스타일 (T-027): 기간 이동(PeriodNav), 요일 줄, 격자, 날짜 칸, 카드 칩, 더 보기 팝업, 범례.
+ * 색은 styles/tokens.css 의 변수만 쓰고 값을 다시 정의하지 않는다. 판(data-theme)을 가르는 규칙도 없다 (NFR-004).
+ * 크기는 04-ui-spec.md SCR-003: 상단 막대 56, 기간 제목 20 굵게, 날짜 칸 높이 124 (창이 높으면 늘어난다),
+ * 칩 높이 22·모서리 3px·제목 13px, 주 보기 칩 14px 두 줄, 팝업 칩 14px·팝업 최대 높이 320.
+ * calendar-chip 과 period-nav 는 각 컴포넌트가 이 파일을 import 한다. 격자·날짜 칸·팝업·범례 클래스는
+ * 뒤 Task(DayCell, MonthGrid, WeekGrid, DayPopover, CalendarScreen)가 이 이름을 쓴다.
+ *
+ * 클래스 이름 규칙:
+ *   .calendar-screen, .calendar-body
+ *   .period-nav, .period-nav__title, .period-nav__controls, .period-nav__step
+ *   .calendar-weekdays, .calendar-weekdays__day
+ *   .calendar-grid[data-mode="month|week"]
+ *   .day-cell[data-today][data-outside][data-drop-target="true"], .day-cell__num[data-today], .day-cell__chips, .day-cell__more
+ *   .calendar-chip[data-variant="month|week|popover"][data-status][data-kind][data-overdue="true"]
+ *     [data-dragging="true"] (끄는 중 투명도 50%) + __icon, __title, __done, __status
+ *   .day-popover, .day-popover__head, .day-popover__list
+ *   .calendar-legend, .calendar-legend__items, .calendar-legend__item, .calendar-legend__note
+ */
+
+/* ── 화면 뼈대: 상단 막대·하단 줄은 AppShell 이 그린다. 격자 영역만 스크롤 ──────── */
+
+.calendar-screen {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-app);
+}
+
+.calendar-body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+  padding: 8px 16px 0;
+  overflow-y: auto;
+}
+
+/* ── 기간 제목과 이동 ────────────────────────────────────────────────── */
+
+.period-nav {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.period-nav__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.period-nav__controls {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ‹ › 는 테두리 있는 28x30 버튼 */
+.btn.period-nav__step {
+  box-sizing: border-box;
+  width: 28px;
+  min-width: 28px;
+  height: 30px;
+  padding: 0;
+  border-color: var(--control);
+  color: var(--text-sub);
+}
+
+/* ── 요일 줄: 14px 굵게 흐린 색 ──────────────────────────────────────── */
+
+.calendar-weekdays {
+  display: grid;
+  flex: none;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  padding: 4px 0;
+}
+
+.calendar-weekdays__day {
+  padding: 0 8px;
+  color: var(--text-mute);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+/* ── 격자: 7열. 월은 행 높이 124 이상으로 창을 채우고, 주는 한 줄이 남는 높이를 모두 쓴다 ── */
+
+.calendar-grid {
+  display: grid;
+  flex: 1 0 auto;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.calendar-grid[data-mode='month'] {
+  grid-auto-rows: minmax(124px, 1fr);
+}
+
+.calendar-grid[data-mode='week'] {
+  grid-auto-rows: minmax(124px, 1fr);
+  min-height: 320px;
+}
+
+.day-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 0;
+  padding: 6px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-app);
+}
+
+/* 이 달이 아닌 날: 사이드바 색 바탕, 카드 없음 */
+.day-cell[data-outside='true'] {
+  background: var(--bg-side);
+}
+
+.day-cell[data-today='true'] {
+  background: var(--bg-today);
+}
+
+/* 끌기 허용 표시 (AC-044): 칩을 끄는 중 놓을 수 있는 칸. 색(옅은 바탕) 외에 2px 점선 윤곽도 쓴다 (NFR-004).
+   윤곽은 칸 안쪽으로 그려 격자 선·이웃 칸에 가려지지 않고 칸 크기도 바뀌지 않는다. 오늘 칸 바탕보다 우선한다 */
+.day-cell[data-drop-target='true'] {
+  outline: 2px dashed var(--accent);
+  outline-offset: -2px;
+  background: var(--accent-soft);
+}
+
+.day-cell__num {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  align-self: flex-start;
+  height: 22px;
+  padding: 0 4px;
+  color: var(--text-sub);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.day-cell[data-outside='true'] .day-cell__num {
+  color: var(--text-mute);
+}
+
+/* 오늘: 날짜 숫자가 포인트 색 알약 (글자 `3 오늘`) */
+.day-cell__num[data-today='true'] {
+  padding: 0 8px;
+  border-radius: 11px;
+  background: var(--accent);
+  color: var(--accent-on);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.day-cell__chips {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-height: 0;
+}
+
+/* 주 보기 칸은 칩이 많으면 칸 안에서 세로로 스크롤한다 */
+.calendar-grid[data-mode='week'] .day-cell__chips {
+  flex: 1 1 auto;
+  overflow-y: auto;
+}
+
+.day-cell__more {
+  flex: none;
+  align-self: flex-start;
+  padding: 0 4px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--text-sub);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 18px;
+  cursor: pointer;
+}
+
+.day-cell__more:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+/* ── 카드 칩: 높이 22, 모서리 3px, 상태 색 바탕과 1px 테두리 ─────────── */
+
+.calendar-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  height: 22px;
+  padding: 0 5px;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--bg-card);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.calendar-chip:hover {
+  border-color: var(--line-strong);
+}
+
+/* 끄는 중인 칩은 흐리게 (놓기 전까지 원래 칸에 그대로 있다) */
+.calendar-chip[data-dragging='true'] {
+  opacity: 0.5;
+}
+
+.calendar-chip[data-status='todo'] {
+  border-color: var(--status-todo-line);
+  background: var(--card-todo);
+}
+
+.calendar-chip[data-status='in_progress'] {
+  border-color: var(--status-doing-line);
+  background: var(--card-doing);
+}
+
+.calendar-chip[data-status='done'] {
+  border-color: var(--status-done-line);
+  background: var(--card-done);
+}
+
+/* 종류 아이콘은 상태 색 */
+.calendar-chip__icon {
+  display: inline-flex;
+  flex: none;
+}
+
+.calendar-chip[data-status='todo'] .calendar-chip__icon {
+  color: var(--status-todo);
+}
+
+.calendar-chip[data-status='in_progress'] .calendar-chip__icon {
+  color: var(--status-doing);
+}
+
+.calendar-chip[data-status='done'] .calendar-chip__icon {
+  color: var(--status-done);
+}
+
+.calendar-chip__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 완료: 흐린 제목 + 끝의 원 안 체크 */
+.calendar-chip[data-status='done'] .calendar-chip__title {
+  color: var(--text-mute);
+}
+
+.calendar-chip__done {
+  display: inline-flex;
+  flex: none;
+  color: var(--status-done);
+}
+
+/* 마감 지남: 상태 색보다 우선. overdue-soft 바탕, 1px overdue 테두리, 삼각형, 굵은 overdue-text 제목 */
+.calendar-chip[data-overdue='true'] {
+  border-color: var(--overdue);
+  background: var(--overdue-soft);
+}
+
+.calendar-chip[data-overdue='true'] .calendar-chip__icon {
+  color: var(--overdue);
+}
+
+.calendar-chip[data-overdue='true'] .calendar-chip__title {
+  color: var(--overdue-text);
+  font-weight: 700;
+}
+
+/* 상태 글자 칩 (주 보기, 팝업): 12px 굵게, 상태 색 테두리·글자 */
+.calendar-chip__status {
+  flex: none;
+  padding: 0 5px;
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  color: var(--text-sub);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.calendar-chip[data-status='todo'] .calendar-chip__status {
+  border-color: var(--status-todo);
+  color: var(--status-todo-text);
+}
+
+.calendar-chip[data-status='in_progress'] .calendar-chip__status {
+  border-color: var(--status-doing);
+  color: var(--status-doing-text);
+}
+
+.calendar-chip[data-status='done'] .calendar-chip__status {
+  border-color: var(--status-done);
+  color: var(--status-done-text);
+}
+
+/* 주 보기·팝업 칩: 제목 14px, 주 보기는 두 줄까지 줄바꿈 */
+.calendar-chip[data-variant='week'],
+.calendar-chip[data-variant='popover'] {
+  height: auto;
+  min-height: 28px;
+  padding: 4px 6px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.calendar-chip[data-variant='week'] .calendar-chip__title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* ── 더 보기 팝업: 최대 높이 320, 칩 목록 스크롤 ─────────────────────── */
+
+.day-popover {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 300px;
+  max-height: 320px;
+  padding: 8px;
+  gap: 8px;
+}
+
+.day-popover__head {
+  flex: none;
+  color: var(--text-sub);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.day-popover__list {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+/* ── 범례와 마감일 없는 카드 안내 ────────────────────────────────────── */
+
+.calendar-legend {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  color: var(--text-sub);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.calendar-legend__items {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.calendar-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.calendar-legend__note {
+  color: var(--text-mute);
+}

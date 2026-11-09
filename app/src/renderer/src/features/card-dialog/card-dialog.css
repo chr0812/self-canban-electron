@@ -1,0 +1,295 @@
+/*
+ * 카드 대화상자 스타일 (T-025, SCR-002). 색·글꼴은 styles/tokens.css 의 변수만 참조하고 값을 다시 정의하지 않는다.
+ * 크기는 04-ui-spec.md SCR-002: 폭 880, 높이 최대 `창 높이 - 48px`(기본 680), 머리 56, 바닥 줄 64, 오른쪽 열 340.
+ * 판(data-theme)을 가르는 규칙은 없다 (NFR-004).
+ *
+ * 클래스 이름 규칙 (CardDialog/CardForm 이 이 이름을 쓴다):
+ *   dialog.card-dialog, ::backdrop, .card-dialog__head / __title / __kind / __head-spacer,
+ *   .card-dialog__body, .card-dialog__form-col(왼쪽 열), .card-dialog__log-col(오른쪽 열), .card-dialog__log-note,
+ *   .card-dialog__foot(바닥 줄) / __foot-left / __foot-actions / --confirm(삭제 확인 줄), .card-dialog__confirm-text,
+ *   .card-dialog__alert(머리 아래 알림 줄 자리),
+ *   .progress-log*, .progress-input*
+ */
+
+/* ── 대화상자 ──────────────────────────────────────────────────────── */
+
+.card-dialog {
+  box-sizing: border-box;
+  width: 880px;
+  max-width: calc(100vw - 48px);
+  height: min(680px, calc(100vh - 48px));
+  max-height: calc(100vh - 48px);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  background: var(--bg-app);
+  color: var(--text);
+}
+
+/* display 를 [open] 에만 걸어 닫힌 dialog 가 보이지 않게 한다. */
+.card-dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-dialog::backdrop {
+  background: var(--scrim);
+}
+
+/* ── 머리: 높이 56, 제목 20px 굵게 ────────────────────────────────── */
+
+.card-dialog__head {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 12px;
+  height: 56px;
+  padding: 0 12px 0 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.card-dialog__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.card-dialog__kind {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-sub);
+}
+
+.card-dialog__head-spacer {
+  flex: 1 1 auto;
+}
+
+/* 머리 아래 알림 줄 (저장 실패). 공통 .banner 가 모양을 정한다. */
+.card-dialog__alert {
+  flex: none;
+}
+
+/* ── 본문: 왼쪽 입력 열 / 오른쪽 진행 기록 열(폭 340) ───────────── */
+
+.card-dialog__body {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  min-height: 0;
+}
+
+/* 열 안쪽이 길어지면 이 열만 스크롤한다 */
+.card-dialog__form-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  min-height: 0;
+  padding: 16px 24px;
+  overflow-y: auto;
+}
+
+.card-dialog__log-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+  min-height: 0;
+  padding: 16px;
+  border-left: 1px solid var(--line);
+  background: var(--bg-side);
+}
+
+/* 만들기 모드의 안내 문구 */
+.card-dialog__log-note {
+  margin: 0;
+  color: var(--text-mute);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* ── 바닥 줄: 높이 64, 왼쪽 삭제·보관 / 오른쪽 취소·저장 ─────────── */
+
+.card-dialog__foot {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 64px;
+  padding: 0 24px;
+  border-top: 1px solid var(--line);
+  background: var(--bg-app);
+}
+
+.card-dialog__foot-left,
+.card-dialog__foot-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 삭제 확인 줄: 문구가 왼쪽, `취소`/`삭제 확인`이 오른쪽. 같은 바닥 줄 자리에서 모양이 바뀐다. */
+.card-dialog__foot--confirm {
+  border-top: 2px solid var(--text);
+  background: var(--bg-card);
+}
+
+.card-dialog__confirm-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.card-dialog__foot--confirm .card-dialog__foot-actions {
+  flex: none;
+}
+
+/* ── 진행 기록 목록 ─────────────────────────────────────────────── */
+
+.progress-log {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.progress-log__head {
+  display: flex;
+  flex: none;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.progress-log__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.progress-log__count {
+  color: var(--text-mute);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.progress-log__empty {
+  margin: 0;
+  color: var(--text-mute);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* 기록 목록만 스크롤한다. 새 기록은 맨 아래에 붙는다. */
+.progress-log__list {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.progress-log__item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.progress-log__item:first-child {
+  padding-top: 0;
+}
+
+.progress-log__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.progress-log__time {
+  color: var(--text-mute);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* 상태 칩: 글자가 뜻을 주고(`할 일`/`진행 중`/`완료`) 색은 칸 색 선만 더한다. */
+.progress-log__status[data-status='todo'] {
+  border-color: var(--status-todo-line);
+}
+
+.progress-log__status[data-status='in_progress'] {
+  border-color: var(--status-doing-line);
+}
+
+.progress-log__status[data-status='done'] {
+  border-color: var(--status-done-line);
+}
+
+.progress-log__content {
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* ── 진행 기록 입력 ─────────────────────────────────────────────── */
+
+.progress-input {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progress-input__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.progress-input__status {
+  min-width: 0;
+  color: var(--text-sub);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* 기록 저장 실패: 아이콘 + 글자 + 2px 왼쪽 선 (색만으로 알리지 않는다) */
+.progress-input__failed {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 0 4px 8px;
+  border-left: 2px solid var(--text);
+}
+
+.progress-input__failed-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-dialog,
+  .card-dialog * {
+    animation-duration: 0ms !important;
+    transition-duration: 0ms !important;
+  }
+}

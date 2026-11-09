@@ -1,0 +1,86 @@
+/*
+ * 글꼴과 기본 스타일 (T-004).
+ * 글꼴은 앱에 포함한 woff2 만 상대 경로로 부른다. 외부 주소는 쓰지 않는다 (NFR-001).
+ * SUIT 의 라이선스(SIL OFL 1.1) 문구는 fonts/SUIT-LICENSE.txt 에 함께 둔다.
+ * 색은 tokens.css 의 변수만 쓴다.
+ */
+
+@font-face {
+  font-family: 'SUIT Variable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: block;
+  src: url('./fonts/SUIT-Variable.woff2') format('woff2');
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg-app);
+  color: var(--text);
+  /* 포함한 글꼴을 쓰지 못했을 때의 대체는 맑은 고딕 */
+  font-family: 'SUIT Variable', 'Malgun Gothic', '맑은 고딕', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  height: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 움직임 줄이기 설정이면 모든 전환을 0ms 로 한다. 밝기 판 전환은 원래 즉시다. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+}

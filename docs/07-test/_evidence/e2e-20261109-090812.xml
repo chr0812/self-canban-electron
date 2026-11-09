@@ -1,0 +1,609 @@
+<testsuites id="" name="" tests="85" failures="1" skipped="0" errors="0" time="177.57898600000001">
+<testsuite name="app-security.spec.ts" timestamp="2026-11-09T00:10:28.059Z" hostname="" tests="3" failures="0" skipped="0" time="13.707" errors="0">
+<testcase name="app-security › TC-129 화면에 노출되는 것은 열두 개 함수뿐이고 Node 객체는 노출되지 않는다" classname="app-security.spec.ts" time="11.519">
+<system-out>
+<![CDATA[Downloading Electron binary...
+[launch-app] electron pid=27008 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-kWZH77
+]]>
+</system-out>
+</testcase>
+<testcase name="app-security › TC-130 새 창 열기와 외부 주소로의 이동은 거부된다" classname="app-security.spec.ts" time="1.069">
+<system-out>
+<![CDATA[[launch-app] electron pid=19508 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-ixPF5C
+]]>
+</system-out>
+</testcase>
+<testcase name="app-security › TC-154 앱 번들 폴더 밖의 file: 주소로 가는 요청과 이동은 취소된다" classname="app-security.spec.ts" time="1.119">
+<system-out>
+<![CDATA[[launch-app] electron pid=44252 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-R2nG2a
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="archive.spec.ts" timestamp="2026-11-09T00:10:28.059Z" hostname="" tests="6" failures="0" skipped="0" time="9.525" errors="0">
+<testcase name="archive › TC-091 완료 카드를 보관하면 보드에서 사라지고 보관함 건수가 늘어난다" classname="archive.spec.ts" time="1.241">
+<system-out>
+<![CDATA[[launch-app] electron pid=41756 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-BbIcbm
+]]>
+</system-out>
+</testcase>
+<testcase name="archive › TC-092 완료가 아닌 카드에는 보관 조작이 없다" classname="archive.spec.ts" time="1.33">
+<system-out>
+<![CDATA[[launch-app] electron pid=23888 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-ez2NlN
+]]>
+</system-out>
+</testcase>
+<testcase name="archive › TC-093 보관한 카드는 보관함 목록에서 찾아 내용을 볼 수 있고 수정할 수 없다" classname="archive.spec.ts" time="1.093">
+<system-out>
+<![CDATA[[launch-app] electron pid=37336 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-9ahVwZ
+]]>
+</system-out>
+</testcase>
+<testcase name="archive › TC-094 보관함에서 검색하면 보관한 카드가 결과에 나온다" classname="archive.spec.ts" time="1.411">
+<system-out>
+<![CDATA[[launch-app] electron pid=40864 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-WN5vKL
+]]>
+</system-out>
+</testcase>
+<testcase name="archive › TC-148 보관함 행의 삭제를 누르면 삭제 확인 줄이 보이고 취소하면 카드가 그대로 남는다" classname="archive.spec.ts" time="2.107">
+<system-out>
+<![CDATA[[launch-app] electron pid=39552 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-N4JJvP
+[launch-app] electron pid=30272 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-N4JJvP
+]]>
+</system-out>
+</testcase>
+<testcase name="archive › TC-149 보관함에서 삭제를 확인하면 카드가 사라지고 앱을 다시 열어도 나타나지 않으며 진행 기록도 함께 사라진다" classname="archive.spec.ts" time="2.343">
+<system-out>
+<![CDATA[[launch-app] electron pid=40176 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-3hYNZb
+[launch-app] electron pid=35592 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-3hYNZb
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="board.spec.ts" timestamp="2026-11-09T00:10:28.059Z" hostname="" tests="13" failures="0" skipped="0" time="19.248" errors="0">
+<testcase name="board › TC-067 제목을 입력하고 저장하면 새 카드가 할 일 칸에 나타난다" classname="board.spec.ts" time="1.464">
+<system-out>
+<![CDATA[[launch-app] electron pid=9024 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-hfMo5S
+]]>
+</system-out>
+</testcase>
+<testcase name="board › TC-068 제목 없이 저장하면 카드가 만들어지지 않고 제목 칸에 오류 문구가 보인다" classname="board.spec.ts" time="1.42">
+<system-out>
+<![CDATA[[launch-app] electron pid=9288 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-xufJiI
+]]>
+</system-out>
+</testcase>
+<testcase name="board › TC-070 상태 이동 메뉴로 카드를 다른 칸으로 옮길 수 있다" classname="board.spec.ts" time="1.119">
+<system-out>
+<![CDATA[[launch-app] electron pid=35372 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-7AmiQc
+]]>
+</system-out>
+</testcase>
+<testcase name="board › TC-071 카드를 다른 칸으로 끌어다 놓으면 그 칸으로 옮겨진다" classname="board.spec.ts" time="1.385">
+<system-out>
+<![CDATA[[launch-app] electron pid=32588 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-wmvVss
+]]>
+</system-out>
+</testcase>
+<testcase name="board › TC-072 완료 카드를 진행 중이나 할 일로 되돌릴 수 있다" classname="board.spec.ts" time="1.479">
+<system-out>
+<![CDATA[[launch-app] electron pid=43388 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-Wrys9k
+]]>
+</system-out>
+</testcase>
+<testcase name="board › TC-073 상태 선택 목록은 세 값뿐이고 보관은 없다" classname="board.spec.ts" time="1.342">
+<system-out>
+<![CDATA[[launch-app] electron pid=31788 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-ZUhRzB
+]]>
+</system-out>
+</testcase>
+<testcase name="board › TC-163 카드 만들기의 상태 선택은 할 일과 진행 중 두 가지뿐이고 처음 선택은 할 일이며 잠겨 있지 않다" classname="board.spec.ts" time="1.36">
+<system-out>
+<![CDATA[[launch-app] electron pid=28572 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-kJF4jB
+]]>
+</system-out>
+</testcase>
+<testcase name="board › TC-164 상태를 진행 중으로 골라 저장하면 새 카드가 진행 중 칸에 나타난다" classname="board.spec.ts" time="2.434">
+<system-out>
+<![CDATA[[launch-app] electron pid=14892 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-zpVeBH
+[launch-app] electron pid=6948 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-zpVeBH
+]]>
+</system-out>
+</testcase>
+<testcase name="board › TC-074 세 칸이 한 화면에 나란히 보이고 각 카드는 자기 칸에만 있다" classname="board.spec.ts" time="1.229">
+<system-out>
+<![CDATA[[launch-app] electron pid=31720 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-eypXxO
+]]>
+</system-out>
+</testcase>
+<testcase name="board › TC-075 카드가 하나도 없어도 보드가 오류 없이 열린다" classname="board.spec.ts" time="0.975">
+<system-out>
+<![CDATA[[launch-app] electron pid=12060 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-LHH01W
+]]>
+</system-out>
+</testcase>
+<testcase name="board › TC-076 개발 버그와 할 일 카드는 보드에서 구분되어 보인다" classname="board.spec.ts" time="1.601">
+<system-out>
+<![CDATA[[launch-app] electron pid=15760 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-tAVdLi
+]]>
+</system-out>
+</testcase>
+<testcase name="board › TC-077 종류를 고르지 않고 저장하면 할 일로 보인다" classname="board.spec.ts" time="1.843">
+<system-out>
+<![CDATA[[launch-app] electron pid=28120 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-hzgvKm
+]]>
+</system-out>
+</testcase>
+<testcase name="board › TC-067 보조 확인: 상단 막대의 카드 만들기 버튼은 하나다" classname="board.spec.ts" time="1.597">
+<system-out>
+<![CDATA[[launch-app] electron pid=8300 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-GWuuoK
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="calendar-drag.spec.ts" timestamp="2026-11-09T00:10:28.059Z" hostname="" tests="6" failures="0" skipped="0" time="19.447" errors="0">
+<testcase name="calendar-drag › TC-165 마감일은 날짜 입력칸에서 달력으로 고르거나 직접 입력해 저장하고 칩을 열어 고칠 수도 있다" classname="calendar-drag.spec.ts" time="2.002">
+<system-out>
+<![CDATA[[launch-app] electron pid=23180 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-0HE0T3
+]]>
+</system-out>
+</testcase>
+<testcase name="calendar-drag › TC-166 월 보기에서 칩을 다른 날짜 칸으로 끌어다 놓으면 저장 뒤 그 칸에 보이고 마감일만 바뀐다" classname="calendar-drag.spec.ts" time="2.738">
+<system-out>
+<![CDATA[[launch-app] electron pid=42232 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-G5dBSS
+[launch-app] electron pid=16644 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-G5dBSS
+]]>
+</system-out>
+</testcase>
+<testcase name="calendar-drag › TC-167 주 보기에서 칩을 다른 날짜 칸으로 끌어다 놓으면 저장 뒤 그 칸에 보이고 마감일이 바뀐다" classname="calendar-drag.spec.ts" time="1.403">
+<system-out>
+<![CDATA[[launch-app] electron pid=24960 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-wbvAXB
+]]>
+</system-out>
+</testcase>
+<testcase name="calendar-drag › TC-168 이 달이 아닌 날의 칸에 놓아도 마감일이 그 날짜로 바뀐다" classname="calendar-drag.spec.ts" time="1.568">
+<system-out>
+<![CDATA[[launch-app] electron pid=35060 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-NPUmrz
+]]>
+</system-out>
+</testcase>
+<testcase name="calendar-drag › TC-169 칩을 원래 칸이나 날짜 칸 밖에 놓으면 아무것도 바뀌지 않고 저장도 일어나지 않는다" classname="calendar-drag.spec.ts" time="8.89">
+<system-out>
+<![CDATA[[launch-app] electron pid=28880 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-XIS82N
+]]>
+</system-out>
+</testcase>
+<testcase name="calendar-drag › TC-170 `+N건 더 보기` 팝업 안의 칩은 끌 수 없고 칸의 칩은 끌 수 있다" classname="calendar-drag.spec.ts" time="2.846">
+<system-out>
+<![CDATA[[launch-app] electron pid=42280 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-NZ1WXY
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="calendar.spec.ts" timestamp="2026-11-09T00:10:28.059Z" hostname="" tests="9" failures="0" skipped="0" time="10.582" errors="0">
+<testcase name="calendar › TC-095 마감일이 있는 카드가 캘린더의 그 날짜 칸에 보인다" classname="calendar.spec.ts" time="1.028">
+<system-out>
+<![CDATA[[launch-app] electron pid=16700 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-5czW5a
+]]>
+</system-out>
+</testcase>
+<testcase name="calendar › TC-096 마감일이 없는 카드는 캘린더에 나타나지 않고 보드에는 그대로 보인다" classname="calendar.spec.ts" time="1.073">
+<system-out>
+<![CDATA[[launch-app] electron pid=17320 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-6gLRpj
+]]>
+</system-out>
+</testcase>
+<testcase name="calendar › TC-097 캘린더에서 카드를 고르면 그 카드의 상세가 열린다" classname="calendar.spec.ts" time="1.217">
+<system-out>
+<![CDATA[[launch-app] electron pid=18316 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-5fuNpG
+]]>
+</system-out>
+</testcase>
+<testcase name="calendar › TC-098 보관한 카드는 캘린더에 나타나지 않는다" classname="calendar.spec.ts" time="1.303">
+<system-out>
+<![CDATA[[launch-app] electron pid=30420 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-pDVwRN
+]]>
+</system-out>
+</testcase>
+<testcase name="calendar › TC-099 마감일을 고쳐 저장하면 캘린더에서 새 날짜 칸으로 옮겨 보인다" classname="calendar.spec.ts" time="1.222">
+<system-out>
+<![CDATA[[launch-app] electron pid=34508 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-UTqTbK
+]]>
+</system-out>
+</testcase>
+<testcase name="calendar › TC-100 카드가 하나도 없는 캘린더가 오류 없이 열린다" classname="calendar.spec.ts" time="1.055">
+<system-out>
+<![CDATA[[launch-app] electron pid=25760 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-FxQjW2
+]]>
+</system-out>
+</testcase>
+<testcase name="calendar › TC-101 한 날짜에 카드가 많으면 더 보기에서 모든 카드에 닿을 수 있다" classname="calendar.spec.ts" time="1.316">
+<system-out>
+<![CDATA[[launch-app] electron pid=23356 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-YbGKQa
+]]>
+</system-out>
+</testcase>
+<testcase name="calendar › TC-171 기본 창 크기에서 5주인 달의 월 보기는 스크롤 없이 모든 주와 요일 줄이 보인다" classname="calendar.spec.ts" time="1.099">
+<system-out>
+<![CDATA[[launch-app] electron pid=23604 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-HovllX
+[TC-171] size=1280x920 metrics={"innerHeight":855,"bodyScrollHeight":763,"bodyClientHeight":763,"bodyTop":56,"bodyBottom":819,"weekdaysTop":64,"weekdaysBottom":92,"lastCellBottom":778.984375,"topBarTop":0,"topBarBottom":56,"statusTop":819,"statusBottom":855,"documentScrollHeight":855,"documentClientHeight":855,"cells":35}
+]]>
+</system-out>
+</testcase>
+<testcase name="calendar › TC-172 창을 더 작게 줄이면 캘린더 안에서 세로로 스크롤된다" classname="calendar.spec.ts" time="1.269">
+<system-out>
+<![CDATA[[launch-app] electron pid=15656 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-gtGtXe
+[TC-172] metrics={"innerHeight":635,"bodyScrollHeight":742,"bodyClientHeight":543,"bodyTop":56,"bodyBottom":599,"weekdaysTop":64,"weekdaysBottom":92,"lastCellBottom":758,"topBarTop":0,"topBarBottom":56,"statusTop":599,"statusBottom":635,"documentScrollHeight":635,"documentClientHeight":635,"cells":35}
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="card-dialog.spec.ts" timestamp="2026-11-09T00:10:28.059Z" hostname="" tests="16" failures="0" skipped="0" time="29.46" errors="0">
+<testcase name="card-dialog › TC-069 입력 중 닫으면 카드가 만들어지지 않는다" classname="card-dialog.spec.ts" time="2.416">
+<system-out>
+<![CDATA[[launch-app] electron pid=40244 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-kiD7tP
+[launch-app] electron pid=29220 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-kiD7tP
+]]>
+</system-out>
+</testcase>
+<testcase name="card-dialog › TC-078 마감일을 입력해 저장하면 카드를 열었을 때 그 마감일이 보인다" classname="card-dialog.spec.ts" time="1.455">
+<system-out>
+<![CDATA[[launch-app] electron pid=1096 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-O75wsY
+]]>
+</system-out>
+</testcase>
+<testcase name="card-dialog › TC-079 마감일을 비워 두어도 카드가 저장된다" classname="card-dialog.spec.ts" time="1.227">
+<system-out>
+<![CDATA[[launch-app] electron pid=40696 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-7oowHn
+]]>
+</system-out>
+</testcase>
+<testcase name="card-dialog › TC-080 존재하지 않는 날짜를 입력하면 저장되지 않고 마감일 칸에 오류 문구가 보인다" classname="card-dialog.spec.ts" time="1.516">
+<system-out>
+<![CDATA[[launch-app] electron pid=20272 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-ZgagaA
+]]>
+</system-out>
+</testcase>
+<testcase name="card-dialog › TC-081 상세 설명, 우선순위, 추가 메모를 저장한 뒤 열면 그대로 보인다" classname="card-dialog.spec.ts" time="1.894">
+<system-out>
+<![CDATA[[launch-app] electron pid=40624 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-tvlLpD
+]]>
+</system-out>
+</testcase>
+<testcase name="card-dialog › TC-082 우선순위를 고르지 않아도 저장되고 선택지는 네 가지다" classname="card-dialog.spec.ts" time="1.785">
+<system-out>
+<![CDATA[[launch-app] electron pid=38640 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-jdOPcn
+]]>
+</system-out>
+</testcase>
+<testcase name="card-dialog › TC-083 카드 내용을 고쳐 저장하면 보드에 고친 내용이 보인다" classname="card-dialog.spec.ts" time="1.645">
+<system-out>
+<![CDATA[[launch-app] electron pid=25452 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-TnF0Bg
+]]>
+</system-out>
+</testcase>
+<testcase name="card-dialog › TC-084 수정하다 제목을 비우면 저장되지 않고 제목 칸에 오류 문구가 보인다" classname="card-dialog.spec.ts" time="1.715">
+<system-out>
+<![CDATA[[launch-app] electron pid=5352 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-hOplw6
+]]>
+</system-out>
+</testcase>
+<testcase name="card-dialog › TC-085 진행 기록은 남긴 순서로 쌓이고 다른 카드에는 나타나지 않는다" classname="card-dialog.spec.ts" time="1.995">
+<system-out>
+<![CDATA[[launch-app] electron pid=30412 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-L86w0Z
+]]>
+</system-out>
+</testcase>
+<testcase name="card-dialog › TC-086 각 기록에는 그 기록을 남긴 때의 카드 상태가 보인다" classname="card-dialog.spec.ts" time="2.394">
+<system-out>
+<![CDATA[[launch-app] electron pid=37512 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-pZuQjV
+]]>
+</system-out>
+</testcase>
+<testcase name="card-dialog › TC-087 빈 기록은 추가되지 않는다" classname="card-dialog.spec.ts" time="1.699">
+<system-out>
+<![CDATA[[launch-app] electron pid=37720 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-jhqQrd
+]]>
+</system-out>
+</testcase>
+<testcase name="card-dialog › TC-088 삭제를 선택하면 확인 단계가 보이고 취소하면 카드가 남는다" classname="card-dialog.spec.ts" time="1.734">
+<system-out>
+<![CDATA[[launch-app] electron pid=12008 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-QF1Fpg
+]]>
+</system-out>
+</testcase>
+<testcase name="card-dialog › TC-089 삭제를 확인하면 카드가 사라지고 앱을 다시 열어도 나타나지 않는다" classname="card-dialog.spec.ts" time="3.063">
+<system-out>
+<![CDATA[[launch-app] electron pid=44716 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-DXmUkn
+[launch-app] electron pid=20048 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-DXmUkn
+]]>
+</system-out>
+</testcase>
+<testcase name="card-dialog › TC-090 카드를 삭제하면 그 카드의 진행 기록도 함께 사라진다" classname="card-dialog.spec.ts" time="1.751">
+<system-out>
+<![CDATA[[launch-app] electron pid=16192 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-niWi78
+]]>
+</system-out>
+</testcase>
+<testcase name="card-dialog › TC-150 보관한 카드의 보기 전용 대화상자에서도 삭제 확인 뒤 삭제할 수 있고 수정·기록 추가는 할 수 없다" classname="card-dialog.spec.ts" time="1.869">
+<system-out>
+<![CDATA[[launch-app] electron pid=41712 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-kXdFpD
+]]>
+</system-out>
+</testcase>
+<testcase name="card-dialog › TC-151 대화상자에서 삭제 확인 뒤 저장에 실패하면 대화상자와 확인 줄이 남고 카드는 그대로다" classname="card-dialog.spec.ts" time="1.302">
+<system-out>
+<![CDATA[[launch-app] electron pid=44480 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-NourPf
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="offline.spec.ts" timestamp="2026-11-09T00:10:28.059Z" hostname="" tests="4" failures="0" skipped="0" time="8.211" errors="0">
+<testcase name="offline › TC-125 모든 화면 동작을 하는 동안 요청은 앱 파일(file:)뿐이다" classname="offline.spec.ts" time="3.515">
+<system-out>
+<![CDATA[[launch-app] electron pid=12996 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-7mGF4O
+]]>
+</system-out>
+</testcase>
+<testcase name="offline › TC-126 화면에서 외부 주소로 보내는 요청과 외부 자원 로드는 거절된다" classname="offline.spec.ts" time="1.455">
+<system-out>
+<![CDATA[[launch-app] electron pid=9000 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-B8tDyC
+]]>
+</system-out>
+</testcase>
+<testcase name="offline › TC-127 네트워크가 없는 상태에서도 카드 만들기, 상태 변경, 캘린더 보기가 된다" classname="offline.spec.ts" time="1.979">
+<system-out>
+<![CDATA[[launch-app] electron pid=15436 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-lGrVEP
+]]>
+</system-out>
+</testcase>
+<testcase name="offline › TC-128 글꼴은 앱에 포함된 파일에서 로드되고 외부 글꼴 요청은 없다" classname="offline.spec.ts" time="1.262">
+<system-out>
+<![CDATA[[launch-app] electron pid=40564 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-YMYSs4
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="overdue.spec.ts" timestamp="2026-11-09T00:10:28.059Z" hostname="" tests="3" failures="0" skipped="0" time="5.628" errors="0">
+<testcase name="overdue › TC-102 마감일이 지난 미완료 카드는 보드에서 구분되어 보인다" classname="overdue.spec.ts" time="1.309">
+<system-out>
+<![CDATA[[launch-app] electron pid=29480 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-8jzo3x
+]]>
+</system-out>
+</testcase>
+<testcase name="overdue › TC-103 마감일이 오늘인 카드는 마감 지남으로 구분되지 않는다" classname="overdue.spec.ts" time="3.16">
+<system-out>
+<![CDATA[[launch-app] electron pid=26360 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-RWsUEq
+]]>
+</system-out>
+</testcase>
+<testcase name="overdue › TC-104 완료 카드는 마감일이 지나도 구분되지 않고, 완료로 옮기면 표시가 사라진다" classname="overdue.spec.ts" time="1.159">
+<system-out>
+<![CDATA[[launch-app] electron pid=16564 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-QKeYhz
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="persistence.spec.ts" timestamp="2026-11-09T00:10:28.059Z" hostname="" tests="5" failures="1" skipped="0" time="19.616" errors="0">
+<testcase name="persistence › TC-110 변경한 뒤 정상 종료하고 다시 열면 카드, 상태, 기록이 그대로 보인다" classname="persistence.spec.ts" time="7.157">
+<system-out>
+<![CDATA[[launch-app] electron pid=21260 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-2EbyD5
+
+[[ATTACHMENT|..\test-results\persistence-persistence-TC-3e04b-료하고-다시-열면-카드-상태-기록이-그대로-보인다\test-failed-1.png]]
+
+[[ATTACHMENT|..\test-results\persistence-persistence-TC-3e04b-료하고-다시-열면-카드-상태-기록이-그대로-보인다\error-context.md]]
+
+[[ATTACHMENT|..\test-results\persistence-persistence-TC-3e04b-료하고-다시-열면-카드-상태-기록이-그대로-보인다\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(locator).toHaveCount(expected) failed" type="expect.toHaveCount">
+<![CDATA[  persistence.spec.ts:101:3 › persistence › TC-110 변경한 뒤 정상 종료하고 다시 열면 카드, 상태, 기록이 그대로 보인다 ─────────
+
+    Error: expect(locator).toHaveCount(expected) failed
+
+    Locator:  locator('dialog.card-dialog')
+    Expected: 0
+    Received: 1
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveCount" locator('dialog.card-dialog') with timeout 5000ms
+      - waiting for locator('dialog.card-dialog')
+        14 × locator resolved to 1 element
+           - unexpected value "1"
+
+
+       at support\board-page.ts:111
+
+      109 |   if (fields.memo !== undefined) await box.getByRole('textbox', { name: '추가 메모' }).fill(fields.memo)
+      110 |   await clickSave(page)
+    > 111 |   await expect(dialog(page)).toHaveCount(0)
+          |                              ^
+      112 | }
+      113 |
+      114 | /** 카드를 눌러 상세 대화상자를 연다. */
+        at createCardViaDialog (C:\Users\cho\work\self-canban\app\tests\browser\support\board-page.ts:111:30)
+        at C:\Users\cho\work\self-canban\app\tests\browser\persistence.spec.ts:135:9
+        at withPersistentDir (C:\Users\cho\work\self-canban\app\tests\browser\support\board-page.ts:162:12)
+        at C:\Users\cho\work\self-canban\app\tests\browser\persistence.spec.ts:131:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\..\test-results\persistence-persistence-TC-3e04b-료하고-다시-열면-카드-상태-기록이-그대로-보인다\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\..\test-results\persistence-persistence-TC-3e04b-료하고-다시-열면-카드-상태-기록이-그대로-보인다\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\..\test-results\persistence-persistence-TC-3e04b-료하고-다시-열면-카드-상태-기록이-그대로-보인다\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\..\test-results\persistence-persistence-TC-3e04b-료하고-다시-열면-카드-상태-기록이-그대로-보인다\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+<testcase name="persistence › TC-111 저장 완료가 표시된 뒤 프로세스를 강제 종료하고 다시 열어도 모두 유지된다" classname="persistence.spec.ts" time="3.95">
+<system-out>
+<![CDATA[[launch-app] electron pid=37612 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-q6PvGa
+[persistence] TC-111 강제 종료 pid=37612 mainPid=34684
+[launch-app] electron pid=29284 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-q6PvGa
+]]>
+</system-out>
+</testcase>
+<testcase name="persistence › TC-112 이전 버전(버전 1) 저장 파일로 열면 카드와 기록이 모두 보이고 밝은 판이다" classname="persistence.spec.ts" time="3.165">
+<system-out>
+<![CDATA[[launch-app] electron pid=17048 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-1OaH1v
+[launch-app] electron pid=33456 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-1OaH1v
+]]>
+</system-out>
+</testcase>
+<testcase name="persistence › TC-113 선택한 판은 앱을 닫았다 다시 열어도 유지된다" classname="persistence.spec.ts" time="3.261">
+<system-out>
+<![CDATA[[launch-app] electron pid=44496 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-FSaVCo
+[launch-app] electron pid=35568 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-FSaVCo
+[launch-app] electron pid=42796 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-FSaVCo
+]]>
+</system-out>
+</testcase>
+<testcase name="persistence › TC-152 변경을 기다리지 않고 연달아 한 직후 창을 닫아도 다시 열면 모두 남아 있다" classname="persistence.spec.ts" time="2.083">
+<system-out>
+<![CDATA[[launch-app] electron pid=39732 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-pQiDl4
+[launch-app] electron pid=30904 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-pQiDl4
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="read-failure.spec.ts" timestamp="2026-11-09T00:10:28.059Z" hostname="" tests="5" failures="0" skipped="0" time="6.816" errors="0">
+<testcase name="read-failure › TC-117 저장된 데이터를 읽지 못하면 빈 보드와 구분되는 오류 안내가 보인다" classname="read-failure.spec.ts" time="1.218">
+<system-out>
+<![CDATA[[launch-app] electron pid=36584 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-IKUhe5
+]]>
+</system-out>
+</testcase>
+<testcase name="read-failure › TC-118 읽기 실패 상태에서는 카드 만들기와 검색, 이동이 눌리지 않는다" classname="read-failure.spec.ts" time="1.26">
+<system-out>
+<![CDATA[[launch-app] electron pid=24820 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-KWYaGu
+]]>
+</system-out>
+</testcase>
+<testcase name="read-failure › TC-119 읽지 못한 파일은 앱을 쓰고 종료한 뒤에도 바뀌지 않는다" classname="read-failure.spec.ts" time="1.299">
+<system-out>
+<![CDATA[[launch-app] electron pid=32236 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-1qnPnc
+]]>
+</system-out>
+</testcase>
+<testcase name="read-failure › TC-120 다시 읽기를 누르면 파일이 고쳐진 경우에만 정상 보드로 바뀐다" classname="read-failure.spec.ts" time="1.796">
+<system-out>
+<![CDATA[[launch-app] electron pid=36956 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-84TXTk
+]]>
+</system-out>
+</testcase>
+<testcase name="read-failure › TC-153 본 파일을 읽다 OS 오류가 나면 오류 코드와 직전 저장본 없음 안내가 보인다" classname="read-failure.spec.ts" time="1.243">
+<system-out>
+<![CDATA[[launch-app] electron pid=32524 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-lPusRu
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="save-failure.spec.ts" timestamp="2026-11-09T00:10:28.059Z" hostname="" tests="4" failures="0" skipped="0" time="9.87" errors="0">
+<testcase name="save-failure › TC-114 저장에 실패하면 실패 문구가 보이고 입력한 내용은 지워지지 않는다" classname="save-failure.spec.ts" time="1.647">
+<system-out>
+<![CDATA[[launch-app] electron pid=27528 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-jdxe5O
+]]>
+</system-out>
+</testcase>
+<testcase name="save-failure › TC-115 칸 이동·보관·삭제의 저장이 실패하면 화면이 바뀌지 않아 카드가 원래 자리에 남고 다시 저장으로 재시도할 수 있다" classname="save-failure.spec.ts" time="2.927">
+<system-out>
+<![CDATA[[launch-app] electron pid=39500 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-YzaCs8
+[launch-app] electron pid=34220 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-YzaCs8
+]]>
+</system-out>
+</testcase>
+<testcase name="save-failure › TC-173 칩을 끌어 마감일을 바꾸는 저장이 실패하면 칩이 원래 칸에 남고 실패 문구와 다시 저장이 보인다" classname="save-failure.spec.ts" time="2.905">
+<system-out>
+<![CDATA[[launch-app] electron pid=6904 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-PNhnpy
+[launch-app] electron pid=43744 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-PNhnpy
+]]>
+</system-out>
+</testcase>
+<testcase name="save-failure › TC-116 판 전환 저장이 실패해도 이번 실행 동안 선택한 판이 유지되고 실패 문구가 보인다" classname="save-failure.spec.ts" time="2.391">
+<system-out>
+<![CDATA[[launch-app] electron pid=33724 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-KbmAoz
+[launch-app] electron pid=39396 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-KbmAoz
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="search-filter.spec.ts" timestamp="2026-11-09T00:10:28.059Z" hostname="" tests="7" failures="0" skipped="0" time="11.067" errors="0">
+<testcase name="search-filter › TC-105 검색어를 입력하면 제목에 그 글자가 든 카드만 보인다" classname="search-filter.spec.ts" time="1.255">
+<system-out>
+<![CDATA[[launch-app] electron pid=33404 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-eyaH0p
+]]>
+</system-out>
+</testcase>
+<testcase name="search-filter › TC-106 종류 조건을 고르면 그 종류의 카드만 보이고 `전체`를 고르면 모두 돌아온다" classname="search-filter.spec.ts" time="1.331">
+<system-out>
+<![CDATA[[launch-app] electron pid=22544 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-5qhuEf
+]]>
+</system-out>
+</testcase>
+<testcase name="search-filter › TC-107 우선순위와 종류를 함께 고르면 둘 다 만족하는 카드만 보이고 조건을 지우면 전부 보인다" classname="search-filter.spec.ts" time="1.399">
+<system-out>
+<![CDATA[[launch-app] electron pid=26540 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-0imyHZ
+]]>
+</system-out>
+</testcase>
+<testcase name="search-filter › TC-108 조건에 맞는 카드가 없으면 맞는 카드가 없다는 표시와 적용 중인 조건이 보인다" classname="search-filter.spec.ts" time="1.282">
+<system-out>
+<![CDATA[[launch-app] electron pid=41076 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-sFRybO
+]]>
+</system-out>
+</testcase>
+<testcase name="search-filter › TC-109 보드의 검색 결과에는 보관한 카드가 나오지 않는다" classname="search-filter.spec.ts" time="1.242">
+<system-out>
+<![CDATA[[launch-app] electron pid=21400 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-InIhle
+]]>
+</system-out>
+</testcase>
+<testcase name="search-filter › TC-174 사이드바의 종류와 우선순위 목록은 `전체`가 처음 선택이고 우선순위 목록은 전체, 낮음, 중간, 높음 순서다" classname="search-filter.spec.ts" time="1.271">
+<system-out>
+<![CDATA[[launch-app] electron pid=44600 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-mtz17s
+]]>
+</system-out>
+</testcase>
+<testcase name="search-filter › TC-175 필터 항목은 하나만 선택되고 `전체`로 풀리며 선택된 항목을 다시 눌러도 풀리지 않는다" classname="search-filter.spec.ts" time="3.287">
+<system-out>
+<![CDATA[[launch-app] electron pid=11972 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-FX1QOl
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="theme.spec.ts" timestamp="2026-11-09T00:10:28.059Z" hostname="" tests="4" failures="0" skipped="0" time="11.29" errors="0">
+<testcase name="theme › TC-121 처음 실행하면 밝은 판이고 이미 저장된 어두운 판은 그대로 열린다" classname="theme.spec.ts" time="2.549">
+<system-out>
+<![CDATA[[launch-app] electron pid=7556 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-hcNnrC
+[launch-app] electron pid=23960 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-wsRKWM
+]]>
+</system-out>
+</testcase>
+<testcase name="theme › TC-122 밝기 전환을 선택하면 모든 화면이 선택한 판으로 바뀐다" classname="theme.spec.ts" time="6.121">
+<system-out>
+<![CDATA[[launch-app] electron pid=7740 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-7GXdoE
+]]>
+</system-out>
+</testcase>
+<testcase name="theme › TC-123 어두운 판과 밝은 판 모두에서 카드 종류가 글자와 아이콘으로 구분된다" classname="theme.spec.ts" time="1.25">
+<system-out>
+<![CDATA[[launch-app] electron pid=11792 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-bG1y0m
+]]>
+</system-out>
+</testcase>
+<testcase name="theme › TC-124 어두운 판과 밝은 판 모두에서 마감이 지난 표시가 글자와 아이콘으로 구분된다" classname="theme.spec.ts" time="1.37">
+<system-out>
+<![CDATA[[launch-app] electron pid=11584 userDataDir=C:\Users\cho\AppData\Local\Temp\self-canban-e2e-Qg3iwo
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

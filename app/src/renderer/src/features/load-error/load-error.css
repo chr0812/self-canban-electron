@@ -1,0 +1,95 @@
+/*
+ * 읽기 실패 패널 스타일 (T-032, SCR-001 에러: 읽기 실패).
+ * 본문 전체를 대체하고 빈 보드와 모양이 다르다: 칸이 없고, 테두리 있는 안내 상자 한 개와 오류 아이콘이 있다.
+ * 색은 styles/tokens.css 의 변수만 쓴다. 오류에 새 색을 만들지 않는다 (붉은색 --overdue 는 마감 지남 전용).
+ * 안내 줄은 흐린 색(--text-sub)이고 경로는 선택해 복사할 수 있다 (user-select: text).
+ *
+ * 클래스 이름 규칙 (ReadFailurePanel 이 쓴다):
+ *   .read-failure, .read-failure__panel, .read-failure__head, .read-failure__title, .read-failure__description,
+ *   .read-failure__lines (li), .read-failure__path, .read-failure__steps, .read-failure__actions, .read-failure__message
+ */
+
+.read-failure {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+  min-height: 0;
+  height: 100%;
+  padding: 48px 24px 24px;
+  overflow: auto;
+  background: var(--bg-app);
+  color: var(--text);
+}
+
+.read-failure__panel {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 720px;
+  padding: 24px;
+  border: 1px solid var(--line-strong);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  background: var(--bg-card);
+}
+
+.read-failure__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.read-failure__title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.read-failure__description {
+  margin: 8px 0 16px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.read-failure__lines {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--text-sub);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.read-failure__lines > li {
+  overflow-wrap: anywhere;
+}
+
+.read-failure__path {
+  user-select: text;
+}
+
+.read-failure__steps {
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+
+.read-failure__actions {
+  display: flex;
+  margin-top: 16px;
+}
+
+.read-failure__message {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 12px 0 0;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+}

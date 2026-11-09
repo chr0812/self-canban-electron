@@ -1,0 +1,140 @@
+{
+  "persona": "feasibility-reviewer",
+  "verdict": "MAJOR_ISSUES",
+  "summary": "클론 직후 T-001은 01-tech-stack.md가 정한 build 스크립트(tsc --noEmit)가 06-file-map.md의 references 전용 루트 tsconfig와 맞지 않아 규정대로는 통과하지 못하거나 아무것도 검사하지 못한다(CRITICAL 1건). 나머지는 모두 고칠 수 있는 WARN/INFO다. Electron 앱은 T-040(42개 Task 중 40번째)에서야 처음 구동되고, 그 전 Task 22개는 lint/build만 통과하면 끝나서 sandbox preload·dialog·끌기 같은 미확인 가정이 한꺼번에 터진다. 138개 파일·42개 Task는 구현 불가능한 규모는 아니나 작은 파일이 많고 앞쪽 Task에 검증이 없다.",
+  "issues": [
+    {
+      "id": "FE-001",
+      "severity": "CRITICAL",
+      "target_ref": "01-tech-stack.md 환경/빌드/실행 가이드(스크립트 build), 명령 표(build) / 06-file-map.md tsconfig.json·tsconfig.node.json·tsconfig.web.json, 결정 필요 5 / 08-tasks.md T-001",
+      "type": "ambiguous",
+      "description": "build 스크립트는 `tsc --noEmit && electron-vite build`이고 명령 표는 첫 Task 시점에도 통과해야 한다고 정했다. 그런데 file-map은 루트 tsconfig.json을 tsconfig.node.json과 tsconfig.web.json을 가리키는 `references` 전용으로 둔다. `tsc`는 -b 없이는 references를 빌드하지 않으므로 루트에 files/include가 없으면 루트 기본 설정(jsx 없음 등)으로 전체를 검사해 TS17004 같은 오류가 나고, `files: []`이면 아무것도 검사하지 않고 통과한다. references 대상이 composite: true가 아니면 TS6306도 난다. 어느 쪽이든 '타입 검사를 하며 통과한다'는 build의 의도가 성립하지 않는다. file-map 결정 필요 5와 T-001은 이를 '첫 Task가 확인해 설계 결함으로 보고'하라고 미루는데, 고칠 곳이 승인된 01-tech-stack.md의 스크립트라서 첫 Task에서 구현자가 스스로 해결할 수 없다. 모든 Task의 완료 판정이 이 명령에 걸려 있어 파급이 크다. 추가로 TS 6.0의 `types` 기본값 변화 여부를 확인하지 않았다면 tsconfig.node.json에 `types: [\"node\"]`를 명시해야 한다(확인 필요).",
+      "suggestion": "설계 단계에서 지금 고친다(승인된 01-tech-stack.md 변경이므로 사용자 알림과 재승인 필요). 예: build = `tsc -p tsconfig.node.json --noEmit && tsc -p tsconfig.web.json --noEmit && electron-vite build`, 루트 tsconfig.json은 references를 빼고 에디터용 `{ \"files\": [] }` 또는 삭제. tsconfig.node.json에는 `types: [\"node\"]`, tsconfig.web.json에는 `types: [\"vite/client\"]`를 명시하고 06-file-map.md 결정 필요 5를 닫는다."
+    },
+    {
+      "id": "FE-002",
+      "severity": "WARN",
+      "target_ref": "05-architecture.md ADR-005·결정 필요 4 / 06-file-map.md electron.vite.config.ts·window-factory.ts·src/preload/index.ts·결정 필요 4 / 08-tasks.md T-001, T-012, T-023",
+      "type": "ambiguous",
+      "description": "package.json이 \"type\": \"module\"이고 sandbox: true인데 preload 출력 형식과 파일 이름, main(ESM)에서 preload·renderer 파일 경로를 만드는 방법이 어디에도 정해져 있지 않다. 샌드박스 preload는 ESM이 될 수 없다는 제약을 설계도 인정한다. electron-vite는 type: module일 때 preload를 .mjs(ESM)로 내보낼 수 있어, 별도 설정 없이는 sandbox:true와 충돌한다. 또 ESM main에는 __dirname이 없어 loadFile 경로를 import.meta.dirname 등으로 만들어야 하는데 window-factory 명세에 방법이 없다. 설계는 'T-001에서 확인하고 안 맞으면 설계 결함으로 보고'라 하지만 T-001 시점에는 preload 내용도 창도 없고 Electron을 한 번도 띄우지 않으므로(첫 구동은 T-040) 확인이 불가능하다. 결국 T-012/T-023/T-037이 미확인 가정으로 작성되고 T-040에서야 실패가 드러난다.",
+      "suggestion": "설계에 확정값을 적는다. 예: electron.vite.config.ts의 preload에 `build.rollupOptions.output = { format: 'cjs', entryFileNames: '[name].cjs' }`를 두고 window-factory는 `join(import.meta.dirname, '../preload/index.cjs')`를 쓴다는 한 줄을 06-file-map.md에 추가. 확인은 T-037 시점의 스모크 시험(FE-003)으로 옮기고, T-001의 '확인한다' 문구는 삭제한다. sandbox:false로 낮추는 것은 사용자 결정 사항이므로 권하지 않는다(지금 설계는 유지)."
+    },
+    {
+      "id": "FE-003",
+      "severity": "WARN",
+      "target_ref": "08-tasks.md T-001~T-039 check 열, 구성 원칙의 'browser 시험은 Wave 12' / 01-tech-stack.md 명령 표(test:e2e) / 06-file-map.md Wave 13~15",
+      "type": "ambiguous",
+      "description": "check가 '-'인 Task가 22개다(T-001,002,003,004,006,007,011,012,018,019,025,026,027,031,032,033,034,035,036,037,038,039). 특히 화면·IPC·main 조립 Task(T-012,T-023,T-031~T-039)는 lint/build만 통과하면 끝나고, 실제 Electron 창은 T-040에서 처음 뜬다. 설계 자신이 '확인하지 못함'으로 남긴 가정이 모두 이 시점에 몰린다: sandbox preload(FE-002), preload의 data-theme 적기, --user-data-dir 반영, dialog/popover/HTML5 끌기 동작, 쓰기 실패 유도(.tmp 폴더), setOffline, 프로세스 kill. T-040 하나가 31개 TC를 맡고 앞 39개 Task의 오류를 동시에 받는다.",
+      "suggestion": "T-037(main 진입 완성) 바로 뒤에 스모크 Task를 하나 둔다. 스텁 renderer로도 launch-app.ts와 app-security.spec.ts(TC-129, TC-130)는 돌릴 수 있다: 창이 뜨고, window.kanban 함수 12개만 노출되고, 새 창/이동이 거부되고, --user-data-dir로 임시 폴더가 반영되는지 확인. 이때 TC-129·130과 launch-app.ts, playwright.config.ts(T-003)를 T-041/T-040에서 앞으로 옮긴다. dialog/popover/끌기 가정은 T-036 직후 최소 한 개의 화면 시험으로 확인한다."
+    },
+    {
+      "id": "FE-004",
+      "severity": "WARN",
+      "target_ref": "08-tasks.md T-040, T-041, T-042 / 결정 필요 3",
+      "type": "oversized-task",
+      "description": "T-040은 deps 10개, covers 19개 요구, TC 31개, 파일 6개(Bootstrap 진입 완성 + launch-app + 4개 spec, 약 800줄)이고 앱이 처음 구동되는 Task이기도 하다. T-041은 TC 22개와 spec 6개(약 1,000줄), T-042는 TC 11개와 어려운 시나리오(강제 종료, 쓰기 실패 유도, 이전 버전 파일). 결정 필요 3은 '시험만 만드는 Task는 REF-12 경고'를 이유로 묶음을 유지하지만, 실제 부담은 한 번에 끝내기 어려운 크기와 실패 원인이 섞이는 점이다.",
+      "suggestion": "구현 파일이 있는 Task 안에서 나눈다. 예: T-040a = main.tsx 완성 + launch-app.ts + board.spec(TC-067~TC-077 안팎), T-040b = card-dialog.spec + overdue.spec + theme.spec. T-041은 index.html(CSP)+offline/app-security(오프라인·보안)와 archive/calendar/search-filter(화면)로 분리. REF-12가 걱정되면 T-040b 쪽에 Sidebar·theme 관련 보정 파일을 둔다."
+    },
+    {
+      "id": "FE-005",
+      "severity": "WARN",
+      "target_ref": "08-tasks.md T-020, T-030, T-031 / 06-file-map.md kanban-store.ts·change-runner.ts",
+      "type": "oversized-task",
+      "description": "T-030은 kanban-store.ts(약 250줄, 설계도 300줄 초과 가능성을 인정) + 시험 3개(약 650줄), 9 TC, 13개 요구를 한 Task에서 처리한다. T-020은 card-rules(230)+progress-rules(70)+시험 2개(420)+validation.test.ts에 TC-010 추가로 TC 16개다. 묶은 이유('진행 기록 시험이 상태 변경을 쓰고 보관 시험이 기록 추가를 쓴다')는 시험 쪽 의존인데 file-map상 progress-rules는 card-rules에 의존하지 않고 builders로 해결된다. T-031은 파일 4개 약 660줄(reducer 3개, Context, 낙관적 반영/실패 처리)인데 check도 없다. 모두 '한 번에 끝낼 단위'를 넘는다.",
+      "suggestion": "T-020을 T-020a(card-rules, TC-007·010~021)와 T-020b(progress-rules, TC-024~026)로 나눈다. T-030은 큐 처리를 별도 파일(예: src/main/store/mutation-queue.ts, file-map에 추가)로 미리 계획해 T-030a(큐+store 본체, kanban-store.test)와 T-030b(faults/locked 시험)로 쪼갠다. T-031은 T-031a(state-types+reducers+app-state)와 T-031b(change-runner)로 나눈다."
+    },
+    {
+      "id": "FE-006",
+      "severity": "WARN",
+      "target_ref": "06-file-map.md 시험 파일 계획 / 07-test-plan.md 시험 전략 / 08-tasks.md T-031",
+      "type": "missing-concern",
+      "description": "가장 복잡한 renderer 논리인 reducers.ts(약 170줄), change-runner.ts(약 280줄, 낙관적 반영·롤백·재시도·도메인 오류 시 재동기화), app-state.tsx에 시험 파일이 하나도 없다. 모두 순수 TS로 Node에서 시험할 수 있고(change-runner는 window.kanban 대신 api를 주입하면 된다), 저장 실패 뒤 화면과 저장소가 어긋나는 위험(아키텍처 결정 필요 2)이 바로 이 코드에 있다. 이 로직은 현재 browser 시험의 일부 경로(TC-114~TC-116)로만 간접 확인된다.",
+      "suggestion": "tests/cli/state/reducers.test.ts와 tests/cli/state/change-runner.test.ts를 추가한다(가짜 KanbanApi 주입, 성공/SAVE_FAILED/CARD_NOT_FOUND/ARCHIVE_NOT_ALLOWED 경로, 다시 저장). change-runner가 `window.kanban`을 직접 읽는다면 생성 인자로 api를 받게 06-file-map.md의 주요 export를 고치고 07-test-plan.md에 TC를 추가한다."
+    },
+    {
+      "id": "FE-007",
+      "severity": "WARN",
+      "target_ref": "05-architecture.md AppLifecycle·IpcHandlers·Bootstrap / 06-file-map.md src/main/index.ts, ipc-handlers.ts, main.tsx",
+      "type": "missing-concern",
+      "description": "로깅과 예상 못한 오류 처리가 설계에 없다. ipc-handlers는 예외를 INTERNAL로 바꾸지만 그 message를 어디에도 남기지 않는다(파일·콘솔 어느 쪽도 지정 없음). main의 uncaughtException/unhandledRejection, 렌더러 비정상 종료(render-process-gone), 로드 실패(did-fail-load), React 렌더 오류(error boundary)에 대한 처리가 없다. 어느 하나라도 나면 사용자는 빈 창만 보게 되고, 개발자는 원인을 알 수 없다. 외부로 보내는 보고는 NFR-001 때문에 쓰면 안 되지만 로컬 기록은 NFR-001과 무관하다.",
+      "suggestion": "IpcHandlers에서 INTERNAL을 만들 때 console.error로 message·stack을 남기고(개발 실행에서 보임), main/index.ts에 `process.on('uncaughtException')`, `webContents.on('render-process-gone')`, `did-fail-load` 처리(창에 오류 안내를 로드하거나 앱 종료)를 한 줄씩 명시한다. renderer에는 AppShell 바깥 ErrorBoundary 한 개를 두고 labels.ts에 문구를 추가한다. 로그 파일 저장은 요구가 없으므로 사용자 결정 전에는 두지 않는다."
+    },
+    {
+      "id": "FE-008",
+      "severity": "WARN",
+      "target_ref": "06-file-map.md src/renderer/index.html(CSP), electron.vite.config.ts / 05-architecture.md 오프라인·보안 (3) / 08-tasks.md T-041",
+      "type": "ambiguous",
+      "description": "CSP 메타 태그(default-src 'self', connect-src 'none')는 개발 서버(npm run dev)에서 문제를 일으킬 가능성이 크다: @vitejs/plugin-react가 dev에서 넣는 인라인 refresh preamble 스크립트와 Vite HMR의 WebSocket 연결이 각각 script-src(default-src 'self')와 connect-src 'none'에 막힌다. 설계도 '개발 서버에서의 차이는 확인하지 못함'이라고만 한다. 화면 Task 22개는 자동 검증이 없어(FE-003) 구현자가 npm run dev로 눈으로 확인하는 일이 많을 텐데, CSP 완성이 T-041이라 그 전에는 영향이 안 보이다가 T-041에서 dev가 깨진다. NetworkGuard의 '개발 실행 때만 개발 서버 허용'을 가르는 조건(예: ELECTRON_RENDERER_URL 유무)도 정해져 있지 않다.",
+      "suggestion": "CSP를 빌드 산출물에만 넣는다. 예: electron.vite.config.ts의 renderer에 `transformIndexHtml`로 CSP 메타를 production build에서만 주입하는 작은 플러그인을 두거나, dev에서는 `connect-src ws://localhost:*; script-src 'self' 'unsafe-inline'`로 완화한다. index.html 스텁(T-001)에는 CSP를 두지 않는다고 명시하고, network-guard의 개발 판정은 `process.env['ELECTRON_RENDERER_URL']`로 한다고 한 줄 적는다. 빌드 결과(out/renderer/index.html)에 CSP가 들어갔는지는 TC-125~TC-126이 확인한다."
+    },
+    {
+      "id": "FE-009",
+      "severity": "INFO",
+      "target_ref": "06-file-map.md 생성 계획 요약(138개 파일, Wave 15개, ~16,100 LOC) / 08-tasks.md 요약(Task 42개, Wave 12개)",
+      "type": "oversized-task",
+      "description": "규모 평가: 1인 칸반 도구로 구현이 불가능한 크기는 아니고 파일 의존이 Wave 순서와 맞으며 순환이 없다(파일-맵 의존을 Task deps와 대조해 확인). 다만 구현·설정 파일 98개 중 약 50개가 100줄 미만이고(Banner 60, EmptyState 40, RadioRow 50, ArchiveConfirm 50, DeleteConfirmBar 50, OverdueSummary 50, settings-rules 40, query-filter 40 등), 시험 약 6,300줄에 시험 지원·E2E 파일 19개, ESLint 폴더별 의존 규칙 150줄, 컴포넌트 31개, ADR 12개는 한 사람이 쓰는 4화면 앱 치고 구조 비용이 크다. 파일 맵은 Wave 15개, Task는 Wave 12개로 같은 이름의 번호가 둘이라 읽을 때 혼동된다. 스코프를 줄이는 쪽(FR-007~FR-014 제거, 낙관적 반영 제거, 가상 스크롤 등)은 사용자가 정한 요구와 UI 결정이므로 이 검토는 제안하지 않는다(요구·정책 사항).",
+      "suggestion": "구조를 줄이려면 요구는 건드리지 않고 파일만 합친다. 예: Banner+EmptyState를 Feedback.tsx로, ArchiveConfirm+DeleteConfirmBar를 InlineConfirm.tsx로, card-queries+settings-rules+progress-rules를 card-rules 옆 한두 파일로, 기능별 CSS 5개를 화면 폴더별 한 파일에서 common.css로. 대략 138개 -> 115개 안팎으로 줄어도 단일 책임과 300줄 한도는 유지된다. 08-tasks.md의 Wave 이름은 'Phase'로 바꿔 file-map Wave와 구분한다."
+    },
+    {
+      "id": "FE-010",
+      "severity": "INFO",
+      "target_ref": "08-tasks.md T-002 vs T-012 / 06-file-map.md data-file-names.ts, 결정 필요 6 / 05-architecture.md 의존 규칙",
+      "type": "ambiguous",
+      "description": "경로 합치기 방식이 문서마다 다르다. T-002는 'node:path 없이 joinPath를 직접 둔다'(Windows 구분자를 dir에서 따라감)이고 T-012는 'loadFile 경로에 node:path를 쓴다'이다. 자체 joinPath는 Windows에서 / 와 \\ 가 섞이는 오류를 만들 수 있고, node:path는 파일에 접근하지 않는 순수 문자열 처리라 의존 규칙의 의도(파일 접근을 포트로만)를 해치지 않는다.",
+      "suggestion": "설계 승인 때 `src/main/**`에서 `node:path`만 허용한다고 정하고(05-architecture.md 의존 규칙 표 한 줄), data-file-names.ts는 `path.join`을 쓰도록 바꾼 뒤 joinPath 자체 구현과 T-002의 임시 가정 문구를 삭제한다."
+    },
+    {
+      "id": "FE-011",
+      "severity": "INFO",
+      "target_ref": "01-tech-stack.md 명령 표(test:e2e) / 06-file-map.md playwright.config.ts",
+      "type": "ambiguous",
+      "description": "playwright.config.ts 명세에 workers, fullyParallel, 제한 시간, retries가 없다. 시험마다 실제 Electron 창을 띄우므로(헤드리스 아님, 64개 TC) 병렬 실행하면 창이 서로 포커스를 뺏고 --user-data-dir 임시 폴더 정리나 강제 종료 시험(TC-111)이 불안정해질 수 있다. launch-app.ts가 실패 시에도 앱 프로세스를 닫는 보장(finally)도 적혀 있지 않다.",
+      "suggestion": "playwright.config.ts에 `workers: 1`, `fullyParallel: false`, `timeout: 30000`, `retries: 0`을 적고, launch-app.ts는 close를 `try/finally`로 보장하며 임시 폴더를 시험 종료 후 지운다고 명세에 한 줄 추가한다."
+    },
+    {
+      "id": "FE-012",
+      "severity": "INFO",
+      "target_ref": "08-tasks.md T-001, T-003",
+      "type": "oversized-task",
+      "description": "T-003(playwright.config.ts, prettier.config.js)은 검증도 TC도 없고 T-040 이전에는 쓰이지 않는 설정 두 개만 만드는 아주 작은 Task다. 반대로 T-001은 12개 파일을 만들고 npm 설치, package-lock 생성, 린트 의존 규칙 설정(150줄), 진입 스텁 4개, 그리고 FE-001·FE-002 같은 미확인 항목 확인까지 맡아 가장 불확실한 Task다.",
+      "suggestion": "prettier.config.js는 T-001로, playwright.config.ts는 FE-003 스모크 Task로 옮겨 T-003을 없앤다(T-004 이후 번호는 유지하고 T-003은 결번 처리하지 말고 번호를 당겨 재부여). T-001의 eslint 폴더별 의존 규칙(eslint.config.js)은 규칙 대상 폴더가 생기는 T-002로 옮겨도 된다."
+    },
+    {
+      "id": "FE-013",
+      "severity": "INFO",
+      "target_ref": "01-tech-stack.md 후보 비교(B, C 행) / 08-tasks.md",
+      "type": "ambiguous",
+      "description": "후보 진위 점검: B(PWA) 탈락 사유(브라우저 데이터 삭제 시 전량 소실, RISK-005)는 MDN 출처로 뒷받침되는 실제 약점이라 허수가 아니다. C(Tauri) 탈락 사유 중 '화면 시험 자동화가 더 번거롭다'는 근거가 '공식 경로를 확인하지 못했다, 추정'이어서 출처 없이 약점이 부풀려졌을 가능성이 있다(WebView2는 원격 디버깅 포트로 Playwright 연결이 가능한 것으로 알려져 있어 단정하기 어렵다). B의 '로컬 서버 프로세스를 직접 띄워야 한다'도 설치형 PWA는 한 번 설치하면 서버 없이 열린다는 점에서 과장일 수 있다. 사용자는 이미 Electron을 선택했고(CON-002, Q-005 해소) 추천 스택의 기술은 선택 후보 A와 일치하므로 이 점이 현재 구현에는 영향이 없다. 선택을 뒤집으라는 제안이 아니다(사용자 결정 사항).",
+      "suggestion": "수정 불필요. 문서를 손볼 기회가 있으면 C 행의 탈락 근거를 '확인하지 못함'으로 낮춰 쓰고, 선택이 끝난 뒤에는 B·C 비교를 부록으로 분리해 01-tech-stack.md 본문을 Electron 기준으로만 읽히게 한다."
+    },
+    {
+      "id": "FE-014",
+      "severity": "INFO",
+      "target_ref": "01-tech-stack.md 환경/빌드/실행 가이드, 결정 필요 4 / 08-tasks.md T-001",
+      "type": "missing-env",
+      "description": "Node 버전이 사용자 미결(22.23.2 vs 24.22.2)인데 package.json에 `engines`도 `.nvmrc`도 계획에 없다. 시험(Vitest)은 PC의 Node, 앱은 Electron 내장 Node 24로 돌아 메이저가 달라질 수 있다. eslint 10의 engines는 가이드의 확인 목록에 없다(Node 22.23.2에서 만족할 가능성이 높지만 확인한 것은 아니다).",
+      "suggestion": "T-001에서 package.json에 `\"engines\": { \"node\": \">=22.13.0\" }`(사용자 결정에 따라 24로)를 넣고, 01-tech-stack.md의 Node 확인 문장에 eslint 10 engines 확인을 더한다. 어느 쪽이든 `npm ci`로 package-lock.json을 만든 Node 버전을 T-001 기록에 남긴다."
+    },
+    {
+      "id": "FE-015",
+      "severity": "INFO",
+      "target_ref": "02-data-model.md 저장 절차(단계 5 replace) / 06-file-map.md node-file-system.ts / 08-tasks.md T-005",
+      "type": "missing-concern",
+      "description": "Windows에서 fs.rename이 기존 파일을 덮어쓰는 경우 백신, 검색 인덱서, 클라우드 동기화가 파일을 잡고 있으면 EPERM/EBUSY가 가끔 난다. 설계는 이를 SAVE_FAILED로 처리하고 사용자가 '다시 저장'하게 하지만, 일시적 실패에 대한 재시도 정책이 없어 사용자에게 알림이 불필요하게 뜰 수 있다. T-005는 '이름 바꾸기 덮어쓰기를 확인한다'고만 한다.",
+      "suggestion": "NodeFileSystem.rename 안에서만(포트 인터페이스는 그대로) EPERM/EBUSY일 때 최대 3회, 50ms 간격으로 재시도한다고 06-file-map.md node-file-system.ts 명세에 한 줄 추가한다. 시험 주입은 fault-fs 쪽에서 하므로 기존 TC에 영향이 없다."
+    },
+    {
+      "id": "FE-016",
+      "severity": "INFO",
+      "target_ref": "05-architecture.md ADR-008 / 06-file-map.md src/preload/index.ts",
+      "type": "ambiguous",
+      "description": "preload가 문서 시작에 <html data-theme>를 적는 설계는 preload 실행 시점에 document.documentElement가 아직 없을 수 있어 그대로는 동작하지 않을 가능성이 있다(설계도 타이밍은 확인하지 못했다고 적었다). 안전망(Bootstrap의 settings.get 확정, 창 바탕색 show:false 후 ready-to-show)이 있어 데이터는 안전하지만, 구현자가 어느 이벤트에 걸지 추측해야 한다.",
+      "suggestion": "preload 명세에 `document.documentElement`가 없으면 `document.addEventListener('DOMContentLoaded')`가 아니라 `readystatechange` 또는 MutationObserver로 documentElement 생성 직후 한 번 적는다고 방법을 명시하고, 안 맞아도 Bootstrap 확정으로 충분하다는 허용 기준을 적는다. TC-121/TC-122에서 첫 화면 색 깜빡임은 수동 확인(TC-131 등)에 포함한다."
+    }
+  ],
+  "metrics": {
+    "issues_critical": 1,
+    "issues_warn": 7,
+    "issues_info": 8
+  }
+}

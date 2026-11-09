@@ -1,0 +1,116 @@
+/*
+ * 두 판의 색 토큰 (T-004). 이름과 값은 docs/05-design/04-ui-spec.md 의 `색 토큰 상세` 표를 그대로 옮긴 것이다.
+ * 기본 판은 밝은 판이다 (명세 v4, ADR-008). :root 와 [data-theme="light"] 가 밝은 판 값을 함께 쓰고,
+ * [data-theme="dark"] 가 어두운 판 값이다. preload 는 판 인자가 있을 때만 data-theme 을 적으므로
+ * 저장된 선택이 없는 첫 실행은 속성이 없어 :root 의 밝은 판이 된다 (ASM-017).
+ * 판을 바꾸면 변수 값만 바뀐다. 모양·글자(아이콘, 칩 글자, N일 지남)는 판과 무관하다 (NFR-004).
+ * color-scheme 은 기본 컨트롤(달력 날짜 입력 아이콘 등)이 두 판에서 보이도록 판마다 둔다.
+ *
+ * 표에서 한 토큰에 "글자용" 값이 따로 있는 것(status-*, overdue)은 글자용을 `--status-*-text`, `--overdue-text` 로 둔다.
+ * `--status-*-text` 는 표에 별도 이름이 없어 이 파일이 정한 이름이다.
+ */
+
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+
+  /* 바탕 */
+  --bg-app: #faf3ee;
+  --bg-side: #f0e1d7;
+  --bg-card: #ffffff;
+  --bg-today: #ffebdd;
+  --bg-chip: #ebd6ca;
+
+  /* 칸별 카드·칩 바탕 */
+  --card-todo: #fff1d2;
+  --card-doing: #ffe6d8;
+  --card-done: #eaf2db;
+
+  /* 선 */
+  --line: #e3cfc3;
+  --line-strong: #b89c8b;
+  --control: #78604f;
+
+  /* 글자 */
+  --text: #2a1b14;
+  --text-sub: #5c4538;
+  --text-mute: #735b4d;
+
+  /* 포인트 */
+  --accent: #b54a12;
+  --accent-text: #a63f0e;
+  --accent-on: #ffffff;
+  --accent-soft: #ffe6d8;
+  --primary-bg: #b54a12;
+  --primary-text: #ffffff;
+
+  /* 칸 색 (할 일 / 진행 중 / 완료) */
+  --status-todo: #9c6f00;
+  --status-doing: #b54a12;
+  --status-done: #4f7a2a;
+  --status-todo-text: #7a5000;
+  --status-doing-text: #a63f0e;
+  --status-done-text: #3e6420;
+  --status-todo-line: #e5c77c;
+  --status-doing-line: #edb291;
+  --status-done-line: #b5ce9a;
+
+  /* 마감 지남 (이 붉은색은 마감 지남에만 쓴다) */
+  --overdue: #c0134f;
+  --overdue-text: #a00f3f;
+  --overdue-on: #ffffff;
+  --overdue-soft: #ffdde6;
+
+  /* 상호작용 */
+  --focus: #2a1b14;
+  --scrim: rgba(42, 27, 20, 0.45);
+  --disabled: #a8978a;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg-app: #1f1814;
+  --bg-side: #16100d;
+  --bg-card: #2b221c;
+  --bg-today: #2e1f16;
+  --bg-chip: #4b392e;
+
+  --card-todo: #302717;
+  --card-doing: #3a2318;
+  --card-done: #252b1b;
+
+  --line: #43352b;
+  --line-strong: #7a6252;
+  --control: #b09a88;
+
+  --text: #f6ede6;
+  --text-sub: #d6c6b9;
+  --text-mute: #ab9a8d;
+
+  --accent: #ec8148;
+  --accent-text: #f4966b;
+  --accent-on: #1f1814;
+  --accent-soft: #4a2718;
+  --primary-bg: #ec8148;
+  --primary-text: #1f1814;
+
+  --status-todo: #ebc85b;
+  --status-doing: #ec8148;
+  --status-done: #8db36b;
+  --status-todo-text: #ebc85b;
+  --status-doing-text: #ec8148;
+  --status-done-text: #8db36b;
+  --status-todo-line: #6e5a22;
+  --status-doing-line: #7e452b;
+  --status-done-line: #4a5e33;
+
+  --overdue: #f0457a;
+  --overdue-text: #ff8da6;
+  --overdue-on: #1f1814;
+  --overdue-soft: #4c1c28;
+
+  --focus: #f6ede6;
+  --scrim: rgba(15, 10, 7, 0.62);
+  --disabled: #756556;
+}

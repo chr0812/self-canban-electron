@@ -1,0 +1,305 @@
+/*
+ * 보드 화면 스타일 (T-026): 칸, 카드, 칸 색, 마감 지남 테두리, 끌기 허용 표시, 조건 줄, 마감 지난 요약 칩.
+ * 색은 styles/tokens.css 의 변수만 쓰고 값을 다시 정의하지 않는다. 판(data-theme)을 가르는 규칙도 없다 (NFR-004).
+ * 크기는 04-ui-spec.md SCR-001: 막대 56, 정보 줄 44, 조건 줄 +28, 카드 높이 62·모서리 4px, 칸 폭 1 : 1.1 : 1 (1600px 이상 칸 최대 520).
+ * 이 파일은 어느 컴포넌트도 import 하지 않는다 (common.css 와 같다): 앱 진입점이 한 번 불러온다.
+ *
+ * 클래스 이름 규칙 (Column / CardItem / BoardScreen 이 이 이름을 쓴다):
+ *   .board-screen, .board-info, .board-info__today, .board-columns
+ *   .column[data-status="todo|in_progress|done"][data-drop-target="true"], .column__head, .column__title,
+ *   .column__count, .column__list, .column__empty
+ *   .card-item[data-status][data-overdue="true"][data-dragging="true"], .card-item__row, .card-item__title,
+ *   .card-item__kind-icon, .card-move-btn, .archive-confirm, .archive-confirm__btn
+ *   .overdue-summary, .condition-bar, .condition-bar__chips, .condition-bar__count, .condition-chip
+ */
+
+/* ── 화면 뼈대: 보드 전체는 세로로 스크롤하지 않고 칸의 카드 목록만 스크롤한다 ── */
+
+.board-screen {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-app);
+}
+
+.board-info {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: 44px;
+  padding: 0 16px;
+}
+
+.board-info__today {
+  color: var(--text-sub);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* ── 마감 지난 카드 요약 칩 (표시 전용) ──────────────────────────────── */
+
+.overdue-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 3px;
+  background: var(--overdue);
+  color: var(--overdue-on);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+/* ── 조건 줄: 조건이 있을 때만, 정보 줄 아래 28px ────────────────────── */
+
+.condition-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 28px;
+  padding: 0 16px;
+}
+
+.condition-bar__chips {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+  min-width: 0;
+}
+
+.condition-bar__count {
+  flex: none;
+  color: var(--text-sub);
+  font-size: 14px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+/* 조건 칩: 칩(높이 20) 안에 글자와 × 버튼. 긴 검색어는 …로 줄인다 */
+.chip.condition-chip {
+  max-width: 260px;
+  padding-right: 0;
+  border-color: var(--line-strong);
+  background: transparent;
+}
+
+.condition-chip__text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.condition-chip__remove.btn {
+  height: 18px;
+  min-width: 18px;
+  padding: 0 4px;
+  border-radius: 2px;
+  color: var(--text-sub);
+}
+
+/* ── 칸 3개: 할 일 1 : 진행 중 1.1 : 완료 1 ──────────────────────────── */
+
+.board-columns {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 16px;
+  min-height: 0;
+  padding: 0 16px 12px;
+}
+
+@media (min-width: 1600px) {
+  .board-columns {
+    grid-template-columns: repeat(3, minmax(0, 520px));
+    justify-content: center;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  /* 칸 색: 머리 아래 선과 제목 글자가 쓴다 */
+  --column-line: var(--status-todo);
+  --column-text: var(--status-todo-text);
+  --column-line-width: 2px;
+}
+
+.column[data-status='in_progress'] {
+  --column-line: var(--status-doing);
+  --column-text: var(--status-doing-text);
+  --column-line-width: 3px;
+}
+
+.column[data-status='done'] {
+  --column-line: var(--status-done);
+  --column-text: var(--status-done-text);
+}
+
+/* 칸 머리는 고정, 카드 목록만 스크롤 */
+.column__head {
+  display: flex;
+  flex: none;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 4px 8px;
+  border-bottom: var(--column-line-width) solid var(--column-line);
+}
+
+.column__title {
+  color: var(--column-text);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.column__count {
+  color: var(--text-mute);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+/* 끌기 허용 표시: 놓을 수 있는 칸의 머리 아래 선이 2px 더 굵어진다 (자리는 그대로, 아래로 그림자 선을 덧댄다) */
+.column[data-drop-target='true'] .column__head {
+  box-shadow: 0 2px 0 var(--column-line);
+}
+
+.column__list {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+  padding: 10px 0 4px;
+  overflow-y: auto;
+}
+
+/* 이 칸에 카드가 없을 때 한 줄 (흐린 색) */
+.column__empty {
+  padding: 4px;
+  color: var(--text-mute);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* ── 카드: 높이 62, 한 겹, 1px 칸 색 테두리 ──────────────────────────── */
+
+.card-item {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  box-sizing: border-box;
+  min-height: 62px;
+  padding: 8px 10px;
+  border: 1px solid var(--status-todo-line);
+  border-radius: 4px;
+  background: var(--card-todo);
+  color: var(--text);
+  cursor: pointer;
+  transition: opacity 150ms ease-out;
+}
+
+.card-item[data-status='in_progress'] {
+  border-color: var(--status-doing-line);
+  background: var(--card-doing);
+}
+
+.card-item[data-status='done'] {
+  border-color: var(--status-done-line);
+  background: var(--card-done);
+}
+
+/* 마감 지남: 테두리 2px(안쪽 여백을 1px 줄여 크기가 변하지 않는다) + 붉은 기 도는 바탕. 모양 구분은 DueText 의 삼각형과 글자가 맡는다 */
+.card-item[data-overdue='true'] {
+  padding: 7px 9px;
+  border: 2px solid var(--overdue);
+  background: var(--overdue-soft);
+}
+
+/* 끄는 중인 카드는 흐리게 (놓기 전까지 원래 칸에 그대로 있다) */
+.card-item[data-dragging='true'] {
+  opacity: 0.5;
+}
+
+.card-item__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.card-item__row--end {
+  justify-content: space-between;
+}
+
+.card-item__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 완료 카드: 제목은 낮추고 종류 아이콘에 완료 색 */
+.card-item[data-status='done'] .card-item__title {
+  color: var(--text-sub);
+}
+
+.card-item[data-status='done'] .card-item__kind-icon {
+  color: var(--status-done);
+}
+
+/* `⋯` 상태 이동 버튼 24x22, control 테두리 */
+.card-move-btn {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 24px;
+  height: 22px;
+  padding: 0;
+  border: 1px solid var(--control);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--text-sub);
+}
+
+.card-move-btn[aria-expanded='true'] {
+  background: var(--accent-soft);
+}
+
+/* 보관 인라인 확인: `보관` 44x20, 확인 단계의 두 버튼도 같은 높이 */
+.archive-confirm {
+  display: inline-flex;
+  flex: none;
+  gap: 4px;
+}
+
+.archive-confirm__btn.btn {
+  height: 20px;
+  min-width: 44px;
+  padding: 0 6px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+}

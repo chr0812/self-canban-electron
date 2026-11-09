@@ -1,0 +1,116 @@
+{
+  "persona": "risk-reviewer",
+  "verdict": "REVISE",
+  "summary": "저장 절차(임시 파일, fsync, 검증, 직전본, 교체)와 읽기 실패 잠금은 규모에 맞게 탄탄하다. 남은 위험은 저장 절차 바깥에 있다. 저장 실패 뒤 화면과 저장소가 어긋나는 경로, 창을 닫을 때 보내지 못한 변경, 개발 실행이 실제 데이터 폴더를 쓰는 점, Electron 45 지원 종료(2027-04-27)의 후속 절차 부재, 창 밖 Chromium 요청에 대한 완화책 부재다. CRITICAL은 없다.",
+  "issues": [
+    {
+      "id": "RK-001",
+      "severity": "WARN",
+      "target_ref": "05-architecture.md ChangeRunner·ADR-006·결정 필요 2 / 04-ui-spec.md 낙관적 업데이트(108행)·에러: 저장 실패(383행)·저장 실패 알림 줄(300행) / 03-api-spec.md settings.setTheme",
+      "type": "tech-risk",
+      "description": "칸 이동과 보관은 화면에 먼저 반영하고, 저장이 실패해도 되돌리지 않는다(AC-031을 근거로 듦). 그러면 화면에는 바뀐 상태가 보이지만 저장소와 파일에는 없는 상태가 생긴다. 이 상태에서 (1) 같은 카드나 다른 카드의 다음 변경이 성공하면 ChangeRunner 설명상 SaveState가 saved로 돌아갈 수 있다. 앞선 실패 변경이 계속 미저장인지, 알림이 남는지는 어디에도 정해져 있지 않다. (2) 다시 저장은 마지막으로 실패한 변경 한 건만 보낸다(결정 필요 2의 임시 (a)). 실패가 두 건 이상이면 앞의 것은 화면에만 남는다. (3) 앱을 닫거나 재시작하면 그 변경이 말없이 사라진다. 종료 때 경고가 없다. (4) 알림 문구 `화면의 내용은 그대로 남아 있습니다`는 저장되지 않았고 닫으면 사라진다는 사실을 말하지 않아 오해를 부른다. 결과적으로 `저장 완료가 표시된 뒤 100% 유지`(NFR-002)의 신뢰가 깨진다. AC-031의 문구는 `입력한 내용은 화면에서 지워지지 않는다`로, 대화상자 입력을 말한다. 칸 이동을 되돌리지 않아야 한다는 요구는 아니다. 로컬 IPC와 원자적 교체는 수십 ms 규모라 낙관적 반영의 이득도 작다(과잉 설계에 가깝다). 이 항목은 사용자가 아직 정하지 않은 결정 필요 2와 연결되며, 아래 제안은 그 선택지를 좁히는 권고일 뿐 사용자 결정을 뒤집지 않는다. 로컬 UI 설계자의 선택이었다면 선호 유형으로 취급한다.",
+      "suggestion": "(a) 칸 이동·보관·삭제는 낙관적 반영을 하지 않는다. 결과를 받은 뒤 화면을 바꾸고 그동안 `저장 중`만 보인다. SAVE_FAILED면 화면이 바뀌지 않아 저장소와 항상 같다. 결정 필요 2의 (b)·(c)가 사라진다. 낙관적 유지와 되돌리지 않음은 UC-011 Alt Flow 1이 명시한 판 전환과 대화상자 입력에만 남긴다. (b) 낙관적 반영을 유지한다면 SAVE_FAILED일 때 main의 목록으로 되돌리고(롤백) 알림만 보인다. 되돌리지 않으려면 실패한 변경을 전부 쌓아 두었다가 다시 저장이 순서대로 보내고, 쌓인 것이 있는 동안 SaveState를 saved로 바꾸지 않는다. (c) 어느 쪽이든 쌓인 실패가 있는 채로 창을 닫으려 하면 확인을 받는다. 알림 문구에 `닫으면 저장되지 않은 변경이 사라집니다`를 넣는다. 시험으로 `실패 후 성공한 다음 변경이 saved를 표시하지 않음` 또는 `화면과 파일이 같다`를 TC에 추가한다."
+    },
+    {
+      "id": "RK-002",
+      "severity": "WARN",
+      "target_ref": "05-architecture.md ChangeRunner(1)·AppLifecycle(before-quit)·데이터 흐름의 정상 종료 / 06-file-map.md change-runner.ts",
+      "type": "tech-risk",
+      "description": "ChangeRunner는 변경을 한 번에 하나씩 window.kanban으로 보낸다(main의 줄과 같은 순서). 즉 renderer 쪽에도 대기열이 있다. 그런데 종료 처리(before-quit에서 store.close())는 main 대기열만 비운다. 칸 이동을 연달아 몇 건 하고 바로 창을 닫으면, 화면에는 모두 반영됐지만 아직 main으로 보내지 않은 변경이 창과 함께 사라진다. 사이드바는 `저장 중`이었을 뿐 `저장됨`이 아니었으므로 NFR-002 문구와 형식상 어긋나지는 않는다. 그러나 정상 종료 직전의 변경도 잃지 않는다는 설계 의도(데이터 흐름 정상 종료 1)에는 어긋난다. 한 번에 하나씩 보낼 필요도 없다. ipcRenderer.invoke는 보낸 순서를 지키고, main이 줄을 세워 직렬 처리하기 때문이다. renderer 대기열은 위험 구간만 넓힌다.",
+      "suggestion": "ChangeRunner는 변경을 대기시키지 않고 즉시 invoke로 보낸다(순서는 IPC와 main의 줄이 보장). 결과 대기만 한다. 추가로 main이 창의 close 이벤트에서 `진행 중인 invoke가 없음`을 확인할 때까지 닫기를 한 번 미루거나, 최소한 renderer에 미전송·미응답 변경이 있으면 닫기 확인을 띄운다. 시험(browser): 변경을 연달아 한 뒤 즉시 창을 닫고 재구동해 모두 남아 있는지 확인하는 TC를 07-test-plan.md에 더한다."
+    },
+    {
+      "id": "RK-003",
+      "severity": "WARN",
+      "target_ref": "02-data-model.md 읽기 실패의 처리(3)·읽을 때 엄격하게·결정 필요 '읽기 실패에서 벗어나는 방법' / 03-api-spec.md store.retryOpen / 04-ui-spec.md 에러: 읽기 실패(382행)",
+      "type": "tech-risk",
+      "description": "모든 데이터와 설정이 JSON 파일 하나이고, 읽기 실패의 유일한 출구는 다시 읽기(retryOpen)다. 이 상태에서는 앱 전체가 잠기고(조회·변경·판 전환 모두 STORE_LOCKED) 앱 안에서 할 수 있는 복구 동작이 없다. 직전 저장본(.bak)이 valid여도 앱은 본 파일이 아예 없을 때만 .bak을 쓴다. 게다가 엄격 검증이 비치명 항목까지 같은 취급을 한다. 손으로 고친 `theme` 오타 하나, 잔존 고아 기록 하나로도 보드 전체가 열리지 않는다. 즉 파일 하나가 치명적 단일 실패점이고 출구는 사용자의 수작업뿐인데, 패널 문구(`읽지 못한 데이터는 그대로 두고`)와 ReadFailure에는 .bak의 경로나 복구 절차가 없다(dataFilePath만 있음). 백업을 하지 않기로 한 D-009와 AC-032의 덮어쓰기 금지는 존중한다. 탈출 동작(직전 저장본으로 열기, 손상 파일 보존 후 새로 시작)을 만들지는 사용자가 정할 일(정책)이고 설계가 이미 결정 필요로 올려 두었으므로 여기서 만들라고 하지는 않는다.",
+      "suggestion": "정책을 건드리지 않는 완화만 먼저 반영한다. (1) ReadFailure에 backupPath와 pre-v 사본 경로를 추가하고, 패널에 `앱을 닫고 폴더에서 kanban-data.json을 다른 이름으로 바꾸면 직전 저장본(.bak)으로 열립니다` 같은 수동 절차를 문구로 넣는다(앱이 지우거나 쓰는 동작은 추가하지 않음. 현재 설계의 `.bak`은 본 파일이 없을 때 자동으로 쓰이므로 이름 바꾸기가 실제 출구가 됨). (2) 결정 필요에 `settings 값 오류는 카드 읽기를 막지 않고 기본 판으로 연다` 선택지를 추가한다. 이 선택은 AC-032의 취지(읽지 못한 데이터를 덮어쓰지 않음)와 관련되므로 사용자가 정한다. (3) 결정 필요의 (b) 직전 저장본으로 열기 권고를 읽기 실패 사용 빈도와 함께 다시 제시한다."
+    },
+    {
+      "id": "RK-004",
+      "severity": "WARN",
+      "target_ref": "05-architecture.md ADR-012·결정 필요 3 / 06-file-map.md AppLifecycle(src/main/index.ts) / 08-tasks.md T-001·T-037 / README.md 미해결 잔존 사항 3",
+      "type": "tech-risk",
+      "description": "앱 코드는 app.getPath('userData')만 쓰고, 이 경로는 package.json의 name/productName에서 나온다. (1) 개발 실행(npm run dev, electron-vite preview)과 포장 실행이 같은 폴더를 공유한다. 백업이 없으므로(D-009) 실제 데이터의 사본은 그 파일 하나뿐인데, 개발 중인 코드(예: 스키마 버전 3 변환, 저장 버그)가 그 파일을 읽고 쓴다. 변환이나 저장 버그가 실제 데이터를 훼손하는 가장 현실적인 경로다. SCHEMA_TOO_NEW는 옛 앱이 새 파일을 거부하는 방향만 지킨다. (2) 앱 이름은 미정이고 나중에 바꾸면 새 폴더가 비어 있어 읽기 실패가 아니라 처음 실행으로 읽힌다. 사용자는 데이터가 사라진 줄 알고 새로 쓰기 시작할 수 있다(결정 필요 3). 이름 확정은 T-001 이전 조건으로만 되어 있고, 폴더 이름을 이름과 분리하는 장치가 없다. ADR-012의 `시험 전용 분기 없음` 원칙은 시험 격리를 말하는 것이며, 개발과 배포 구분은 별개다.",
+      "suggestion": "AppLifecycle에서 app.ready 전에 한 번 userData를 고정 상수 폴더로 지정한다(예: `app.setPath('userData', join(app.getPath('appData'), APP_DATA_FOLDER))`, 단 `--user-data-dir`이 주어지면 건드리지 않음). 개발 실행(`!app.isPackaged`)은 `APP_DATA_FOLDER + '-dev'`를 쓴다. 이렇게 하면 표시 이름과 데이터 위치가 분리되어 결정 필요 3의 부작용이 사라지고 개발 중 사고가 실제 데이터에 닿지 않는다. 시험은 지금처럼 --user-data-dir로 격리한다. 해당 상수는 file-map의 data-file-names.ts 같은 한 곳에 두고 TC에 한 줄을 더한다. 이 결정이 승인된 설계 변경이므로 ADR-012를 갱신한다."
+    },
+    {
+      "id": "RK-005",
+      "severity": "WARN",
+      "target_ref": "01-tech-stack.md 호환성 참고사항(Electron 보안 수명)·결정 필요 6 / 05-architecture.md ADR-005 / README.md 미해결 잔존 사항(해당 항목 없음) / 08-tasks.md(업데이트 절차 Task 없음)",
+      "type": "security",
+      "description": "Electron 45의 지원 종료는 2027-04-27로, 오늘(2026-11-03) 기준 약 6개월이다. 오프라인이라 자동 업데이트를 쓰지 않으므로 보안 수정은 사용자가 새 메이저로 올려 다시 빌드해야만 받는다. 이 사실은 01-tech-stack.md에만 있다. 정작 개발 진입점인 README.md의 미해결 잔존 사항 15개에는 없고(01 결정 필요 6 `코드 서명과 업데이트 방식`도 옮겨지지 않음), 08-tasks.md에도 올리는 절차나 확인 시점을 다룬 Task가 없다. 업데이트를 사용자 기억에 맡기는 구조다. 그리고 올릴 때 믿을 안전망이 실험적(experimental)인 Playwright Electron 위의 시험 64개라, 메이저를 올릴 때 시험 기반이 깨지면 업데이트 자체가 미뤄진다. 노출 크기는 제한적이다. 렌더러는 sandbox에 로컬 번들만 읽고 외부 주소로 나가지 않으며(NetworkGuard·CSP), 사용자 입력은 React 이스케이프로 표시된다. 그래서 CRITICAL로 보지는 않는다. Electron 선택은 사용자 결정이므로 뒤집는 제안이 아니다.",
+      "suggestion": "(1) README 미해결 잔존 사항에 `Electron 45 지원 종료 2027-04-27, 수동 업데이트` 항목과 01 결정 필요 6을 옮긴다. (2) 01-tech-stack.md나 README에 업그레이드 절차를 한 번 적는다: electron을 새 메이저로 핀 올림, npm ci, lint, build, test, test:e2e, 수동 TC-132·TC-134를 순서대로. (3) 앱 안(사이드바 하단이나 정보)에 Electron·앱 버전과 지원 종료일을 상수로 보이게 해 시점을 눈에 띄게 하는 선택지를 검토한다(자동 확인은 NFR-001 때문에 불가). (4) package.json에 `engines`와 EOL 날짜 주석 대신 README의 한 줄 점검표를 둔다. 서명 없는 설치 파일의 SmartScreen 경고는 개인 PC 용도에서 감수 가능하다."
+    },
+    {
+      "id": "RK-006",
+      "severity": "WARN",
+      "target_ref": "02-data-model.md 데이터 양 / 보존·필드 길이 상한(결정 필요) / 05-architecture.md ADR-003 / 07-test-plan.md TC-134(카드 수십 건) / spec.md ASM-010·CAND-002",
+      "type": "scalability",
+      "description": "저장은 변경마다 전체 문서를 직렬화해 쓰고(fsync), 다시 읽어 파싱·검증하고, 본 파일을 .bak으로 복사하고, 이름을 바꾼다. 거기에 변경마다 문서 배열 복사와 인덱스 재생성이 더해진다. 비용은 파일 크기에 비례한다. 설계는 수 MB 이하라고 추정하지만 측정하지 않았다. 문제는 제목·설명·메모·기록의 길이 상한이 없다는 점이다. 개발 버그 카드는 스택 트레이스나 로그를 붙여 넣기 쉽다. 큰 항목 하나가 이후 모든 변경(칸 이동 포함)을 느리게 하고, 시작할 때 목록 두 번(board, archive)의 IPC 복제 비용도 키운다. 수천 건(ASM-010)을 가정한 시험이 계획에 없다(TC-134도 수십 건). 성능 기준은 사용자가 말하지 않아 NFR이 아니다(CAND-002)이므로 통과/실패 기준을 만들 수는 없다. 그러나 측정 자체를 하지 않으면 SQLite 전환 시점(수십 MB)이 근거 없이 정해진다. 길이 상한 도입은 사용자가 말하지 않은 정책이다.",
+      "suggestion": "정책을 만들지 않는 측정만 시험 계획에 추가한다. cli에 `카드 5,000건 + 기록 5,000건 + 1MB 메모 카드 몇 건` 고정 데이터로 저장 1회와 열기 1회의 시간을 기록하는 시험(TC)을 더하고, 결과를 시험 보고서에 숫자로 남긴다(통과 기준 없음, CAND-002와 같은 취급). 길이 상한은 CAND-002와 함께 사용자 결정 필요에 올려 `상한 없음(지금)`의 대가에 `큰 붙여넣기가 모든 저장을 느리게 함`을 적는다. 상한을 두지 않는다면 최소한 JSON 전체 크기가 임계(예: 20MB)를 넘으면 화면에 경고하는 선택지를 결정 필요에 추가한다."
+    },
+    {
+      "id": "RK-007",
+      "severity": "WARN",
+      "target_ref": "05-architecture.md NetworkGuard·NFR-001 대응 설계·ADR-005 / 01-tech-stack.md 호환성 참고사항(네트워크 요청 0건의 관찰 범위) / 07-test-plan.md TC-132(수동)",
+      "type": "security",
+      "description": "NFR-001은 외부 네트워크 요청 0건을 네트워크 모니터로 확인하라고 한다. 설계의 차단 장치(session.webRequest.onBeforeRequest, CSP connect-src none, 새 창·이동·권한 거부)는 모두 창이 일으키는 요청에만 닿는다. Chromium 프로세스 자체의 요청(Windows의 프록시 자동 감지 WPAD 조회, DNS 선조회 등)은 막지도 못하고 Playwright로 보이지도 않는다. 설계는 `구현에서 넷로그로 확인, 보이면 결정을 고친다`로 확인을 구현 뒤로 미루고, 확인 수단도 사람이 하는 TC-132뿐이다. 즉 이 위험의 완화책이 설계에 없고, 문제가 있다면 인수 직전에야 드러난다.",
+      "suggestion": "설계 단계에서 Chromium 레벨 완화책 후보를 정해 둔다. 예: app.ready 전 `app.commandLine.appendSwitch('host-resolver-rules', 'MAP * ~NOTFOUND')`(개발 실행은 localhost 예외), 세션에 `setProxy({ mode: 'direct' })` 적용으로 WPAD 조회 제거. 이들이 Electron 45에서 먹히는지는 구현에서 확인한다. 확인 수단으로 TC-132에 `--log-net-log` 결과에서 요청이 0건인지 읽는 단계를 넣고, 가능하면 첫 구동 후 netlog를 훑는 반자동 확인을 T-041에 둔다. 이렇게 하면 NetworkGuard 허용 목록에 더해 이중 방어가 된다."
+    },
+    {
+      "id": "RK-008",
+      "severity": "INFO",
+      "target_ref": "05-architecture.md NetworkGuard(허용 목록 file:)·보안 기본값 표(퓨즈 변경 하지 않음)·NFR-001 대응 설계 CSP",
+      "type": "security",
+      "description": "보안 기본값(contextIsolation, nodeIntegration 꺼짐, sandbox, 12개 함수만 노출, 입력 재검증, 프레임 주소 확인)은 규모에 적절하다. 남는 작은 틈은 다음과 같다. (1) 허용 목록이 `file:` 전체다. 앱 번들 폴더 밖의 file: 요청도 통과한다. 현재는 CSP(connect-src none, img-src self)와 이스케이프된 표시가 막고 있다. (2) 호출 프레임 확인(appUrlPrefix)이 file: 접두사 비교라 약하다. (3) Electron 퓨즈는 기본값(RunAsNode, NODE_OPTIONS 환경 변수, --inspect 허용)이다. 설계는 Playwright 때문에 건드리지 않는다고 했다. 사용자 권한으로 이미 실행 중인 로컬 공격자에게는 의미가 작으므로 개인 PC 한 대 용도에서는 감수 가능하다.",
+      "suggestion": "허용 목록을 `file:` 전체가 아니라 앱 번들 폴더(out/renderer)의 URL 접두사로 좁힌다. appUrlPrefix 확인도 같은 접두사를 쓴다. 퓨즈는 개발 실행과 시험(Playwright)은 기본값을 유지하고, 포장 설정(electron-builder.yml)에서만 RunAsNode·NODE_OPTIONS·inspect를 끄는 방법이 있는지 구현에서 확인한다. 별도 패키지가 필요하면 01-tech-stack.md 표에 먼저 추가한다. 필수는 아니다."
+    },
+    {
+      "id": "RK-009",
+      "severity": "INFO",
+      "target_ref": "02-data-model.md 저장 파일과 폴더(.bak, pre-v{N}.json)·보존 정책 / spec.md AC-023",
+      "type": "security",
+      "description": "카드를 삭제하면 보드와 파일에서는 사라지지만(AC-023), 직전 저장본(.bak, 다음 저장 때까지)과 kanban-data.pre-v{N}.json(변환 직전 원본, 한 번 만들고 지우지 않음)에는 삭제한 카드 내용이 평문으로 남는다. 개발 버그 카드에 토큰이나 내부 주소를 적었다가 삭제해도 마이그레이션 사본에는 계속 있다. 이 PC만 쓰는 1인 앱이라 위험은 작고 백업을 하지 않기로 한 D-009와도 충돌하지 않는다. 다만 `삭제하면 사라진다`와 실제 동작의 차이를 사용자가 모른다.",
+      "suggestion": "README나 삭제 확인 문구 중 한 곳에 `직전 저장본과 버전 변환 사본에는 삭제 전 내용이 남을 수 있음`을 적는다. 앱이 파일을 지우지 않는 현재 원칙은 유지하고, pre-v 사본을 사용자가 지워도 되는 임시 안전장치라고 밝힌다."
+    },
+    {
+      "id": "RK-010",
+      "severity": "INFO",
+      "target_ref": "02-data-model.md 저장 절차 2·3(고정 이름 kanban-data.json.tmp) / spec.md 범위 제외(동시 실행 차단 기각) / 05-architecture.md 검증 기록(두 번 실행 시 동작 미확인)",
+      "type": "tech-risk",
+      "description": "동시 실행 차단은 사용자가 기각했으므로(요구·정책) 막자는 제안은 하지 않는다. 같은 데이터 폴더에서 두 인스턴스가 돌면 사용자가 감수한 `덮어쓰기` 이상의 일이 생길 수 있다. 임시 파일 이름이 고정(.tmp)이라, 한쪽이 .tmp를 쓰는 동안 다른 쪽이 같은 .tmp를 덮어쓰면 첫 번째 인스턴스의 verify 단계가 두 번째 내용을 읽고 통과시킨다. 그러면 첫 번째는 `저장 완료`로 표시하지만 파일에는 상대 인스턴스의 문서가 들어간다. 두 번째가 먼저 rename하면 첫 번째는 ENOENT로 SAVE_FAILED가 난다. 감수한 범위는 `마지막 저장이 이긴다`이고 이 경우는 어느 쪽 내용인지조차 알 수 없는 섞임이다.",
+      "suggestion": "차단 없이 섞임만 줄이는 방법이다. .tmp 이름에 프로세스 id나 난수를 붙인다(예: kanban-data.json.<pid>.tmp). 대가는 비정상 종료 때 남는 고아 .tmp 파일로, 읽을 때 무시하는 규칙은 같다. 다음 시작 때 자기 폴더의 오래된 .tmp를 정리하는 일은 `파일을 지우는 일은 .tmp 덮어쓰기뿐`이라는 설계 원칙과 충돌하므로 사용자가 판단한다. 그대로 두기로 하면 알려진 한계로 README에 적는다."
+    },
+    {
+      "id": "RK-011",
+      "severity": "INFO",
+      "target_ref": "05-architecture.md 컴포넌트 31개·ADR 12개 / 06-file-map.md 파일 138개 / 07-test-plan.md browser TC 64개 / 03-api-spec.md cards.list 조건 인자",
+      "type": "over-engineering",
+      "description": "엔티티 3개, 사용자 1명 규모에 비해 구조가 크다. 대부분은 NFR-002(결함 주입 시험)와 격리 규칙으로 정당화되며 FileSystemPort와 IPC 표만 추상화로 둔 점은 절제됐다. 과한 부분은 두 곳이다. (1) browser TC 64개가 Playwright의 experimental Electron 지원 위에 있다. 1인이 유지하기엔 부담이고 업그레이드 때 깨진다(RK-005). (2) main의 cards.list는 text·kind·priority 조건과 validateCardQuery를 지원하지만, 앱은 renderer에서 같은 matchesQuery로 거르므로 이 조건 인자는 시험만 쓴다(아키텍처가 그렇게 적음). 화면에서 쓰지 않는 공개 API 표면이다. 이 구조는 승인 대상이고 데이터 안전을 해치지 않으므로 지금 고칠 필요는 없다.",
+      "suggestion": "(1) browser TC 중 핵심 흐름(재시작 유지, 요청 관찰, 읽기·저장 실패, 판 유지)을 smoke 묶음으로 표시해 업그레이드 때 먼저 돌린다. 나머지는 cli의 모델·상태 시험으로 옮길 수 있는지 구현 중 점검한다. (2) cards.list의 조건 인자는 그대로 두되 사용처를 '시험용'으로 file-map에 명시한다."
+    },
+    {
+      "id": "RK-012",
+      "severity": "INFO",
+      "target_ref": "03-api-spec.md 에러 카탈로그 INTERNAL / 05-architecture.md IpcHandlers·AppLifecycle",
+      "type": "under-engineering",
+      "description": "진단 정보가 화면 밖에 남지 않는다. SAVE_FAILED는 stage·osCode·dataFilePath를 돌려주지만, INTERNAL(예상하지 못한 오류)은 일반 문구만 화면에 보이고 message는 renderer로 전달된 뒤 버려진다. 포장한 앱에는 콘솔이 보이지 않는다. 저장이나 변환에서 예상 밖 예외가 나면 사용자(=개발자)가 원인을 알 방법이 없다. 로그 파일은 파일 쓰기 표면을 늘리고(이 폴더 밖에는 쓰지 않음, 파일 삭제 없음 원칙) 개인정보를 남길 수 있어, 지금은 필요한 만큼만 둔다.",
+      "suggestion": "IpcHandlers의 INTERNAL 변환 지점에서 main의 console.error로 message·stack을 남긴다(포장 앱은 `--enable-logging`으로 볼 수 있음). 화면에는 INTERNAL일 때 message를 접힌 `자세히`로 보여 준다. 별도 로그 파일은 만들지 않는다."
+    },
+    {
+      "id": "RK-013",
+      "severity": "INFO",
+      "target_ref": "02-data-model.md 저장 절차 5(replace)·SAVE_FAILED / 05-architecture.md NodeFileSystem",
+      "type": "tech-risk",
+      "description": "Windows에서 기존 파일 위로 rename할 때 백신, 검색 색인, 클라우드 동기화 프로그램이 대상 파일을 잠깐 잡고 있으면 EPERM/EBUSY/EACCES가 간헐적으로 난다. 설계는 이를 곧바로 SAVE_FAILED로 처리한다. 원자성 면에서는 안전하지만 간헐 오류마다 RK-001의 화면과 저장소 불일치 경로로 들어간다. 칸 이동마다 저장하므로 빈도가 낮지 않을 수 있다. 데이터 모델은 Windows 동작을 구현에서 확인한다고만 했다.",
+      "suggestion": "DataFileRepository.save의 replace(및 write_temp) 단계에서 EPERM/EBUSY/EACCES에 한해 짧게 재시도한다(예: 20ms 간격 최대 5회, 모두 실패하면 SAVE_FAILED). FileSystemPort는 그대로이고 fault-fs 대역에서 `n번째 호출만 한 번 실패`를 주입하는 TC 한 개로 확인한다."
+    }
+  ],
+  "metrics": {
+    "issues_critical": 0,
+    "issues_warn": 7,
+    "issues_info": 6
+  }
+}

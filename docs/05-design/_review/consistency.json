@@ -1,0 +1,124 @@
+{
+  "persona": "design-consistency-reviewer",
+  "verdict": "REVISE",
+  "summary": "P0 FR/SCR/NFR 추적 사슬(명세 -> 아키텍처 컴포넌트 31개 -> 파일 138개 -> Task 42개)과 TC 134개, 파일 수·Wave·Task 수는 서로 맞고 CRITICAL은 없다. 다만 알려진 결정 필요 2건(보관 카드 삭제, 저장 실패 뒤 추가 조작), UI 명세와 시험·API가 다르게 말하는 읽기 실패 패널, Task의 check와 covers가 어긋난 약한 매핑이 남아 WARN 9건과 INFO 5건을 기록한다.",
+  "issues": [
+    {
+      "id": "DC-001",
+      "severity": "WARN",
+      "target_ref": "spec.md 상태 전이 표(718행)와 UC-009 사전 조건(396~397행) / 04-ui-spec.md 결정 필요 4 / 05-architecture.md 결정 필요 1 / 07-test-plan.md 결정 필요 1",
+      "type": "cross-mismatch",
+      "description": "[이미 알려진 결정 필요 항목을 새 이슈로 올림] 보관한 카드의 삭제 허용 여부가 명세 안에서 모순이다. 상태 전이 표와 다이어그램(보관됨 --> 삭제)은 허용하고, UC-009 사전 조건은 '보관되지 않은 카드'다. 설계 문서(02 상태 전이 매핑, 03 cards.delete 권한 표, 04 보관한 카드 모드의 삭제 버튼, 05 CardRules.deleteCard, 08 T-025/T-030/T-036)는 모두 전이 표를 따라 '허용'을 임시 가정으로 구현한다. 그런데 07-test-plan에는 이 동작을 확인하는 TC가 하나도 없어(TC-020은 수정·상태 변경·기록 추가·재보관 거부만 다룬다), 설계가 만든 동작이 시험 없이 남는다. 이것은 요구·정책 유형이라 설계자가 정하지 못하고 사용자와 명세 개정(재승인)이 필요하다.",
+      "suggestion": "사용자가 (a) 허용 (b) 막기를 정한다. (a)이면 명세의 UC-009 사전 조건을 '카드가 있다'로 고쳐 재승인하고, 07-test-plan에 'TC-0xx 보관한 카드도 삭제 확인 뒤 삭제되고 기록도 함께 사라진다'(cli: card-rules.test.ts, browser: archive.spec.ts)를 추가해 T-020/T-041의 check에 넣는다. (b)이면 03 권한 표의 cards.delete 보관 열을 CARD_ARCHIVED로 바꾸고 04 보관한 카드 모드에서 삭제를 뺀다. 결정 전까지는 지금의 임시 가정과 '시험 없음'을 README 미해결 1번에 함께 적어 둔다."
+    },
+    {
+      "id": "DC-002",
+      "severity": "WARN",
+      "target_ref": "04-ui-spec.md 상태 관리 UX(낙관적 업데이트) / 03-api-spec.md 변경 동작의 공통 순서 5 / 05-architecture.md ChangeRunner(5)와 결정 필요 2 / 07-test-plan.md TC-115 / 08-tasks.md T-031",
+      "type": "cross-mismatch",
+      "description": "[이미 알려진 결정 필요 항목을 새 이슈로 올림] 저장 실패 뒤 추가 조작에서 문서들이 서로 다른 계약을 말한다. 04는 칸 이동·보관·판 전환이 저장에 실패해도 화면을 되돌리지 않는다고 하고, 03은 실패한 변경이 저장소에 없다고 한다. 그 사이 같은 카드를 또 바꾸면(예: 이동이 실패한 카드를 보관) main은 ARCHIVE_NOT_ALLOWED를 돌려주고, 05의 ChangeRunner는 도메인 오류 때 낙관적 반영을 버리고 main 목록으로 다시 맞춘다. 이 재동기화는 앞서 실패한 이동까지 조용히 되돌려 04의 '되돌리지 않는다'와 AC-031의 취지를 깨고, 'resync' 순간 '다시 저장'이 기억한 한 건과 화면 상태가 어긋난다. TC-115는 첫 실패까지만 확인해 이 구간이 시험되지 않는다. 요구·정책 유형이라 사용자 결정이 필요하다.",
+      "suggestion": "사용자가 05 결정 필요 2의 (a)(b)(c) 중 하나를 고른다. (b) 실패가 남은 동안 새 변경을 막으면 03·05·04가 한 문장으로 일치하고 TC도 단순해진다. 어느 쪽이든 (1) 04 낙관적 업데이트 행과 05 ChangeRunner(5)에 '이미 실패한 변경이 있는 카드의 도메인 오류 재동기화는 실패 변경을 되돌리는가'를 한 문장으로 명시하고 (2) 07에 '실패한 이동 뒤 같은 카드 보관 시도' 시나리오를 추가한다. 결정 전에는 현재 임시 가정이 TC로 고정되지 않았음을 README 미해결 2번에 유지한다."
+    },
+    {
+      "id": "DC-003",
+      "severity": "WARN",
+      "target_ref": "04-ui-spec.md SCR-001 상태별 화면(에러: 읽기 실패) vs 03-api-spec.md ReadFailure.dataFilePath / 05-architecture.md ReadFailurePanel / 07-test-plan.md TC-117 / 08-tasks.md T-032",
+      "type": "cross-mismatch",
+      "description": "읽기 실패 패널의 구성이 문서마다 다르다. 03은 dataFilePath를 '오류 안내에 보여 사용자가 찾을 수 있게 한다'고 하고, 05 ReadFailurePanel은 '원인 문장, 읽지 못한 파일 경로, 다시 읽기', 08 T-032는 '읽지 못한 파일 경로와 오류 내용과 다시 읽기', 07 TC-117은 기대 결과에 '읽지 못한 파일 경로와 오류 내용'을 쓴다. 그러나 UI 명세(04) SCR-001의 읽기 실패 행은 오류 아이콘, 제목, 설명, '오류: ...' 한 줄, 다시 읽기 버튼만 정의하고 파일 경로가 없다(04 전체에서 '경로'는 대화상자 열림 경로와 문서 경로 두 곳뿐). UI 명세를 따라 구현하면 TC-117이 실패한다. 백업 상태(ReadFailure.backup)와 OS 코드(osCode)가 화면에 어떻게 나오는지도 04에 없다.",
+      "suggestion": "04-ui-spec.md SCR-001 '에러: 읽기 실패' 행에 '읽지 못한 파일: <dataFilePath>'(흐린 색 한 줄)을 추가하고, '오류: ...' 줄에 ReadFailure.code의 문구(Labels)와 osCode를 쓴다고 적는다. 백업 안내(backup: valid/invalid/absent)를 보일지는 안 보이는 것으로 두거나 한 줄로 정한다. 대응하는 wireframes에 읽기 실패 패널이 없으므로 SCR-001.svg에 추가하거나 04에 '와이어프레임 없음'을 적는다."
+    },
+    {
+      "id": "DC-004",
+      "severity": "WARN",
+      "target_ref": "03-api-spec.md cards.list '화면 쪽 사용 방법'(보관함) vs 05-architecture.md 데이터 흐름 '검색·필터·마감 지남' 1, ADR-006",
+      "type": "cross-mismatch",
+      "description": "보관함의 검색 데이터 흐름이 다르다. 03은 보관함이 'scope: archive와 검색 조건'으로 cards.list를 부르는 것처럼 쓰고(AC-028을 cards.list의 text/kind/priority/scope에 매핑), 05는 보드와 보관함 모두 조건 없이 scope 목록을 한 번 받아 renderer에서 matchesQuery로 거르며 '조건 인자는 시험이 직접 쓴다'고 한다. 이 경우 CardQuery의 text/kind/priority를 쓰는 화면이 없어 03의 FR-013/AC-026~027 인터페이스 매핑이 실제 호출 경로가 아니다. T-034(보관함 화면)와 T-016(board-model)을 구현하는 사람이 어느 쪽을 따를지 모호하다.",
+      "suggestion": "03 cards.list '화면 쪽 사용 방법'의 보관함 항목을 'scope: archive로 한 번 받아 renderer가 matchesQuery로 거른다(05 데이터 흐름)'로 고치고, 03 AC-026/027의 근거 열에 'matchesQuery(화면), cards.list 조건 인자(시험·main 보조)'로 구분해 적는다. 또는 반대로 05를 03에 맞춰 보관함만 서버 쪽 조건을 쓴다고 바꾼다. 어느 쪽이든 08 T-034와 T-016 설명에 같은 흐름을 한 줄로 적는다."
+    },
+    {
+      "id": "DC-005",
+      "severity": "WARN",
+      "target_ref": "07-test-plan.md TC-010·TC-036 시험 파일 vs 06-file-map.md 시험 파일 계획 vs 08-tasks.md T-013·T-020·T-028·T-029·결정 필요 1",
+      "type": "traceability",
+      "description": "TC-010은 시험 파일이 validation.test.ts인데 절차(카드 만들기 호출)가 card-rules를 요구하고, TC-036은 data-file-save.test.ts인데 절차(저장소를 열고 저장)가 data-file-repository를 요구한다. 그래서 08-tasks는 TC-010을 T-020이, TC-036을 T-029가 맡되 각각 T-013/T-028 소유의 시험 파일에 '추가'하게 한다. 한 파일을 두 Task가 쓰면 06-file-map의 '모든 파일은 한 Task에 있다'는 규칙(08 검증 기록 '파일 배정')과 어긋나고, T-013/T-028 완료 시점에 그 시험 파일이 미완 상태로 남는다. 08 결정 필요 1이 이를 인정하지만 07·06은 그대로다.",
+      "suggestion": "08 결정 필요 1의 (b)처럼 07-test-plan에서 TC-010의 시험 파일을 tests/cli/domain/card-rules.test.ts로, TC-036의 시험 파일을 tests/cli/store/data-file-repository.test.ts로 바꾸고, 06-file-map의 시험 파일 계획 해당 줄 범주(AC-002/AC-029, NFR-003)를 같이 옮긴다. 그러면 TC를 맡은 Task(T-020, T-029)가 그 파일의 소유 Task가 되어 파일 하나 = Task 하나 규칙이 유지된다."
+    },
+    {
+      "id": "DC-006",
+      "severity": "WARN",
+      "target_ref": "08-tasks.md T-041, T-042 vs 07-test-plan.md TC-091~TC-101, TC-105~TC-109, TC-110~TC-120, TC-125~TC-130",
+      "type": "traceability",
+      "description": "browser TC 64개 중 33개(T-041의 22개, T-042의 11개)가 그 동작을 구현하지 않는 Task에 배정됐다. T-041이 만드는 구현 파일은 index.html(CSP) 하나이고 보관함·캘린더·검색 동작은 T-033/T-034/T-035/T-038에서, T-042가 만드는 구현 파일은 electron-builder.yml 하나이고 재시작 유지·저장 실패·읽기 실패 동작은 T-028~T-032/T-037에서 구현된다. 08 요약은 이 배치를 '게이트 REF-12(시험만 만드는 Task 금지)를 피하려고 구현 파일을 하나 이상 가지게 했다'고 설명한다. 결과적으로 TC의 check 소유자가 동작 구현자가 아니라서, 해당 동작이 어긋나도 어느 Task의 결함인지 추적이 약하고 T-042에서 포장 설정과 E2E가 무관하게 묶인다. 테스트가 마지막 Wave에 몰린다는 점은 08에 이유가 적혀 있으나 앞 Wave 구현 Task와의 연결(역방향 deps)이 없다.",
+      "suggestion": "(1) 최소 수정: T-041/T-042의 설명에 'E2E 검증 대상 구현 Task: T-033, T-034, T-035, T-038(보관함·캘린더·검색), T-028~T-032, T-037(영속·실패 경로)'를 한 줄로 명시하고 covers에 TC가 확인하는 FR/UC를 모두 넣는다(DC-007과 함께). (2) 구조적 수정: Wave 12의 E2E를 화면 단위로 쪼개 T-040에서 보드·대화상자, 새 Task에서 캘린더·보관함·검색, 또 다른 Task에서 영속·실패를 맡기되 각 Task가 해당 화면의 최종 연결 파일(예: 화면별 CSS import 연결)을 하나 갖게 한다. 파일 수·deps 변경이 크면 (1)만 적용해도 된다."
+    },
+    {
+      "id": "DC-007",
+      "severity": "WARN",
+      "target_ref": "08-tasks.md T-020, T-040, T-041, T-042의 covers vs 소유한 TC의 근거 AC",
+      "type": "traceability",
+      "description": "Task의 check에 있는 TC가 확인하는 요구사항이 같은 Task의 covers에 빠져 있다. 예: T-020은 TC-007(AC-014, FR-007)을 맡지만 covers에 FR-007이 없고, T-040은 TC-076·TC-077(AC-013·AC-014, FR-007)을 맡지만 covers에 FR-007이 없다. T-042는 TC-113·TC-116(AC-038·UC-011, FR-014)을 맡지만 covers에 FR-014·UC-011이 없고, T-041은 TC-127(AC-012, FR-006·UC-005)과 TC-099(AC-022, FR-011)를 맡지만 covers에 FR-006·FR-011·UC-005가 없다. 그 결과 커버리지 점검표 FR-007 행(T-013, T-019, T-035, T-036)은 FR-007의 AC-013/AC-014 E2E를 맡은 T-040을 가리키지 않아 FR 단위 추적이 약하다.",
+      "suggestion": "T-020 covers에 FR-007을, T-040 covers에 FR-007을, T-041 covers에 FR-006, FR-011, UC-005를, T-042 covers에 FR-014, UC-011을 추가하고, 요구사항 커버리지 점검표 행(FR-006, FR-007, FR-011, FR-014, UC-005, UC-011)에 해당 Task를 더한다. 같은 방식으로 check의 TC마다 07 추적 요약의 근거 AC가 Task covers 안에 있는지 점검한다."
+    },
+    {
+      "id": "DC-008",
+      "severity": "WARN",
+      "target_ref": "01-tech-stack.md 머리 문단, 추천 스택 '최종 결정은 사용자가 한다', 결정 필요 1·5 vs spec.md CON-002·Q-005(해소) / 02-data-model.md 머리 / README.md",
+      "type": "cross-mismatch",
+      "description": "01-tech-stack.md는 실행 형태가 아직 미정인 것처럼 쓴다(머리 문단 '사용자가 후보 비교 표를 보고 고르게 하려고', '선택 후보: A. 최종 결정은 사용자가 한다', 결정 필요 1 '실행 형태 선택 (Q-005)', 검증 기록 '선택 1개(A)'). 명세 v2 CON-002와 Q-005(해소), 02-data-model(Electron은 CON-002로 확정), 05-architecture(사용자가 확정), README는 모두 Electron이 확정됐다고 쓴다. 개발자가 첫 Task의 입력으로 읽는 01이 미결로 보여 README 미해결 목록과 어긋난다. 이 이슈는 사용자의 Electron 선택을 뒤집는 제안이 아니라 기록 상태를 맞추는 것이다.",
+      "suggestion": "01-tech-stack.md 머리 문단을 '실행 형태는 사용자가 A(Electron)를 골랐다(CON-002, Q-005 해소). 후보 비교 표는 선택 근거 기록'으로 고치고, 추천 스택의 '최종 결정은 사용자가 한다'와 결정 필요 1을 '해소됨(A 선택)'으로 바꾼다. 결정 필요 2(웹을 고를 때만)는 삭제하거나 '선택되지 않음'으로 닫는다."
+    },
+    {
+      "id": "DC-009",
+      "severity": "WARN",
+      "target_ref": "02-data-model.md 설계 메모 'JSON 파일 1개'(276행) / 05-architecture.md ADR-002 맥락(481행) vs 01-tech-stack.md 결정 필요 5 / spec.md CON-002",
+      "type": "cross-mismatch",
+      "description": "02와 ADR-002는 '사용자가 후보 A와 앱 데이터 폴더의 JSON 파일 1개 저장을 확정했다'고 쓰지만, 01-tech-stack.md 결정 필요 5는 '이 문서는 JSON 파일 한 개 방향이다. 최종은 아키텍처 설계에서 확정한다'고 하고, 명세 CON-002와 _variants/choice.md에는 Electron 선택만 있고 저장 형식 선택의 기록이 없다(JSON 관련 문자열이 spec.md와 choice.md에서 검색되지 않는다). 사용자가 말하지 않은 결정을 사용자 결정으로 적었을 수 있다. 대화에서 실제로 확인한 사용자 발언이면 그 기록 위치가 문서에 없다.",
+      "suggestion": "근거가 사용자 발언이면 spec.md CON-002 또는 _variants/choice.md에 '저장 형식: 앱 데이터 폴더의 JSON 파일 1개를 사용자가 확정했다'를 추가하고 01 결정 필요 5를 해소로 닫는다. 근거가 없으면 02 설계 메모와 ADR-002의 '사용자가 확정했다'를 '01-tech-stack의 추천 방향을 아키텍처가 채택했다'로 고친다. (이 지적은 JSON 저장 선택 자체를 뒤집는 제안이 아니다.)"
+    },
+    {
+      "id": "DC-010",
+      "severity": "INFO",
+      "target_ref": "spec.md NFR-001('FR-001~FR-013') vs FR-014 / 07-test-plan.md TC-125 / 05-architecture.md NFR-001 행",
+      "type": "missing",
+      "description": "명세 v2에서 FR-014를 추가했지만 NFR-001의 적용 범위 문구는 '구현한 모든 기능(FR-001~FR-013)'으로 남았다. 설계(05 NFR-001, 07 TC-125 '모든 화면 동작')는 FR-014까지 포함해 시험하므로 문서 간 동작은 같지만, 명세 문구와 설계의 적용 범위가 다르다. 명세는 승인된 문서라 고치면 재승인이 필요하다.",
+      "suggestion": "다음 명세 개정 때 NFR-001을 'FR-001~FR-014'로 고친다. 그 전에는 07 TC-125의 근거에 'FR-014 포함'을 적어 설계 쪽 범위를 분명히 한다."
+    },
+    {
+      "id": "DC-011",
+      "severity": "INFO",
+      "target_ref": "07-test-plan.md TC-066, TC-064 근거 열",
+      "type": "traceability",
+      "description": "TC-066(핸들러가 예외를 INTERNAL로 변환)의 근거가 NFR-002로, TC-064(채널 12개 일치)의 근거가 NFR-001로 되어 있다. 두 시험은 05 ADR-004의 IPC 계약 검증이라 NFR-002(저장 중 강제 종료 시 직전 저장본)와의 직접 연결이 약하다. 추적 요약 표의 NFR-002 행에 TC-066이 들어가 NFR-002 커버가 실제보다 두터워 보인다.",
+      "suggestion": "TC-066의 근거를 'AC-031(저장 실패는 입력 보존), ADR-004'로 바꾸거나 근거를 'ADR-004'로 적고 NFR-002 추적 행에서 TC-066을 뺀다. TC-064의 근거는 'ADR-004, NFR-001(보안 기본값)'으로 쓴다."
+    },
+    {
+      "id": "DC-012",
+      "severity": "INFO",
+      "target_ref": "04-ui-spec.md 체크리스트 결정 기록 입력/폼 '멀티스텝 폼' 행",
+      "type": "cross-mismatch",
+      "description": "'멀티스텝 폼 | 없다 | 필드 6개로 한 화면에 들어간다'라고 쓰지만 같은 문서의 SCR-002 입력 항목 표는 제목, 종류, 상태, 마감일, 우선순위, 상세 설명, 추가 메모의 7개다(와이어프레임 SCR-002.svg도 7개).",
+      "suggestion": "'필드 6개'를 '입력 항목 7개(제목, 종류, 상태, 마감일, 우선순위, 상세 설명, 추가 메모)'로 고친다."
+    },
+    {
+      "id": "DC-013",
+      "severity": "INFO",
+      "target_ref": "wireframes/SCR-001~004.svg 사이드바 '스케줄 칸반보드' / wireframes/SCR-004.svg 주석 / 04-ui-spec.md SCR-004 결과 없음 / 05-architecture.md 결정 필요 3",
+      "type": "cross-mismatch",
+      "description": "와이어프레임 네 장 모두 사이드바 앱 이름을 '스케줄 칸반보드'로 그렸지만 05 결정 필요 3과 06 결정 필요 3은 '명세와 설계 어디에도 앱 이름이 없다'고 한다. 04 컴포넌트 구성은 앱 이름을 상수로 두라고만 하고 와이어프레임의 글자가 임시 문구라는 표기가 없다. 또 SCR-004.svg 주석은 결과 없음 문구를 '맞는 카드가 없습니다'로 쓰지만 04 SCR-004 상태별 화면은 '조건에 맞는 보관한 카드가 없습니다.'이고, SCR-001은 '조건에 맞는 카드가 없습니다.'다. 구현자는 04의 문구를 따라야 한다(TC-108 기대 결과도 04 문구).",
+      "suggestion": "04 레이아웃 설명에 '와이어프레임의 앱 이름은 임시 문구(앱 이름은 결정 필요 3)'를 적고, SCR-004.svg 주석의 따옴표 문구를 04와 같은 '조건에 맞는 보관한 카드가 없습니다'로 맞추거나 04에 '와이어프레임 주석은 04의 문구가 우선'이라고 적는다."
+    },
+    {
+      "id": "DC-014",
+      "severity": "INFO",
+      "target_ref": "05-architecture.md 디렉토리 구조 tests/cli 하위 폴더, SearchBox 위치 vs 06-file-map.md 컴포넌트와 파일 대응·Directory Structure / 04-ui-spec.md 컴포넌트 트리 patterns/",
+      "type": "cross-mismatch",
+      "description": "경로 표기가 문서마다 조금씩 다르다. (1) 05의 tests/cli 하위 폴더는 domain, store, migrations, model, ipc, support인데 06은 tests/cli/text/(labels.test.ts)를 더했고, card-form-state.test.ts는 소스가 features/card-dialog에 있는데 시험은 tests/cli/model/에 둔다. (2) 04 컴포넌트 트리는 SearchBox를 renderer/patterns/에 두지만 05와 06은 common/에 둔다(04는 경로를 06이 정한다고 밝힘). 06이 최종 경로이므로 실제 모순은 아니지만 폴더 목록을 보고 시작하는 구현자가 헷갈릴 수 있다.",
+      "suggestion": "05 디렉토리 구조 tests/cli에 text/(labels)를 추가하고 model/ 설명에 'card-form-state 포함'을 적는다. 04 컴포넌트 트리의 patterns/SearchBox를 common/SearchBox로 옮기거나 '경로는 06이 정한다'를 트리 주석에 다시 적는다."
+    }
+  ],
+  "metrics": {
+    "issues_critical": 0,
+    "issues_warn": 9,
+    "issues_info": 5
+  }
+}

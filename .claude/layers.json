@@ -1,0 +1,15 @@
+{
+  "orchestrators": ["discover-to-design", "design-to-build"],
+  "exceptions": [
+    {
+      "path": ".claude/skills/spec-planner/SKILL.md",
+      "reason": "스킬 안에서 4-페르소나 리뷰어를 직접 호출한다 (오케스트레이션이 스킬 안에 있다)",
+      "until": "마이그레이션 4단계 (spec-planner 정리 시 허브 계획으로 이전)"
+    },
+    {
+      "path": ".claude/skills/design-architect/SKILL.md",
+      "reason": "스킬 안에서 설계 에이전트와 리뷰어를 직접 호출한다",
+      "until": "마이그레이션 7단계 (파일럿 비교 시험 통과 뒤 폐기)"
+    }
+  ]
+}
